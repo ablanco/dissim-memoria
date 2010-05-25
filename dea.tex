@@ -16,6 +16,8 @@
 %     A copy of the license is included in the section entitled "GNU
 %     Free Documentation License".
 
+\documentclass[a4paper,12pt]{book}
+
 %%  Include con la definición de estilos del usuario
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \input definl
@@ -41,7 +43,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \renewcommand\lstlistingname{Listado}                   %  default is Listing
 \renewcommand\lstlistlistingname{\'Indice de listados}  %  default is Listings
-\renewcommand\thelstlisting{\thechapter .\arabic{lstlisting}} % captionstyle
+% \renewcommand\thelstlisting{\thechapter .\arabic{lstlisting}} % captionstyle
 \lstset{
   language=Java,
   basicstyle=\small,
@@ -105,8 +107,8 @@ de-se-chan-do-lo
 %%  Apéndices
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \appendix
-\include{apendices/ap1}  % Código fuente de los agentes
-\include{apendices/ap2}  % Especificaciones FIPA
+\include{apendices/ap1}  % Código fuente del proyecto
+\include{apendices/ap2}  % Concurso Universitario de Software Libre
 
 %%  Bibliografía
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
