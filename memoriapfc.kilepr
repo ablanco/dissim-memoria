@@ -1,4 +1,53 @@
 [General]
+def_graphic_ext=png
+img_extIsRegExp=false
+img_extensions=.eps .jpg .jpeg .png .pdf .ps .fig .gif
 kileprversion=2
 kileversion=2.0.83
+lastDocument=
+masterDocument=dea.tex
 name=Memoria PFC
+pkg_extIsRegExp=false
+pkg_extensions=.cls .sty .bbx .cbx .lbx
+src_extIsRegExp=false
+src_extensions=.tex .ltx .latex .dtx .ins
+
+[Tools]
+MakeIndex=
+QuickBuild=PDFLaTeX+ViewPDF
+
+[item:COPYING.tex]
+archive=true
+column=0
+encoding=UTF-8
+highlight=LaTeX
+line=0
+open=false
+order=-1
+
+[item:dea.tex]
+archive=true
+column=0
+encoding=
+highlight=
+line=0
+open=false
+order=-1
+
+[item:definl.tex]
+archive=true
+column=34
+encoding=UTF-8
+highlight=LaTeX
+line=0
+open=false
+order=-1
+
+[item:memoriapfc.kilepr]
+archive=true
+column=6422636
+encoding=
+highlight=
+line=0
+open=false
+order=-1
