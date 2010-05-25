@@ -1,0 +1,119 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%                                                                 %%
+%%           Simulador de inundaciones                             %%
+%%           Proyecto fin de carrera                               %%
+%%                                                                 %%
+%%                            Alejandro Blanco Escudero            %%
+%%                                  Manuel Gomar Acosta            %%
+%%                                                                 %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%     Copyright (C)  2010  Alejandro Blanco & Manuel Gomar
+%     Permission is granted to copy, distribute and/or modify this document
+%     under the terms of the GNU Free Documentation License, Version 1.3
+%     or any later version published by the Free Software Foundation;
+%     with no Invariant Sections, no Front-Cover Texts, and no Back-Cover Texts.
+%     A copy of the license is included in the section entitled "GNU
+%     Free Documentation License".
+
+%%  Include con la definición de estilos del usuario
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\input definl
+
+%%  Paquetería necesaria de fábrica
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage[utf8x]{inputenc}
+\usepackage{hyperref}
+\usepackage{palatino}
+\usepackage[dvips]{graphicx} % para importar combinados latex
+\usepackage{color}           % para importar dibujos coloreados
+\usepackage{rotating}        % para usar \begin{sideways} que rota tabla 90
+                             % grados
+\usepackage{epsfig}          % para rotar figuras de Xfig  poniendo
+                             % \begin{sideways}
+\usepackage{amsmath}         % para usar matrix y pmatrix environment
+\usepackage{stmaryrd}        % para usar la \bigsqcap
+\usepackage{verbatim}        % para poner salidas de pantallas
+\usepackage{listings}        % para imprimir codigo fuente
+\usepackage{shortvrb}
+
+%%  Configuración de paquetes
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\renewcommand\lstlistingname{Listado}                   %  default is Listing
+\renewcommand\lstlistlistingname{\'Indice de listados}  %  default is Listings
+\renewcommand\thelstlisting{\thechapter .\arabic{lstlisting}} % captionstyle
+\lstset{
+  language=Java,
+  basicstyle=\small,
+  keywordstyle=\bfseries,
+  showstringspaces=false,
+  numbers=left,
+  numberstyle=\tiny,
+  stepnumber=1,
+  numbersep=5pt,
+  frame=single}
+
+%%  Configuraciones varias
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\corregir}{\color{blue}}   % pintar en color azul
+\setlength{\parskip}{2ex}              % después del párrafo, doble línea
+
+% Para que no aparezcan las cabeceras de las páginas que están en blanco
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\makeatletter
+\def\cleardoublepage{\clearpage\if@twoside \ifodd\c@page\else
+  \hbox{}
+  \thispagestyle{empty}
+  \newpage
+  \if@twocolumn\hbox{}\newpage\fi\fi\fi}
+\makeatother
+
+%%  Cortes de palabras especiales
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\hyphenation{
+de-sig-na
+for-mu-las
+de-se-chan-do-lo
+}
+
+\begin{document}
+
+%%  Título e Índices
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\pagenumbering{roman}
+\include{titulo/titulo}
+\clearpage
+\pagestyle{plain}
+\tableofcontents
+\clearpage
+\listoffigures
+\lstlistoflistings
+
+%%  Contenido del trabajo
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\pagenumbering{arabic}
+\pagestyle{fancy}
+\include{capitulo0/cap0} % Introducción
+\include{capitulo1/cap1} % Simulación basada en agentes
+\include{capitulo2/cap2} % Planteamiento del problema
+\include{capitulo3/cap3} % Solución propuesta
+\include{capitulo4/cap4} % Tecnología elegida
+\include{capitulo5/cap5} % Metodología e implementación
+\include{capitulo6/cap6} % Resultados
+\include{capitulo7/cap7} % Conclusiones y trabajo futuro
+\include{capitulo8/cap8} % Bibliografía
+
+%%  Apéndices
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\appendix
+\include{apendices/ap1}  % Código fuente de los agentes
+\include{apendices/ap2}  % Especificaciones FIPA
+
+%%  Bibliografía
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\addcontentsline{toc}{chapter}{Bibliograf\'ia}
+\bibliographystyle{alpha}
+\bibliography{../bibliografia/referencias.bib}
+
+\end{document}
