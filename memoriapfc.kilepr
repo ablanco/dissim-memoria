@@ -4,7 +4,7 @@ img_extIsRegExp=false
 img_extensions=.eps .jpg .jpeg .png .pdf .ps .fig .gif
 kileprversion=2
 kileversion=2.0.83
-lastDocument=dea.tex
+lastDocument=capitulo0/cap0.tex
 masterDocument=dea.tex
 name=Memoria PFC
 pkg_extIsRegExp=false
@@ -25,6 +25,24 @@ line=0
 open=false
 order=-1
 
+[item:apendices/ap1.tex]
+archive=true
+column=0
+encoding=UTF-8
+highlight=LaTeX
+line=0
+open=false
+order=-1
+
+[item:apendices/ap2.tex]
+archive=true
+column=42
+encoding=UTF-8
+highlight=LaTeX
+line=0
+open=false
+order=-1
+
 [item:bibliografia/referencias.bib]
 archive=true
 column=0
@@ -36,12 +54,12 @@ order=-1
 
 [item:capitulo0/cap0.tex]
 archive=true
-column=32
+column=64
 encoding=UTF-8
 highlight=LaTeX
-line=3
-open=false
-order=-1
+line=30
+open=true
+order=2
 
 [item:capitulo1/cap1.tex]
 archive=true
@@ -108,10 +126,10 @@ order=-1
 
 [item:dea.tex]
 archive=true
-column=14
+column=58
 encoding=UTF-8
 highlight=LaTeX
-line=115
+line=10
 open=true
 order=0
 
@@ -120,7 +138,7 @@ archive=true
 column=0
 encoding=UTF-8
 highlight=LaTeX
-line=6
+line=36
 open=false
 order=-1
 
@@ -138,6 +156,6 @@ archive=true
 column=0
 encoding=UTF-8
 highlight=LaTeX
-line=10
+line=28
 open=true
 order=1
