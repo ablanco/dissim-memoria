@@ -4,7 +4,7 @@ img_extIsRegExp=false
 img_extensions=.eps .jpg .jpeg .png .pdf .ps .fig .gif
 kileprversion=2
 kileversion=2.0.83
-lastDocument=capitulo0/cap0.tex
+lastDocument=dea.tex
 masterDocument=dea.tex
 name=Memoria PFC
 pkg_extIsRegExp=false
@@ -54,82 +54,82 @@ order=-1
 
 [item:capitulo0/cap0.tex]
 archive=true
-column=64
+column=0
 encoding=UTF-8
 highlight=LaTeX
-line=30
-open=true
+line=0
+open=false
 order=2
 
 [item:capitulo1/cap1.tex]
 archive=true
-column=30
+column=48
 encoding=UTF-8
 highlight=LaTeX
-line=0
+line=3
 open=false
 order=-1
 
 [item:capitulo2/cap2.tex]
 archive=true
-column=56
+column=36
 encoding=UTF-8
 highlight=LaTeX
-line=0
+line=15
 open=false
 order=-1
 
 [item:capitulo3/cap3.tex]
 archive=true
-column=28
+column=16
 encoding=UTF-8
 highlight=LaTeX
-line=0
+line=15
 open=false
 order=-1
 
 [item:capitulo4/cap4.tex]
 archive=true
-column=26
+column=14
 encoding=UTF-8
 highlight=LaTeX
-line=0
+line=15
 open=false
 order=-1
 
 [item:capitulo5/cap5.tex]
 archive=true
-column=30
+column=21
 encoding=UTF-8
 highlight=LaTeX
-line=0
+line=15
 open=false
 order=-1
 
 [item:capitulo6/cap6.tex]
 archive=true
-column=12
+column=20
 encoding=UTF-8
 highlight=LaTeX
-line=0
+line=15
 open=false
 order=-1
 
 [item:capitulo7/cap7.tex]
 archive=true
-column=31
+column=35
 encoding=UTF-8
 highlight=LaTeX
-line=0
+line=2
 open=false
 order=-1
 
 [item:dea.tex]
 archive=true
-column=58
+column=34
 encoding=UTF-8
 highlight=LaTeX
-line=10
+line=18
 open=true
 order=0
 
@@ -157,5 +157,5 @@ column=0
 encoding=UTF-8
 highlight=LaTeX
 line=28
-open=true
+open=false
 order=1
