@@ -10,8 +10,8 @@
 
 \begin{flushright}
 \begin{minipage}{7.85cm}
-    {\em Si la única herramienta que se tiene es un martillo, pensará que cada
-    problema que surge es un clavo.} \\  Mark Twain
+    {\em Si la única herramienta que se tiene es un martillo, se pensará que
+    cada problema que surge es un clavo.} \\  Mark Twain
 \end{minipage}
 \end{flushright}
 
@@ -35,17 +35,58 @@ computacionalmente. Por ello nosotros proponemos un simulador basado en agentes.
 
 \section*{Solución}
 
-Los sistemas multi-agentes son una técnica de inteligencia artificial que nos
-permiten
+Los sistemas multiagente son una técnica de inteligencia artificial que nos
+permite abordar este problema desde un nuevo punto de vista. Un agente es una
+entidad {\em inteligente} y autónoma, pero relativamente simple, y por lo tanto
+computacionalmente ligera. Es la conducta combinada de estos agentes la produce
+un resultado en conjunto {\em inteligente}, un comportamiento emergente que no
+tiene por qué estar planeado desde un principio.
+
+Con esta herramienta es posible diseñar un simulador cuya carga computacional
+no sea inabarcable y que produzca resultados satisfactorios.
+
+\subsection*{Objetivos}
+
+Se pretende con este proyecto desarrollar la base de un Simulador de Desastres,
+centrándose en el caso de una inundación. El simulador ha de cumplir las
+siguientes condiciones:
+
+\begin{itemize}
+ \item Ha de simular utilizando datos reales del terreno simulado. No tendría
+sentido realizar una simulación si no se puede aprovechar la información
+obtenida con ella.
+ \item Ha de ser escalable y distribuido. Es imprescindible que se pueda
+simular sobre áreas tan grandes como se quiera, y que simplemente añadiendo más
+máquinas a la infraestructura de simulación esto sea posible.
+ \item Ha de ser fácilmente extensible a otros desastres naturales. La
+arquitectura del simulador ha de estar diseñada para que esta tarea no requiera
+grandes modificaciones del código existente.
+ \item Ha de respetar los estándares utilizados en los sistemas multiagente. En
+concreto los estándares de comunicación entre agentes establecidos por la FIPA
+\footnote{Foundation for Intelligent Physical Agents: http://www.fipa.org/}.
+ \item Ha de ser Software Libre. % TODO
+\end{itemize}
 
 \section*{Estructura de la memoria}
 
-\begin{enumerate}
- \item Simulación basada en agentes
- \item Planteamiento del problema
- \item Solución propuesta
- \item Tecnología elegida
- \item Metodología e implementación
- \item Resultados
- \item Conclusiones y trabajo futuro
-\end{enumerate}
+Esta memoria está dividida en los siguientes capítulos:
+
+\begin{description}
+ \item[Simulación basada en agentes:] Donde se describen las características de
+los sistemas multiagentes.
+ \item[Planteamiento del problema:] Donde se describen las dificultades que hay
+que abordar a la hora de simular una inundación.
+ \item[Solución propuesta:] Donde se detalla el diseño del simulador
+desarrollado.
+ \item[Tecnología elegida:] Donde se habla de JADE y otros aspectos
+técnicos del simulador.
+ \item[Metodología e implementación:] Donde se explica cómo ha sido desarrollado
+el proyecto.
+ \item[Resultados:] Donde se muestran los resultados obtenidos al simular con
+este proyecto.
+ \item[Conclusiones y trabajo futuro:] Donde se comentan las ideas obtenidas y
+las que quedan por desarrollar.
+ \item[Apéndices:] Donde se encuentra el contenido adicional de la memoria.
+  \subitem Licencia del Simulador
+  \subitem IV Concurso Universitario de Software Libre
+\end{description}
