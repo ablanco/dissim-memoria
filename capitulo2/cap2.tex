@@ -1,4 +1,4 @@
-% Planteamiento del problema: Simulación de inundaciones
+% del problema: Simulación de inundaciones
 
 \chapter*{Simulación de Inundaciones} \label{cap2}
 \addcontentsline{toc}{chapter}{Simulación de Inundaciones}
@@ -30,7 +30,8 @@ desplazarse, hasta sus posibles reacciones ante la llegada de una inundación.
 
 Por ultimo queremos que nuestro sistema sea global, de tal forma que no este
 restringido solo a una zona concreta del planeta, por ello hemos utilizado
-sistemas de información global, como por ejemplo ``Open Streets Maps``, o en el
+sistemas de información global, como por ejemplo ''Open Streets Maps'', o en
+el
 caso de estados unidos, un servidor de alturas. Aunque siempre estemos a
 expensas de la disponibilidad de los datos, siempre que los haya y sean
 accesibles, los podremos utilizar.
@@ -59,23 +60,42 @@ dirección y la velocidad de propagación.
 
 \subsubsection*{Dirección del Agua}
 
-Para resolver el problema de la posible dirección que tomaría una inundación,
-hemos asumido la hipótesis de que el agua siempre tenderá a propagarse desde un
-terreno elevado, a otro menos elevado.
+Cuando se produce una inundación, es importante saber en que dirección se
+propagará la masa de agua, puesto que necesitamos saber cuales serán los
+terrenos afectos por la inundación.
+
+La dirección del agua dependen de muchos factores, el mas determinante de ellos
+es, debido a la energía potencial, la altura, el agua siempre va a tender a ir
+desde donde se encuentra al punto mas bajo accesible.
+
+Otro factor que influye en la dirección del agua, aunque en menor medida es la
+fuerza inicial del agua y su velocidad, puesto que pueden desviar un poco la
+corriente principal e incluso salvar obstáculos o subir hasta una determinada
+altura en un terreno e inundar terrenos que sin tener en cuenta estos factores
+nunca hubieran sido inundados.
+
+Para resolver este problema nosotros solo disponemos de la altura del terreno
+como único dato.
 
 \subsubsection*{Velocidad de propagación del Agua}
 
-Para abordar el problema de la velocidad de propagación nos hemos visto
-obligados a simplificar muchísimo el sistema, puesto que tener en cuenta
-variables tales como la fuerza inicial del agua y dirección, la presión, la
+La velocidad de propagación de un fluido en un entorno irregular es un problema
+muy complejo, nos hemos visto 
+obligados a simplificar muchísimo el sistema,
+puesto que tener en cuenta
+variables tales como la fuerza inicial del agua, dirección, la presión, la
 ganancia o perdida de fuerza al bajar por un terreno o subir, el posible
 desgaste del terreno o incluso su resistencia a paso del agua, al tener mas o
-menos obstáculos que pudieran oponerse y frenar el agua. Todo esto no hemos
-podido abordarlo, no solo por su complejidad, sino por la falta de datos para
+menos obstáculos que pudieran oponerse y frenar el agua. 
+
+El problema no es que no seamos capaces de simular este sistema con nuestros
+agentes, o que sea inabordable por su complejidad, sino que además no tenemos 
+datos para poder recrear el escenario
 esta simulación. Datos sobre la composición del terreno, los obstáculos,
 resistencias de materiales, dureza, permeabilidad al agua ... no se encuentran
 tan fácilmente.
 
+%Esto ya forma parte de las explicaciones
 Por lo tanto, vistas nuestras limitaciones y sobre todo nuestra intención de un
 modelo simple, a la hora de simular la propagación de una cierta cantidad de
 agua sobre un terreno nos apoyamos en la iteración sobre el bucle del
@@ -90,7 +110,7 @@ Para el cálculo de este parámetro ............ bla bla bla
 De esta forma tan simple, podemos controlar de una cierta manera razonable la
 velocidad de propagación que tendrá el agua.
 
-\subsubsection*{Otros problemas}
+\subsubsection*{Otros problemas con el agua}
 
 Entre otros muchos posibles problemas que podríamos haber abordado por su
 sencillez y por la versatilidad de nuestro sistema ya que el coste de
@@ -100,22 +120,74 @@ tema de las filtraciones de agua, puesto que el agua también podría moverse po
 debajo de la tierra y llegar a zonas mas bajas sin tener contacto directo. Pero
 una vez mas por falta de datos, se han tenido que quedar en el tintero.
 
-\section*{Personas frente a una situación de crisis}
 
+\section*{Inundaciones en un entorno urbano}
+
+Simular una inundación en un entorno urbano tiene sus propios problemas, tales
+como la el papel de los ríos, las calles, la forma de los edificios, la red de
+alcantarillado, etc...
+\subsection*{Los ríos} %TODO
+En una ciudad, un río será por lo general, un sector conflictivo cuando se
+produzca una inundación, puesto que aparte de que probablemente sea el causante
+de la inundación  también es una zona en la que pueden producirse 
+
+\subsection*{La forma de los edificios}
+La forma de los edificios también va a influir en el desarrollo de la
+inundación, no solo en que cuando entre el agua dentro del edificio modificará
+su velocidad y trayectoria, sino con las paredes o fachadas, que pueden
+canalizar el agua e incluso formar piscinas en su interior o inundar sótanos.
+
+Sin conocer la forma del edificio no podemos hacer una simulación del todo fiel
+a realidad puesto que algunos terrenos serán afectados de forma diferente si
+hay un edificio delante de ellos que frena el avance del agua, o si por el
+contrario, un edificio hace de tapón y provoca un crecimiento anómalo del nivel
+del agua.
+
+\subsection*{Las calles y carreteras}
+Las calles y carreteras tienen una peculiaridad, puesto que al ser
+prácticamente planas y de inclinación suave las hacen idóneas para que el agua
+pueda moverse sin mucha dificultad por la ciudad. Ya que a un nivel pequeño del
+agua sirven como canales que conducen en agua hacia un lugar mas bajo pero a
+mucha mas velocidad que si lo hicieran a través de los edifcios o por cualquier
+otra superficie no plana.
+
+\subsection*{El alcantarillado}
+Todas las ciudades tienen una red de alcantarillado, que no es mas que un
+conjunto de canales que desplazan el agua desde la ciudad hasta un punto de la
+ciudad. Por las redes del alcantarillado va a circular gran cantidad de agua
+durante una inundación y no se verá afectada por la elevación del terreno ya
+que al ser subterránea y estar canalizada va a llevar una gran cantidad de agua
+a otro punto.
+
+Este es un problema que se puede asemejar al de las filtraciones, pero con un
+factor mucho mas alto.
+
+Una vez mas habría que disponer de un mapa del alcantarillado y de sus zonas de
+desagüe, aunque, se puede asumir que prácticamente debajo de cada carretera
+habrá una alcantarilla, aún así se estarían ignorando muchos otros puntos de
+entrada o salida de agua.
+%hablar de las calles y de la forma de los edifcios
+
+\section*{Personas frente a una situación de crisis}
+%TODO
 Pues aquí podemos explicar un poco lo de los papers, de la gente que ayudaba a
 los vecinos, de cuanto podían correr con el agua al cuello, de las reacciones de
 irse a terrenos elevados y de pisotear a su vecino si va delante, cosas así.
 
 \subsection*{Prioridades de las personas}
-
+%TODO
 Asta que no ven el agua venir no se Las personas quieren salvarse, salvar a su
 familia y si pueden, a alguien mas
 
 \subsection*{Supervivencia en un entorno inundado}
-
+%TODO
 Pues eso, mas y menos de la vida con el agua al cuello
 
 \subsection*{Acciones contra la catástrofe}
+%TODO
+
+\subsection*{Tráfico}
+%TODO
 
 \section*{Obtener información real sobre los terrenos}
 %obtención de información global
@@ -135,7 +207,7 @@ existir servicios a nivel global, al menos, disponibles al publico.
 No existe, o al menos no conocemos un servidor global de alturas.
 
 Por lo que de momento, solo disponemos de un servicio de alturas para el caso de
-nuestro estudio, Nueva Orleans.
+nuestro estudio, ''Nueva Orleans''.
 
 Si embargo, como ya hemos comentado antes, nuestra pretensión es que la
 simulación se pueda realizar en cualquier parte del planeta, por lo que la
@@ -144,19 +216,85 @@ fin de poder simular en cualquier otro lugar.
 
 \subsection*{Posibles rutas de evacuación}
 
+Con nuestro simulador no solo pretendemos simular la inundación en sí, sino la
+posible reacción de las personas ante la inundación, para ello, como ya hemos
+visto antes, necesitamos saber que es lo que las personas harían ante una
+crisis y además, conocer la ciudad en sí en la que se desarrolla, sobre todo sus
+calles, puesto que es probablemente, la ruta mas probable de la ciudad.
 En una evacuación ante una inundación es muy importante conocer el plano de la
 ciudad, para poder registrar las posibles rutas de de evacuación.
+
 Para obtener los planos de las ciudades optamos por ''Open Streets Map'' ya que
 al ser un estándar abierto y con información de ciudades a nivel global pues
 tenía todo lo que le pudiéramos necesitar. 
+
 También contiene mucha información adicional, tales como parques, hospitales,
 aeropuertos, y lugares de interés que podrían ser identificados como puntos de
 salvamento, o al menos objetivos para los evacuados.
+
 Gracias a este servicio obtenemos también la posición y forma de los ríos,
 mares, puentes ... muy importantes para las inundaciones. 
 
-\subsection*{Geolocalización}
+Nuestro problema ahora se centraría en adaptar esos datos de forma que pudieran
+ser codificados e interpretados por nuestro simulador, no solo trazando calles
+y carreteras por nuestro simulador, sino reconociendo posibles puntos de
+salvamento o objetivos de los evacuados.
 
-Resolver la geolocalización fue trivial, usamos coordenadas geográficas (WGS84).
-Ya que prácticamente toda la información de geolocalización esta en este sistema
-al ser un estándar desde hace mucho tiempo.
+\section*{Geolocalización}
+
+Nosotros queremos simular en terrenos reales, y los terrenos vienen
+localizados por coordenadas geográficas (WGS84).
+
+Gracias a las coordenadas podemos obtener información geolocalizada de
+cualquier parte del mundo e identificarla con esa zona.
+
+Por lo que nos encontramos con el problema de la discretización de los
+datos y la inevitable perdida de información.
+
+\subsection*{Discretización de los Datos}
+Muchas veces, debido a que nosotros trabajamos sobre un mapa hexagonal, al
+hacer el cambio desde coordenadas geográficas, dependiendo del nivel de
+precisión de nuestra rejilla, inevitablemente vamos a sufrir una perdida de
+información.
+
+Otras veces los datos recibidos de las localizaciones no son del todo exactos o
+precisos, como por ejemplo las localizaciones de los edificios, que vienen
+representadas por el centro del edificio, y no por su perímetro, por lo que a
+veces nos veremos obligados a aproximar puntos o a cambiarlos un poco de sitio.
+
+Por ello pueden aparecer calles de un tamaño mayor al real o incluso un poco
+desplazadas, pero suponemos que eso no tendrá consecuencias mayores.
+
+\section*{Visualización de los Resultados}
+
+Nuestra intención no es solo simular una inundación, si no que se pueda ver,
+paso a paso, la evolución de esta misma. 
+
+Esto conlleva los siguiente:
+\begin {itemize}
+\item Necesidad de conocer en que paso de la simulación nos encontramos.
+\item Llevar un historial de la inundación.
+\item Realizar la inundación ordenadamente.
+\end {itemize}
+
+\subsection*{Visor Simple}
+Para las primeras fases del desarrollo y para poder ver de una forma simple y
+sin ayuda de programas externos, necesitamos un visor nativo del sistema, con
+el que poder seguir el progreso y comportamiento del agua y de los demás
+agentes implicados en la simulación.
+\subsection*{Kml}
+
+Una vez terminada la simulación, queremos poder tener un historial de todo lo
+que haya ocurrido y la facilidad de poder navegar dentro de la simulación para
+poder recrear el estado de la simulación en un momento preciso.
+
+Para ello dispondremos de un sistema que guarde la información de cada
+instantánea de la simulación dentro de un fichero Kml.
+
+Hemos elegido Kml debido a que es un estándar y a la versatilidad y potencia
+gráfica que nos proporciona.
+
+Utilizar Kml también nos obligará a tratar con problemas de geometría
+computacional, y de topología. 
+
+\subsection*{Estadisticas}
