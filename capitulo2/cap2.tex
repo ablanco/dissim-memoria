@@ -7,7 +7,8 @@
 
 \begin{flushright}
 \begin{minipage}{7.85cm}
-    {\em We can only see a short distance ahead, but we can see plenty there thats needs to be done..} \\  Alan Turing
+    {\em Sólo podemos ver poco del futuro, pero lo suficiente para darnos cuenta
+    de que hay mucho que hacer.} \\  Alan Turing
 \end{minipage}
 \end{flushright}
 
@@ -16,49 +17,99 @@
 \section*{Planteamiento del Problema}
 %simular el agua, simular las personas, obtener información real
 
-Nuestra simulación se basa en tres grandes pilares. El agua, las personas, y la ciudad. 
+Nuestra simulación se basa en tres grandes pilares. El agua, las personas y la
+ciudad. 
 
-Para poder simular una inundación primero necesitamos saber como se comporta el agua, cosas básicas como que tiende a moverse hacia las zonas bajas del terreno hasta cosas no tan básicas como dinámica de fluidos.
+Para poder simular una inundación primero necesitamos saber como se comporta el
+agua, cosas básicas como que tiende a moverse hacia las zonas bajas del terreno
+hasta cosas no tan básicas como dinámica de fluidos.
 
-Por otro lado queremos simular la reacción que tendrían las personas ante una inundación, por ello necesitamos saber desde la velocidad a la que pueden desplazarse, hasta sus posibles reacciones ante la llegada de una inundación.
+Por otro lado queremos simular la reacción que tendrían las personas ante una
+inundación, por ello necesitamos saber desde la velocidad a la que pueden
+desplazarse, hasta sus posibles reacciones ante la llegada de una inundación.
 
-Por ultimo queremos que nuestro sistema sea global, de tal forma que no este restringido solo a una zona concreta del planeta, por ello hemos utilizado sistemas de información global, como por ejemplo ``Open Streets Maps``, o en el caso de estados unidos, un servidor de alturas. Aunque siempre estemos a expensas de la disponibilidad de los datos, siempre que los haya y sean accesibles, los podremos utilizar.
+Por ultimo queremos que nuestro sistema sea global, de tal forma que no este
+restringido solo a una zona concreta del planeta, por ello hemos utilizado
+sistemas de información global, como por ejemplo ``Open Streets Maps``, o en el
+caso de estados unidos, un servidor de alturas. Aunque siempre estemos a
+expensas de la disponibilidad de los datos, siempre que los haya y sean
+accesibles, los podremos utilizar.
 
 \section*{El movimiento del agua}
 
-Para simular el movimiento del agua, hemos contemplado muchas posibles soluciones a la simulación, puesto que simular fluidos y mecánica de fluido no es algo para nada trivial, nosotros hemos optado por una simplificación para poder abordar el tema del movimiento del agua. Puesto que nuestro sistema no esta pensado para trabajar en tiempo real, sino a intervalos de tiempo, no estamos obligados a utilizar un modelo muy estricto del agua, por lo que optamos por varias simplificaciones.
+Para simular el movimiento del agua, hemos contemplado muchas posibles
+soluciones a la simulación, puesto que simular fluidos y mecánica de fluido no
+es algo para nada trivial, nosotros hemos optado por una simplificación para
+poder abordar el tema del movimiento del agua. Puesto que nuestro sistema no
+esta pensado para trabajar en tiempo real, sino a intervalos de tiempo, no
+estamos obligados a utilizar un modelo muy estricto del agua, por lo que optamos
+por varias simplificaciones.
 
 \subsection*{Mecánica de fluidos}
-Como ya hemos comentado anterior mente nuestra intención no es hacer un sistema de agentes para simular grandes cantidades de fluidos moviéndose por un terreno irregular, con obstáculos y con cálculos exactos de velocidades. Tampoco nos preocupamos de si los elementos que arrastra la inundación modifican su trayectoria o comportamiento, puesto que este problema, ya sería en si el tema de una tesis completa.
 
-En esta simulación abordamos dos de los problemas del movimiento del agua, la dirección y la velocidad de propagación.
+Como ya hemos comentado anterior mente nuestra intención no es hacer un sistema
+de agentes para simular grandes cantidades de fluidos moviéndose por un terreno
+irregular, con obstáculos y con cálculos exactos de velocidades. Tampoco nos
+preocupamos de si los elementos que arrastra la inundación modifican su
+trayectoria o comportamiento, puesto que este problema, ya sería en si el tema
+de una tesis completa.
+
+En esta simulación abordamos dos de los problemas del movimiento del agua, la
+dirección y la velocidad de propagación.
 
 \subsubsection*{Dirección del Agua}
 
-Para resolver el problema de la posible dirección que tomaría una inundación, hemos asumido la hipótesis de que el agua siempre tenderá a propagarse desde un terreno elevado, a otro menos elevado.
+Para resolver el problema de la posible dirección que tomaría una inundación,
+hemos asumido la hipótesis de que el agua siempre tenderá a propagarse desde un
+terreno elevado, a otro menos elevado.
 
 \subsubsection*{Velocidad de propagación del Agua}
-Para abordar el problema de la velocidad de propagación nos hemos visto obligados a simplificar muchísimo el sistema, puesto que tener en cuenta variables tales como la fuerza inicial del agua y dirección, la presión, la ganancia o perdida de fuerza al bajar por un terreno o subir, el posible desgaste del terreno o incluso su resistencia a paso del agua, al tener mas o menos obstáculos que pudieran oponerse y frenar el agua. Todo esto no hemos podido abordarlo, no solo por su complejidad, sino por la falta de datos para esta simulación. Datos sobre la composición del terreno, los obstáculos, resistencias de materiales, dureza, permeabilidad al agua ... no se encuentran tan fácilmente.
 
-Por lo tanto, vistas nuestras limitaciones y sobre todo nuestra intención de un modelo simple, a la hora de simular la propagación de una cierta cantidad de agua sobre un terreno nos apoyamos en la iteración sobre el bucle del comportamiento del agua, asumimos (que ya es mucho asumir), que en cada paso del bucle, el agua se mueve hacia cuadrado adyacente que tenga una altura menor que la propia, por lo tanto, el agua se moverá a tantas casillas adyacentes como vueltas de el bucle. Así es de una manera muy simple, como simulamos la propagación, dándole un valor de repetición a ese bucle.
+Para abordar el problema de la velocidad de propagación nos hemos visto
+obligados a simplificar muchísimo el sistema, puesto que tener en cuenta
+variables tales como la fuerza inicial del agua y dirección, la presión, la
+ganancia o perdida de fuerza al bajar por un terreno o subir, el posible
+desgaste del terreno o incluso su resistencia a paso del agua, al tener mas o
+menos obstáculos que pudieran oponerse y frenar el agua. Todo esto no hemos
+podido abordarlo, no solo por su complejidad, sino por la falta de datos para
+esta simulación. Datos sobre la composición del terreno, los obstáculos,
+resistencias de materiales, dureza, permeabilidad al agua ... no se encuentran
+tan fácilmente.
+
+Por lo tanto, vistas nuestras limitaciones y sobre todo nuestra intención de un
+modelo simple, a la hora de simular la propagación de una cierta cantidad de
+agua sobre un terreno nos apoyamos en la iteración sobre el bucle del
+comportamiento del agua, asumimos (que ya es mucho asumir), que en cada paso del
+bucle, el agua se mueve hacia cuadrado adyacente que tenga una altura menor que
+la propia, por lo tanto, el agua se moverá a tantas casillas adyacentes como
+vueltas de el bucle. Así es de una manera muy simple, como simulamos la
+propagación, dándole un valor de repetición a ese bucle.
 
 Para el cálculo de este parámetro ............ bla bla bla
 
-De esta forma tan simple, podemos controlar de una cierta manera razonable la velocidad de propagación que tendrá el agua.
+De esta forma tan simple, podemos controlar de una cierta manera razonable la
+velocidad de propagación que tendrá el agua.
 
 \subsubsection*{Otros problemas}
 
-Entre otros muchos posibles problemas que podríamos haber abordado por su sencillez y por la versatilidad de nuestro sistema ya que el coste de implementación habría sido muy bajo son, entre otros el problema de la absorción de agua por parte del terreno, que podría no ser despreciable y por supuesto el tema de las filtraciones de agua, puesto que el agua también podría moverse por debajo de la tierra y llegar a zonas mas bajas sin tener contacto directo. Pero una vez mas por falta de datos, se han tenido que quedar en el tintero.
+Entre otros muchos posibles problemas que podríamos haber abordado por su
+sencillez y por la versatilidad de nuestro sistema ya que el coste de
+implementación habría sido muy bajo son, entre otros el problema de la absorción
+de agua por parte del terreno, que podría no ser despreciable y por supuesto el
+tema de las filtraciones de agua, puesto que el agua también podría moverse por
+debajo de la tierra y llegar a zonas mas bajas sin tener contacto directo. Pero
+una vez mas por falta de datos, se han tenido que quedar en el tintero.
 
 \section*{Personas frente a una situación de crisis}
 
-Pues aquí podemos explicar un poco lo de los papers, de la gente que ayudaba a los vecinos, de
-cuanto podían correr con el agua al cuello, de las reacciones de irse a terrenos elevados y de 
-pisotear a su vecino si va delante, cosas así.
+Pues aquí podemos explicar un poco lo de los papers, de la gente que ayudaba a
+los vecinos, de cuanto podían correr con el agua al cuello, de las reacciones de
+irse a terrenos elevados y de pisotear a su vecino si va delante, cosas así.
 
 \subsection*{Prioridades de las personas}
 
-Asta que no ven el agua venir no se Las personas quieren salvarse, salvar a su familia y si pueden, a alguien mas
+Asta que no ven el agua venir no se Las personas quieren salvarse, salvar a su
+familia y si pueden, a alguien mas
 
 \subsection*{Supervivencia en un entorno inundado}
 
@@ -66,30 +117,46 @@ Pues eso, mas y menos de la vida con el agua al cuello
 
 \subsection*{Acciones contra la catástrofe}
 
-
-
 \section*{Obtener información real sobre los terrenos}
 %obtención de información global
 
-Lo verdaderamente interesante de nuestro proyecto es poder probarlo sobre lugares reales, para ello es necesario obtener la información, pero además, decidimos hacerlo de tal forma de que el lugar no fuera el problema, siempre que tengamos datos de ese lugar, podremos integrarlos en nuestro simulador y simular el problema allí donde se encuentre. Para ello necesitábamos usar un sistema de geolocalización y servidores de información globales.
+Lo verdaderamente interesante de nuestro proyecto es poder probarlo sobre
+lugares reales, para ello es necesario obtener la información, pero además,
+decidimos hacerlo de tal forma de que el lugar no fuera el problema, siempre que
+tengamos datos de ese lugar, podremos integrarlos en nuestro simulador y simular
+el problema allí donde se encuentre. Para ello necesitábamos usar un sistema de
+geolocalización y servidores de información globales.
 
-Sin embargo para los servidores de información lo teníamos mas difícil al no existir servicios a nivel global, al menos, disponibles al publico.
+Sin embargo para los servidores de información lo teníamos mas difícil al no
+existir servicios a nivel global, al menos, disponibles al publico.
 
 \subsection*{Elevación del terrenos}
 
 No existe, o al menos no conocemos un servidor global de alturas.
 
-Por lo que de momento, solo disponemos de un servicio de alturas para el caso de nuestro estudio, Nueva Orleans.
+Por lo que de momento, solo disponemos de un servicio de alturas para el caso de
+nuestro estudio, Nueva Orleans.
 
-Si embargo, como ya hemos comentado antes, nuestra pretensión es que la simulación se pueda realizar en cualquier parte del planeta, por lo que la nuestro sistema esta preparado para poder añadirle fácilmente otros servidores a fin de poder simular en cualquier otro lugar. 
+Si embargo, como ya hemos comentado antes, nuestra pretensión es que la
+simulación se pueda realizar en cualquier parte del planeta, por lo que la
+nuestro sistema esta preparado para poder añadirle fácilmente otros servidores a
+fin de poder simular en cualquier otro lugar. 
 
 \subsection*{Posibles rutas de evacuación}
 
-En una evacuación ante una inundación es muy importante conocer el plano de la ciudad, para poder registrar las posibles rutas de de evacuación.
-Para obtener los planos de las ciudades optamos por ''Open Streets Map'' ya que al ser un estándar abierto y con información de ciudades a nivel global pues tenía todo lo que le pudiéramos necesitar. 
-También contiene mucha información adicional, tales como parques, hospitales, aeropuertos, y lugares de interés que podrían ser identificados como puntos de salvamento, o al menos objetivos para los evacuados.
-Gracias a este servicio obtenemos también la posición y forma de los ríos, mares, puentes ... muy importantes para las inundaciones. 
+En una evacuación ante una inundación es muy importante conocer el plano de la
+ciudad, para poder registrar las posibles rutas de de evacuación.
+Para obtener los planos de las ciudades optamos por ''Open Streets Map'' ya que
+al ser un estándar abierto y con información de ciudades a nivel global pues
+tenía todo lo que le pudiéramos necesitar. 
+También contiene mucha información adicional, tales como parques, hospitales,
+aeropuertos, y lugares de interés que podrían ser identificados como puntos de
+salvamento, o al menos objetivos para los evacuados.
+Gracias a este servicio obtenemos también la posición y forma de los ríos,
+mares, puentes ... muy importantes para las inundaciones. 
 
 \subsection*{geolocalización}
 
-Resolver la geolocalización fue trivial, usamos coordenadas geográficas (WGS84). Ya que prácticamente toda la información de geolocalización esta en este sistema al ser un estándar desde hace mucho tiempo.
+Resolver la geolocalización fue trivial, usamos coordenadas geográficas (WGS84).
+Ya que prácticamente toda la información de geolocalización esta en este sistema
+al ser un estándar desde hace mucho tiempo.
