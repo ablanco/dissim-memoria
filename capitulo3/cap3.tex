@@ -22,6 +22,25 @@
 
 \subsection*{Agente Creador}
 
+La función del agente Creador es la de lanzar la simulación. Esto lo
+convierte
+en un agente un poco particular, pues no tiene un papel activo en la
+simulación.
+
+El ciclo de vida de este agente será el siguiente:
+\begin{enumerate}
+ \item Procesar el {\bf Escenario} de simulación.
+ \item Crear los agentes {\bf Entorno}, y esperar a que hayan obtenido datos
+estáticos del terreno (tales como la altura o información sobre las calles).
+ \item Crear los agentes de {\bf Entrada de Agua} y los agentes {\bf Peatón}.
+ \item Crear el agente {\bf Reloj} y comenzar por tanto la simulación.
+ \item Quedarse a la espera por si algún agente le solicita datos del
+{\bf Escenario} de simulación.
+\end{enumerate}
+
+Como se puede comprobar, una vez que el agente Creador ha terminado de lanzar
+la simulación adopta un papel pasivo.
+
 \subsection*{Agente Reloj}
 
 \subsection*{Agentes Entorno}
