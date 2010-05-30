@@ -30,6 +30,7 @@ en un agente un poco particular, pues no tiene un papel activo en la
 simulación.
 
 El ciclo de vida de este agente será el siguiente:
+
 \begin{enumerate}
  \item Procesar el {\bf Escenario} de simulación.
  \item Crear los agentes {\bf Entorno}, y esperar a que hayan obtenido datos
@@ -95,6 +96,23 @@ ese punto, y del ritmo de los {\em ticks} de {\bf Reloj}.
 
 \subsection*{Agentes Peatón}
 
+El objetivo final de toda persona que se ve envuelta un desastre es salvarse a
+sí misma y a sus allegados. Ese mismo objetivo es compartido por estos agentes,
+pues representan a una o a un grupo de personas.
+
+El ciclo de vida del agente será tal que:
+
+\begin{enumerate}
+ \item Solicitar información acerca de lo que le rodea al agente {\bf
+Entorno} correspondiente.
+ \item Analizar dicha información y escoger una posición a la que moverse.
+ \item Informar al agente {\bf Entorno} del movimiento y estado de salud.
+ \item En caso de haber alcanzado algún refugio, vuelta al punto 1.
+\end{enumerate}
+
+En todo momento el agente deberá tratar, evidentemente, de no perder la vida
+ahogado en la inundación.
+
 \subsection*{Agentes Actualización}
 
 \section*{Elevación del Terreno}
@@ -104,3 +122,5 @@ ese punto, y del ritmo de los {\em ticks} de {\bf Reloj}.
 \section*{Generador de KML}
 
 \section*{Visor Bidimensional}
+
+\section*{Estadísticas}
