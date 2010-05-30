@@ -16,6 +16,8 @@
 
 \section*{Definición del Escenario de Simulación}
 
+% TODO
+
 \section*{Agentes en la Simulación}
 
 % TODO esquema de agentes
@@ -43,7 +45,44 @@ la simulación adopta un papel pasivo.
 
 \subsection*{Agente Reloj}
 
+La necesidad de un agente que sincronizase la simulación no se hizo patente
+hasta bien avanzado el desarrollo del simulador. El motivo se explica en
+profundidad en el capítulo 5. % TODO link al capítulo en cuestión
+
+Este agente tiene el objetivo de sincronizar al resto de agentes, y su
+funcionamiento es muy sencillo. Dado un periodo de tiempo, definido en el
+{\bf Escenario} de simulación, el agente Reloj ha de enviar regularmente un
+mensaje al resto de agentes dando lugar a un ciclo de simulación.
+
+Los agentes que reciben estos mensajes, y por lo tanto están sincronizados,
+son: agentes {\bf Entorno}, agentes {\bf Entrada de Agua} y agentes {\bf
+Peatón}.
+
 \subsection*{Agentes Entorno}
+
+Probablemente el agente con más responsabilidades y trabajo de todo el
+simulador. Su misión es manejar la información relativa al terreno de un área
+de simulación.
+
+Para asegurar la escalabilidad del sistema ha de ser posible dividir el área a
+simular entre varios agentes {\bf Entorno}, de manera que cada {\bf Entorno} se
+pueda ejecutar en un núcleo diferente, o incluso en una máquina diferente. Esta
+división ha de ser totalmente trasparente para los demás agentes.
+
+Estos agentes se encargan de:
+
+\begin{itemize}
+ \item Obtener la elevación del terreno y la información relativa a calles,
+puntos de interés, etc.
+ \item Mover el agua de la inundación por el entorno.
+ \item Recibir el agua que entre en la simulación desde un agente {\bf Entrada
+de agua}.
+ \item Informar a los agentes {\bf Peatón} de qué es lo que ven a su alrededor
+dada su posición.
+ \item Informar a los agentes {\bf Actualización} de la evolución de la
+simulación.
+% TODO más cosas?
+\end{itemize}
 
 \subsection*{Agentes Entrada de Agua}
 
