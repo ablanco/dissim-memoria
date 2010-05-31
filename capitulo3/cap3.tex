@@ -124,7 +124,7 @@ estadísticas}.
 
 Para obtener los datos de elevación del terreno hemos de utilizar fuentes de
 datos externas. En concreto para los Estados Unidos utilizaremos el servicio
-web de USGS\footnote{United States Geological Survey: http://www.usgs.gov/},
+web de la USGS\footnote{United States Geological Survey: http://www.usgs.gov/},
 donde proveen información de hasta $ \tfrac{1}{9} $ de segundo de arco de
 precisión (aproximadamente 3 metros), gracias a la base de datos
 NED\footnote{National Elevation Dataset: http://ned.usgs.gov/}. Este servicio
@@ -147,6 +147,19 @@ Pero al igual que con los datos de elevación, el simulador ha de ser
 independiente de OSM y ha de poder utilizar otras fuentes de datos.
 
 \section*{Generador de KML}
+
+El generador de KML será un cliente de un agente {\bf Actualización}. Esto
+significa que por cada generador de KML que esté atendiendo a la simulación
+habrá un agente {\bf Actualización}. Será el agente el que mantenga la
+comunicación con los agentes {\bf Entorno} que sean necesarios.
+
+El fichero resultante deberá ser, como es natural, correcto conforme al
+estándar. Para ello contamos con herramientas de
+validación\footnote{Por ejemplo http://www.kmlvalidator.com} con las que
+comprobar que nuestros ficheros se ajustan al estándar mantenido por el
+OGC\footnote{Open Geospatial Consortium:
+http://www.opengeospatial.org/standards/kml}. Es muy importante que se ajusten
+al estándar para su correcta visualización en cualquier visor de KML.
 
 \section*{Visor Bidimensional}
 
