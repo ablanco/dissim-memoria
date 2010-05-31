@@ -163,4 +163,18 @@ al estándar para su correcta visualización en cualquier visor de KML.
 
 \section*{Visor Bidimensional}
 
+Se hace necesario un visor que muestre la evolución de la simulación en pseudo
+tiempo real, pues estará supeditado a la frecuencia con la que reciba datos
+nuevos desde los agentes {\bf Entorno}. Al igual que el {\bf generador de KML}
+funcionará a través de un agente {\bf Actualización}.
+
+El visor será bidimensional para facilitar el dibujado y reducir la carga
+computacional. Deberá mostrar el estado de la simulación con cada nueva
+actualización, aunque no se podrán mostrar todos los pasos dado que de aquellos
+estados que ocurran entre actualización y actualización no tendrá información.
+
+Gracias a este visor no es necesario esperar a haber completado la simulación
+para poder visualizar los resultados, aunque es claramente más limitado que el
+fichero KML.
+
 \section*{Estadísticas}
