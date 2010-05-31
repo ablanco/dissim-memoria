@@ -127,7 +127,8 @@ datos externas. En concreto para los Estados Unidos utilizaremos el servicio
 web de USGS\footnote{United States Geological Survey: http://www.usgs.gov/},
 donde proveen información de hasta $ \tfrac{1}{9} $ de segundo de arco de
 precisión (aproximadamente 3 metros), gracias a la base de datos
-NED\footnote{National Elevation Dataset: http://ned.usgs.gov/}.
+NED\footnote{National Elevation Dataset: http://ned.usgs.gov/}. Este servicio
+es gratuito y de libre uso.
 
 El simulador ha de ser totalmente independiente de la fuente de datos de
 elevación, de manera que sea sencillo añadir nuevas fuentes de datos para poder
@@ -135,6 +136,15 @@ simular en territorios fuera de los Estados Unidos. De esta manera el terreno
 sobre el que simular sólo estará limitado por los datos de los que dispongamos.
 
 \section*{Open Street Maps}
+
+Para la información relativa a calles, puntos de interés, etc, recurriremos a
+OSM\footnote{Open Street Maps: http://www.openstreetmap.org/}. OSM es un
+esfuerzo colaborativo para crear cartografía libre, es gratuito y de libre uso.
+La calidad de los mapas en las ciudades más grandes e importantes es muy buena,
+aunque en lugares menos poblados decae.
+
+Pero al igual que con los datos de elevación, el simulador ha de ser
+independiente de OSM y ha de poder utilizar otras fuentes de datos.
 
 \section*{Generador de KML}
 
