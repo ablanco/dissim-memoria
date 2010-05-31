@@ -115,7 +115,20 @@ ahogado en la inundación.
 
 \subsection*{Agentes Actualización}
 
+Actúan únicamente como receptores de mensajes, su misión consiste en recibir
+las actualizaciones de los agentes {\bf Entorno} y pasárselas a otros elementos
+del sistema, que son los que las procesarán. Como por ejemplo, los {\bf
+generadores de KML}, los {\bf visores bidimensionales} o los {\bf generadores de
+estadísticas}.
+
 \section*{Elevación del Terreno}
+
+Para obtener los datos de elevación del terreno hemos de utilizar fuentes de
+datos externas. En concreto para los Estados Unidos utilizaremos el servicio
+web de USGS\footnote{United States Geological Survey: http://www.usgs.gov/},
+donde proveen información de hasta \tfrac{1}{9} de segundo de arco de precisión
+(aproximadamente 3 metros), gracias a la base de datos NED\footnote{National
+Elevation Dataset: http://ned.usgs.gov/}.
 
 \section*{Open Street Maps}
 
