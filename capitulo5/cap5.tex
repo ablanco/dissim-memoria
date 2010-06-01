@@ -192,46 +192,106 @@ Errores de aproximación, puede dar la de al lado. jodiendo caminos y cosas así
 \subsection*{Tile a Coordenada}
 %conversion de un tile a una coordenada, tener en cuenta las lineas
 %pares/impares
-Es mas facil que el anterior, y ademas es determinsta puesto que devuelve
+Es mas fácil que el anterior, y además es determinista puesto que devuelve
 siempre el centro del tile.
 \subsection*{Especialización: Flood Hexagonal Grid}
 %cambios de la rejilla por desastre
 \section*{Implementación de la Elevación del Terreno}
 %Solucion particular
-\subsection*{Patrón Fachada}
+Usamos los servicios web para extraer las alturas, un bucle por cada casilla
+\subsection*{Patrón Fachada} %TODO
 %Para poder utilizar todos los servicios web de alturas que hagan falta
+Tenemos una fachada para implementar los posibles distintos servicios webs,
+tienen que implementar estas funciones, tralaraaaaaa
 \subsection*{Cache de alturas}
 %Para mejorar la latencia de datos
+Los servidores webs suelen ser muy lentos, para mejorar su respuesta utilizamos
+una base de datos, además podemos hacer interpolación de datos en el caso de
+que nuestra base de datos tenga la información suficiente.
+
+Usamos sqlLite porque es un fichero y listo.
+
+La consulta sql puede devolver mas de un dato, hacemos la media
+\subsubsection*{Patrón fachada}
+%pos una fachada pa poder usar distintos drivers
+No nos cerramos a una sola base de datos, le enchufamos el driver y listo
 \section*{Open Street Maps}
+OSM nos da los datos como strings, pero ahora tenemos que tratarlos y
+convertirlos a shorts.
 \subsection*{Parseando XML}
 %Leer y obtener información
+La información viene codificada en un fichero xml, hay que parsearlo y después
+recorrerlo para extraer toda la información, según la API de OSM. Clases
+estáticas y guardamos el fichero en un directorio temporal.
 \subsubsection*{Filtro de información}
 %Quedarnos con la información útil
+La etiqueta tag, nos vale para hacer filtros, y discriminar cierta información
+que sabemos que no nos interesa, o para obtener cierta información
+característica que nos interesa, por ejemplo el nombre de la calle, el tipo de
+vía ...
 \subsection*{Dibujar Calles}
 %De coordenadas a tiles
+El problema de una lista de puntos al mundo hexagonal, creamos aristas que son
+ecuaciones de recta con los vértices y con chapuzas de dirección y de dar
+saltitos mas cortos que el tile lo solucionamos
 \subsection*{Rellenar Figuras}
 %Lineas poligonales cerradas y members
+Algunas figuras, como los parques vienen dadas por lineas cerradas, hay que
+detectarlas (primero nodo == ultimo nodo) y rellenarlas.
+
 \subsubsection*{Lineas poligonales cerradas}
 %los parques y contornos de edificios
+En geometría computacional hay un algoritmo sencillo que dada una lista de
+puntos que describen un polígono te dicen si el punto esta dentro o no.
 \subsubsection*{Relaciones}
 %rios, mares ....
+Hay polígonos que vienen descritos por mas de una linea poligonal y que no
+están cerrados, tales como los ríos y los mares, el tema esta en concatenar
+estas lineas en el mismo orden que te los da OSM y crear un polígono cerrado
+con ellas, y funciona relativamente bien.
 \section*{Generador de KML}
+Necesitamos escribir en KML, y para ello contamos con unas librerías de XML y
+JAK, que es una librería de KML para Java.
 \subsection*{Múltiples Escenarios}
 %Soporte para varios escenarios
+Como todo esta geolocalizado, no tengo problema de integrar múltiples
+escenarios, salvo por el volumen de datos.
 \subsection*{Secuencia de Tiempo}
 %Soporte para la temporalidad de los eventos
+Para podes simular la simulación fielmente necesito una marca de tiempo, 
 \subsubsection*{Sincronización}
 %Hablar de la necesidad de un agente reloj.
+Con la marca de tiempo no me tengo que preocupar de sincronizarlos porque ya me
+vienen sincronizados gracias a agente reloj
 \subsection*{KmlPolygon}
 %Agrupar poligonos por altura
+Necesito un objeto propio para convertir la información tal como me la da OSM
+en listas de puntos, a algo que pueda interpretar KML, para ello me creo una
+clase que hace de adaptador
+\subsubsection*{Bordes}
+Para detectar los bordes y sobre todo escribirlos en el orden correcto,
+utilizamos el operador borde (elimina los opuestos) y las listas de adyacentes.
+
+Asumimos que la lista de adyacentes mas larga es el borde exterior
 \subsubsection*{Color}
 %decidimos usar hexagonos de distintos colores
+En vez de diferentes formas, le damos colores, azul para el agua, amarillo para
+los peatones corriendo ...
 \subsubsection*{Transparencia}
 %para dar sensacion de profundidad
+Es un buen recurso para darle profundidad a la simulación, parte de una
+opacidad media y a medida que sea mas profundo pues mas opaco.
+
+Como lo que cuenta es la altura del agua, no la acumulada en el terreno en
+concreto, se coge como altura el valor del primer elemento de de lista de bordes
 \section*{Visor Bidimensional}
 \subsection*{Múltiples escenarios}
 \section*{Estadísticas}
+Pues ala, un updateable y a esnifar los escenarios, recogiendo estadísticas de
+peatones
 \subsection*{Múltiples Escenarios}
 %Soporte para varios escenarios
+Esnifamos de los escenarios poniendo la fecha y el identificador de escenario
 \subsection*{Ficheros CVS}
 %Es lo mas comodo para las estadisticas
+La forma mas fácil y rápida de guardar extraer información.
