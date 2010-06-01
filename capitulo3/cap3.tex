@@ -16,11 +16,22 @@
 
 \section*{Definición del Escenario de Simulación}
 
-% TODO
+Los datos de entrada del simulador son los que llamamos {\bf Escenario}. En
+ellos se define el área de simulación, tamaño de los hexágonos, las entradas de
+agua, los tiempos, las personas, etc.
+
+Toda esta información estará definida en un fichero tipo {\em clave=valor}, que
+será procesado por el agente {\bf Creador} al lanzar la simulación.
 
 \section*{Agentes en la Simulación}
 
+En el siguiente esquema se muestran los agentes que conforman el simulador.
+Algunos de ellos tienen un papel más importante que otros, destacando los
+agentes {\bf Entorno} y los agentes {\bf Peatón}.
+
 % TODO esquema de agentes
+
+A continuación siguen descripciones detalladas de cada tipo de agente.
 
 \subsection*{Agente Creador}
 
@@ -84,6 +95,10 @@ simulación.
 % TODO más cosas?
 \end{itemize}
 
+\subsubsection*{Rejilla Hexagonal}
+
+% TODO
+
 \subsection*{Agentes Entrada de Agua}
 
 Estos agentes representan una fuente de agua del sistema. Están localizados en
@@ -119,6 +134,9 @@ las actualizaciones de los agentes {\bf Entorno} y pasárselas a otros elementos
 del sistema, que son los que las procesarán. Como por ejemplo, los {\bf
 generadores de KML}, los {\bf visores bidimensionales} o los {\bf generadores de
 estadísticas}.
+
+En definitiva, estos agentes sirven para obtener información de la simulación
+que se esté llevando a cabo.
 
 \section*{Elevación del Terreno}
 
@@ -194,3 +212,5 @@ fórmulas, etc.
 
 Los datos que se almacenarán serán los relativos a las personas. Número de
 muertos, de personas a salvo, etc, y el tiempo transcurrido en la simulación.
+Las estadísticas que se quieran sacar se tendrán que calcular a posteriori, por
+ejemplo con una hoja de cálculo, sobre los datos de estos ficheros.
