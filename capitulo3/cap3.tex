@@ -97,7 +97,16 @@ simulación.
 
 \subsubsection*{Rejilla Hexagonal}
 
-% TODO
+Para representar el terreno simulado optamos por utilizar una rejilla
+hexagonal, dado que hemos de discretizar de alguna manera. El usar hexágonos
+frente, por ejemplo, una cuadrícula, tiene considerables ventajas. La principal
+es que la distancia del centro de un hexágono al centro de sus seis hexágonos
+adyacentes es siempre la misma, mientras que en una cuadrícula esto no ocurre.
+
+%TODO Imagen rejilla hexagonal
+
+Cada agente {\bf Entorno} mantiene una rejilla hexagonal con toda la
+información del terreno que está simulando.
 
 \subsection*{Agentes Entrada de Agua}
 
