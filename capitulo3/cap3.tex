@@ -151,11 +151,11 @@ que se esté llevando a cabo.
 
 Para obtener los datos de elevación del terreno hemos de utilizar fuentes de
 datos externas. En concreto para los Estados Unidos utilizaremos el servicio
-web de la USGS\footnote{United States Geological Survey: http://www.usgs.gov/},
-donde proveen información de hasta $ \tfrac{1}{9} $ de segundo de arco de
-precisión (aproximadamente 3 metros), gracias a la base de datos
-NED\footnote{National Elevation Dataset: http://ned.usgs.gov/}. Este servicio
-es gratuito y de libre uso.
+web de la USGS\footnote{United States Geological Survey:
+\url{http://www.usgs.gov/}}, donde proveen información de hasta $ \tfrac{1}{9} $
+de segundo de arco de precisión (aproximadamente 3 metros), gracias a la base de
+datos NED\footnote{National Elevation Dataset: \url{http://ned.usgs.gov/}}. Este
+servicio es gratuito y de libre uso.
 
 El simulador ha de ser totalmente independiente de la fuente de datos de
 elevación, de manera que sea sencillo añadir nuevas fuentes de datos para poder
@@ -165,7 +165,7 @@ sobre el que simular sólo estará limitado por los datos de los que dispongamos
 \section*{Open Street Maps}
 
 Para la información relativa a calles, puntos de interés, etc, recurriremos a
-OSM\footnote{Open Street Maps: http://www.openstreetmap.org/}. OSM es un
+OSM\footnote{Open Street Maps: \url{http://www.openstreetmap.org/}}. OSM es un
 esfuerzo colaborativo para crear cartografía libre, es gratuito y de libre uso.
 La calidad de los mapas en las ciudades más grandes e importantes es muy buena,
 aunque en lugares menos poblados decae.
@@ -182,11 +182,11 @@ comunicación con los agentes {\bf Entorno} que sean necesarios.
 
 El fichero resultante deberá ser, como es natural, correcto conforme al
 estándar. Para ello contamos con herramientas de
-validación\footnote{Por ejemplo http://www.kmlvalidator.com} con las que
+validación\footnote{Por ejemplo \url{http://www.kmlvalidator.com}} con las que
 comprobar que nuestros ficheros se ajustan al estándar mantenido por el
 OGC\footnote{Open Geospatial Consortium:
-http://www.opengeospatial.org/standards/kml}. Es muy importante que se ajusten
-al estándar para su correcta visualización en cualquier visor de KML.
+\url{http://www.opengeospatial.org/standards/kml}}. Es muy importante que se
+ajusten al estándar para su correcta visualización en cualquier visor de KML.
 
 \section*{Visor Bidimensional}
 
@@ -210,10 +210,10 @@ También es muy importante que se puedan extraer estadísticas de las
 simulaciones. Para ello usaremos, una vez más, un agente {\bf Actualización}.
 
 Las estadísticas se almacenarán en un fichero CSV\footnote{Comma-separated
-values: http://en.wikipedia.org/wiki/Comma-separated_values}, que es un formato
-de lo más sencillo. Este formato se utiliza para almacenar información en forma
-de tabla, y está soportado por casi cualquier programa, que es uno de los
-motivos por el que lo utilizaremos.
+values: \url{http://en.wikipedia.org/wiki/Comma-separated\_values}}, que es un
+formato de lo más sencillo. Este formato se utiliza para almacenar información
+en forma de tabla, y está soportado por casi cualquier programa, que es uno de
+los motivos por el que lo utilizaremos.
 
 Una vez generado el fichero se podrá trabajar sobre él mediante un programa
 cualquiera de hojas de cálculo o similar, pudiendo generar gráficas, aplicar
