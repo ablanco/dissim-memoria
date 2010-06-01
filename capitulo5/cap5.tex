@@ -132,6 +132,7 @@ razones para llevarlas a cabo.
 
 Git es un sistema de control de versiones distribuido que mola mazo %TODO
 
+%Ahora pasamos a nuestra implementación concreta.
 \section*{Implementación del Escenario de Simulación}
 \section*{Implementación de los Agentes en la Simulación}
 \subsection*{Agente Creador}
@@ -140,28 +141,60 @@ Git es un sistema de control de versiones distribuido que mola mazo %TODO
 \subsection*{Agentes Entorno}
 \subsection*{Agentes Entrada de Agua}
 \subsection*{Agentes Peatón}
+\subsubsection*{Actualización del estado}
+%como determina el estado del peaton segun el entorno
 \subsection*{Agentes Actualización}
 \subsubsection*{Actualización entre entornos adyacentes}
 %pasarse el aguita de unos a otros
 \section*{Rejilla Hexagonal}
 %Discretización del mundo real
 \subsection*{Matriz de Altura}
+Una matriz de short solo puede albergar un rango de alturas desde +-32,767, que
+dependiendo de la precisión puede ser mas o menos altura
 \subsection*{Matriz de Agua}
 %Hay que saber cuanta agua tenemos pa moverla
 \subsection*{Matriz de Calles}
 %Las calles hay que guardarlas en algun lao
+Cada entorno necesita un mapa de la ciudad propio.
+
+Este mapa solo se calculará en el inicio y no cambiará durante la simulación.
+
+Para mejorar el tamaño en memoria usamos una matriz de short del mismo tamaño
+que el entorno.
+\subsubsection*{Tipos de Calles}
+%Especificación de OSM
+Para saber en que tipo de calle nos encontramos nos ayudamos de la información
+de OSM que viene categorizada en grupos. Por cada grupo le asignamos un rango
+de valores, teniendo en cuenta el numero de subgrupos.
+
+Estos valores vienen identificados por medio de constantes globales y funciones
+estáticas que nos devuelven el tipo concreto o los valores padre.
+\subsubsection*{Prioridad de la información}
+En cada casilla solo podemos almacenar un valor, por lo que la forma de
+rellenar la matriz sobreescribe el valor de la matriz si el nuevo valor es
+mayor que el viejo. Así nos aseguramos que la información que consideramos mas
+prioritaria (de mayor valor) permanezca en la matriz
+\subsubsection*{Intersecciones}
+A veces es útil sobre todo para las calles saber cuando nos encontramos en un
+cruce, para ello cuando nos encontramos un valor igual al que nosotros queremos
+inserta, incrementamos en una unidad el valor, haciéndola impar, de esta forma
+detectamos las intersecciones.
 \subsection*{Coronas}
 %mantenimiento actualizado de la corona
-\subsubsection*{Tipos de Calles}
-%Especificacion de OSM
 \subsection*{Coordenada a Tile}
-%conversion de una coordenada a un tile, necesidad de los incrementos
+%conversion de una coordenada a un tile, necesidad de los incrementos %TODO
+Nosotros hacemos una aproximación teniendo en cuenta que para distancias cortas
+podemos obviar la curvatura de la corteza terrestre y a pelo hallamos la
+diferencia en grados decimales y a tirar millas
+\subsubsection*{Discretización}
+%perdida de datos, caminos no conexos, indeterminacion de las posisciones
+Errores de aproximación, puede dar la de al lado. jodiendo caminos y cosas así
 \subsection*{Tile a Coordenada}
 %conversion de un tile a una coordenada, tener en cuenta las lineas
 %pares/impares
-\subsection*{Discretización}
-%perdida de datos, caminos no conexos, indeterminacion de las posisciones
-\subsection*{Especializacion: Flood Hexagonal Grid}
+Es mas facil que el anterior, y ademas es determinsta puesto que devuelve
+siempre el centro del tile.
+\subsection*{Especialización: Flood Hexagonal Grid}
 %cambios de la rejilla por desastre
 \section*{Implementación de la Elevación del Terreno}
 %Solucion particular
@@ -171,7 +204,7 @@ Git es un sistema de control de versiones distribuido que mola mazo %TODO
 %Para mejorar la latencia de datos
 \section*{Open Street Maps}
 \subsection*{Parseando XML}
-%Leer y obtener informacion
+%Leer y obtener información
 \subsubsection*{Filtro de información}
 %Quedarnos con la información útil
 \subsection*{Dibujar Calles}
@@ -180,10 +213,10 @@ Git es un sistema de control de versiones distribuido que mola mazo %TODO
 %Lineas poligonales cerradas y members
 \subsubsection*{Lineas poligonales cerradas}
 %los parques y contornos de edificios
-\subsubsection*{Relations}
+\subsubsection*{Relaciones}
 %rios, mares ....
 \section*{Generador de KML}
-\subsection*{Multiples Escenarios}
+\subsection*{Múltiples Escenarios}
 %Soporte para varios escenarios
 \subsection*{Secuencia de Tiempo}
 %Soporte para la temporalidad de los eventos
@@ -196,9 +229,9 @@ Git es un sistema de control de versiones distribuido que mola mazo %TODO
 \subsubsection*{Transparencia}
 %para dar sensacion de profundidad
 \section*{Visor Bidimensional}
-\subsection*{Multiples escenarios}
+\subsection*{Múltiples escenarios}
 \section*{Estadísticas}
-\subsection*{Multiples Escenarios}
+\subsection*{Múltiples Escenarios}
 %Soporte para varios escenarios
 \subsection*{Ficheros CVS}
 %Es lo mas comodo para las estadisticas
