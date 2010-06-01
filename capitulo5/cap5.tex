@@ -45,15 +45,20 @@ resultados mínimos.
 No hemos aplicado ninguna metodología en concreto, si no mas bien un conjunto
 de técnicas y buenos métodos.
 
-\subsubsection*{Reuniones de desarrolladores}
+\subsubsection*{Reuniones de desarrollo}
 Lo principal es la comunicación entre los desarrolladores, para ello decidimos
 reunirnos y comentar las avances o principales problemas al menos dos veces a
 la semana.
 
 Las reuniones no tenían que ser en persona ni muy formales, podían realizarse a
-través de mensajería instantánea y con herramientas de pizarras virtuales. De
+través de mensajería instantánea ayudados con herramientas de pizarras
+virtuales. De
 esta forma siempre se tiene una idea muy cercana del desarrollo del proyecto sin
 perder mucho tiempo.
+
+Además mantiene un fuerte lazo entre los desarrolladores y les permite ayudarse
+unos a otros, evitando así estancamientos o frustraciones con problemas
+difíciles.
 \subsubsection*{Reuniones con los tutores}
 Al menos dos veces al mes, dependiendo del ritmo de trabajo y progresos. De
 carácter informativo y orientativo.
@@ -63,7 +68,7 @@ Lo principal era desarrollar una plataforma muy básica y sencilla donde se
 pudieran llevar a cabo pruebas, y una vez completara, ir aumentando las
 funcionalidades en forma de módulos.
 
-\subsubsection*{Reparto de tareas dinámico} %TODO revisar redaccion
+\subsubsection*{Reparto de tareas dinámico} %TODO revisar redacción
 Identificar las funcionalidades que se quieren implementar e ir
 desarrollándolas en función de su complejidad intentando
 siempre el equilibrio en la carga de trabajo.
@@ -77,8 +82,8 @@ Se tiende a la especialización.
 %La forja esta bien, te permite controlar las tareas abiertas y el tiempo que te
 %tiras con ellas, tambien vale para repartirlas
 La Forja Red Iris\footnote{https://forja.rediris.es/} dispone de una serie de
-herramientas para el alojamiento y la gestion de proyectos de caracter
-colavorativo y con vistas de crear una comunidad de desarrolladores.
+herramientas para el alojamiento y la gestión de proyectos de carácter
+colaborativo y con vistas de crear una comunidad de desarrolladores.
 
 Gracias a contar con nuestra propia Forja
 \footnote{https://forja.rediris.es/projects/cusl4-catastrof/} y con las
@@ -101,7 +106,7 @@ misma.
  \item Fecha limite de finalización, permite facilitar la planificación
 \end{enumerate}
 Con estos sencillos parámetros la herramienta incluso genera un diagrama de
-GANT
+GANTT
 \footnote{Diagrama de
 Gantt:\url{http://es.wikipedia.org/wiki/Diagrama_de_Gantt}} para ayudarte con
 la planificación.
@@ -110,27 +115,90 @@ la planificación.
 %Es una buena idea, porque al escribir articulos sirve para pensar mas en lo que
 %haces y darle visiblidad, tambien era un requisito para el concurso de software
 %libre y sirve para historico y desarrollo  del proyecto.
+El llevar al día un blog \footnote{Simulación de Catástrofes
+:\url{http://pfc.mensab.com/}} con las actualizaciones y las direcciones
+generales sobre el desarrollo proyecto es algo altamente recomendable si se
+quiere que el proyecto cree una comunidad, puesto que es una manera muy cómoda y
+eficaz de mantener a la comunidad informada de los cambios y el estado del
+proyecto.
 
+Además también tiene otras implicaciones mas sutiles, por ejemplo permite
+reafirmar las decisiones de diseño o de desarrollo tomadas a lo largo de la
+implementación, puesto que queda constancia de las decisiones tomadas y las
+razones para llevarlas a cabo.
 \subsubsection*{Git}
 %Nueva forma de ver las cosas, muchos commits, cambios muy controlaos,
 %posibilidad de hacer ramas y mantener siempre una rama estable.
 
+Git es un sistema de control de versiones distribuido que mola mazo %TODO
+
 \section*{Implementación del Escenario de Simulación}
 \section*{Implementación de los Agentes en la Simulación}
-\subsection*{Implementación del Agente Creador}
-\subsection*{Implementación de Agente Reloj}
-\subsection*{Implementación de los Agentes Entorno}
-\subsubsection*{Implementación de la Rejilla Hexagonal}
-\subsection*{Implementación de los Agentes Entrada de Agua}
-\subsection*{Implementación de los Agentes Peatón}
-\subsection*{Implementación de los Agentes Actualización}
+\subsection*{Agente Creador}
+\subsection*{Agente Reloj}
+%la necesidad de determinar el tiempo
+\subsection*{Agentes Entorno}
+\subsection*{Agentes Entrada de Agua}
+\subsection*{Agentes Peatón}
+\subsection*{Agentes Actualización}
+\subsubsection*{Actualización entre entornos adyacentes}
+%pasarse el aguita de unos a otros
+\section*{Rejilla Hexagonal}
+%Discretización del mundo real
+\subsection*{Matriz de Altura}
+\subsection*{Matriz de Agua}
+%Hay que saber cuanta agua tenemos pa moverla
+\subsection*{Matriz de Calles}
+%Las calles hay que guardarlas en algun lao
+\subsection*{Coronas}
+%mantenimiento actualizado de la corona
+\subsubsection*{Tipos de Calles}
+%Especificacion de OSM
+\subsection*{Coordenada a Tile}
+%conversion de una coordenada a un tile, necesidad de los incrementos
+\subsection*{Tile a Coordenada}
+%conversion de un tile a una coordenada, tener en cuenta las lineas
+%pares/impares
+\subsection*{Discretización}
+%perdida de datos, caminos no conexos, indeterminacion de las posisciones
+\subsection*{Especializacion: Flood Hexagonal Grid}
+%cambios de la rejilla por desastre
 \section*{Implementación de la Elevación del Terreno}
+%Solucion particular
+\subsection*{Patrón Fachada}
+%Para poder utilizar todos los servicios web de alturas que hagan falta
 \subsection*{Cache de alturas}
+%Para mejorar la latencia de datos
 \section*{Open Street Maps}
 \subsection*{Parseando XML}
+%Leer y obtener informacion
+\subsubsection*{Filtro de información}
+%Quedarnos con la información útil
+\subsection*{Dibujar Calles}
+%De coordenadas a tiles
+\subsection*{Rellenar Figuras}
+%Lineas poligonales cerradas y members
+\subsubsection*{Lineas poligonales cerradas}
+%los parques y contornos de edificios
+\subsubsection*{Relations}
+%rios, mares ....
 \section*{Generador de KML}
+\subsection*{Multiples Escenarios}
+%Soporte para varios escenarios
+\subsection*{Secuencia de Tiempo}
+%Soporte para la temporalidad de los eventos
+\subsubsection*{Sincronización}
+%Hablar de la necesidad de un agente reloj.
 \subsection*{KmlPolygon}
+%Agrupar poligonos por altura
+\subsubsection*{Color}
+%decidimos usar hexagonos de distintos colores
+\subsubsection*{Transparencia}
+%para dar sensacion de profundidad
 \section*{Visor Bidimensional}
 \subsection*{Multiples escenarios}
 \section*{Estadísticas}
+\subsection*{Multiples Escenarios}
+%Soporte para varios escenarios
 \subsection*{Ficheros CVS}
+%Es lo mas comodo para las estadisticas
