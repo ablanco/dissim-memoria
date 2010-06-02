@@ -16,7 +16,7 @@
 
 \section*{Licencias}
 
-% TODO
+% TODO gráfico de compatibilidad de licencias con la GPL v3
 
 \section*{JADE}
 
@@ -25,7 +25,8 @@
 \section*{JAK}
 
 JAK\footnote{Java API for KML: \url{http://labs.micromata.de/display/jak/Home}}
-son un conjunto de librerías para el manejo de ficheros KML desde Java.
+son un conjunto de librerías para el manejo de ficheros KML desde Java. JAK ha
+sido desarrollado por Micromata GmbH (\url{http://www.micromata.de/}).
 
 % TODO Imagen con el logo de JAK
 
@@ -35,8 +36,8 @@ Los desarrolladores de JAK optaron por liberar las librerías bajo una licencia
 BSD\footnote{Berkeley Software Distribution:
 \url{http://www.opensource.org/licenses/bsd-license.php}} de 3 clausulas, o como
 también se la conoce, licencia BSD modificada o nueva licencia BSD. La licencia
-de JAK se puede consultar en su sitio
-web\footnote{\url{http://labs.micromata.de/display/jak/Licenses}}.
+de JAK se puede consultar en su sitio web
+(\url{http://labs.micromata.de/display/jak/Licenses}).
 
 Gracias a JAK podremos generar los ficheros KML con el resultado de la
 simulación.
@@ -45,7 +46,23 @@ simulación.
 
 % TODO comentar OSM y el servicio web de USGS
 
-\subsection*{JCoord}
+\subsection*{Jcoord}
+
+Para el manejo de coordenadas geográficas utilizaremos
+Jcoord\footnote{\url{http://www.jstott.me.uk/jcoord/}}, un paquete de clases que
+nos permitirán convertir entre formatos de coordenadas, calcular distancias,
+etc. Jcoord ha sido desarrollado por Jonathan Mark Stott, y tal como se puede
+consultar en su sitio web está licenciado bajo GPL v2, compatible con nuestra
+GPL v3. %TODO link ap1
+
+Además del habitual sistema de coordenadas latitud/longitud
+WGS84\footnote{Sistema Geodésico Mundial 1984} soporta UTM\footnote{Sistema de
+Coordenadas Universal Transversal de Mercator}.
+% TODO las lat/lng normales están en WGS84? creo que sí...
+
+A diferencia de {\bf JADE} o {\bf JAK}, integraremos directamente el código en
+el simulador, por lo que no será una dependencia. De esta manera podremos
+modificar y adaptar el paquete a nuestras necesidades.
 
 \subsection*{OpenWFE}
 
