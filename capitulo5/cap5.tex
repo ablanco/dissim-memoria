@@ -321,10 +321,22 @@ puntos simples y puntos de interés.
 Para almacenar la información extra tenemos OsmTag.
 \subsubsection*{Filtro de información}
 %Quedarnos con la información útil
-La etiqueta tag, nos vale para hacer filtros, y discriminar cierta información
-que sabemos que no nos interesa, o para obtener cierta información
-característica que nos interesa, por ejemplo el nombre de la calle, el tipo de
-vía ...
+OsmTag contiene dos atributos principales, clave y valor. Nos valemos de estos
+dos atributos para almacenar la información extra que nos ofrece OSM, como el
+nombre de la calle, el tipo de calle, o si se trata de un edificio o un parque.
+
+Con esta información podemos determinar de que tipo de objeto estamos tratando
+y asignarle un valor concreto en la matriz de calles de cada escenario.
+
+También nos valemos de esta información para filtrar la información.
+
+Hasta ahora hemos optado por quedarnos solo con la información que queremos,
+pero si algún día se añade un nuevo tipo de información que no tenemos habría
+que añadirlo al filtrado de etiquetas.
+
+También hay etiquetas que reconocemos y que no necesitamos, como por ejemplo,
+los limites políticos de las ciudades.
+
 \subsection*{Dibujar Calles}
 %De coordenadas a tiles
 El problema de una lista de puntos al mundo hexagonal, creamos aristas que son
