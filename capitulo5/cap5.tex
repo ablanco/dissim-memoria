@@ -18,21 +18,26 @@
 %metodologia agil, poniendonos metas a corto plazo y repartiendo la carga de
 %trabajo
 Al ser este un proyecto de tamaño considerable y ser también colaborativo es
-necesario establecer una metodología para evitar el trabajo inútil.
+necesario establecer una metodología para evitar el trabajo inútil y redundante.
 
 Para organizar nuestro trabajo y poder mantener siempre cierto control sobre la
-aplicación nos hemos servido de tanto de herramientas, como de buenas prácticas.
+aplicación nos hemos servido tanto de herramientas, como de buenas prácticas.
 
-Para comenzar y habiendo desarrollado nuestro proyecto en el marco del IV
-Concurso Universitario de Software
-Libre\footnote{http://www.concursosoftwarelibre.org/} se nos puso a disposición
-la una forja
-\footnote{https://forja.rediris.es/projects/cusl4-catastrof/} donde pudimos
-alojar los comienzos de nuestro proyecto.
+Para comenzar y habiendo desarrollado nuestro proyecto en el marco del IV CUSL
+\footnote{Concurso Universitario de
+Software Libre:\url{http://www.concursosoftwarelibre.org/}} tuvimos que seguir
+una política de divulgación de la información y unos plazos de entrega, también
+pusieron a nuestra disposición una la forja
+\footnote{Iris Libre: \url{https://forja.rediris.es/projects/cusl4-catastrof/}}
+con la que pudimos agilizar y centralizar las labores de administración y
+planificación del proyecto.
 
 Además adoptamos una política de entrevistas frecuentes con los tutores para
 así motivarnos y que nos aconsejaran sobre el mejor siguiente paso o en donde
 deberíamos profundizar mas o seguir otras vías de investigación.
+
+Por lo que teníamos un objetivo a corto plazo y herramienta para la
+planificación gracias al  IV CUSL, y guía por parte de los tutores.
 
 \subsection*{Metodologías Ágiles}
 %Desarrollar pequeñas aplicaciones que sean funcionales y con un limite de
@@ -63,31 +68,46 @@ difíciles.
 Al menos dos veces al mes, dependiendo del ritmo de trabajo y progresos. De
 carácter informativo y orientativo.
 
+Permite un crecimiento guiado y controlado del producto final, y un nivel de
+acabado mayor al centrarnos solo en las partes realmente importantes de la
+investigación y el desarrollo para los objetivos del proyecto.
+
 \subsubsection*{Sistema incremental}
 Lo principal era desarrollar una plataforma muy básica y sencilla donde se
-pudieran llevar a cabo pruebas, y una vez completara, ir aumentando las
-funcionalidades en forma de módulos.
+pudieran llevar a cabo pruebas, y una vez completada, ir aumentando las
+funcionalidades en forma de módulos o complementos que fueran implementando las
+funcionalidades deseadas.
 
 \subsubsection*{Reparto de tareas dinámico} %TODO revisar redacción
-Identificar las funcionalidades que se quieren implementar e ir
-desarrollándolas en función de su complejidad intentando
-siempre el equilibrio en la carga de trabajo.
+El reparto de tareas equitativo y ágil es vital para mantener una buena
+relación entre los desarrolladores y el progreso del proyecto.
 
-Hay tareas que son mas sencillas que otras y que requieren mas recursos de
-formación e investigación que otras.
+Por ello es importante identificar las tareas a realizar e ir asignándolas a
+los desarrolladores de forma que ellos mismos puedan decidir como organizarse
+pero siempre teniendo en cuenta unos plazos finales.
 
-Se tiende a la especialización.
+Pero el reparto no es estático, puesto que las tareas se pueden alargar o
+acortar debido a una mala estimación inicial, por lo que las tareas se pueden
+reasignar o subdividir para agilizar el desarrollo.
 
-\subsection*{Forja RedIRIS}
+Al haber mas de un desarrollador en el proyecto hemos tendido un poco a la
+especialización en las tareas, puesto que si a un desarrollador se ha estado
+trabajando en una parte o se le da bien un determinado desarrollo, este
+desarrollador tendrá prioridad y se le asignarán las tareas principales en las
+que este mas cómodo.
+
+Sin embargo, no se trata de dividir el proyecto en dos, puesto que siempre se
+trata de que todos los desarrolladores estén implicados en todas las ramas
+para mantener la cohesión en todo el proyecto.
+
+\subsection*{Forja RedIris}
 %La forja esta bien, te permite controlar las tareas abiertas y el tiempo que te
 %tiras con ellas, tambien vale para repartirlas
-La Forja Red Iris\footnote{https://forja.rediris.es/} dispone de una serie de
+RedIris\footnote{Forja Red Iris Libre:\url{https://forja.rediris.es/}} dispone
+de una serie de
 herramientas para el alojamiento y la gestión de proyectos de carácter
 colaborativo y con vistas de crear una comunidad de desarrolladores.
-
-Gracias a contar con nuestra propia Forja
-\footnote{https://forja.rediris.es/projects/cusl4-catastrof/} y con las
-herramientas que nos proporciona, entre ellas las mas utilizadas 
+Entre ellas las mas utilizadas:
 \subsubsection*{Subversion}
 %Esta bien, pero es muy limitao
 sistema de control de versiones
@@ -129,9 +149,28 @@ razones para llevarlas a cabo.
 \subsubsection*{Git}
 %Nueva forma de ver las cosas, muchos commits, cambios muy controlaos,
 %posibilidad de hacer ramas y mantener siempre una rama estable.
+Git\footnote{Git - Fast Version Control System : \url{http://git-scm.com/}} es
+un sistema de control de versiones distribuido que cambia un poco la filosofía
+de SVN.
 
-Git es un sistema de control de versiones distribuido que mola mazo %TODO
+En cada proyecto colaborativo hay muchos desarrolladores que necesitan hacer
+muchos cambios, probar muchas alternativas de su código y sin embargo mantener
+a todo el mundo informado y a su vez mantener una rama estable de desarrollo.
+SVN tiene problemas al gestionar las diferentes ramas de desarrollo, sobre todo
+al unirlas.
 
+Git soluciona este problema al fomentar los commits pequeños y una herramienta
+de merge mas eficiente, que facilita trabajar con ramas, así todas las ramas
+que tengan puntos en común pueden ser agrupadas y mantenidas muy fácilmente.
+
+Con su sistema de log y sus normas de estilo siempre se podrá tener un
+seguimiento de todos los cambios muy bien documentados del código, y una rama
+master siempre funcional con muchas ramas de desarrollo alternativo y de fácil
+integración.
+
+Por estas razones decidimos migrar la aplicación a de SVN en RedIris a GIT en
+Gitorious\footnote{Hosting de proyectos para git repositories :
+\url{http://gitorious.org/}} sin ningún esfuerzo y con muchísimas ventajas.
 %Ahora pasamos a nuestra implementación concreta.
 \section*{Implementación del Escenario de Simulación}
 \section*{Implementación de los Agentes en la Simulación}
