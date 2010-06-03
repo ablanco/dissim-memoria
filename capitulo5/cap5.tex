@@ -244,13 +244,41 @@ Tenemos una fachada para implementar los posibles distintos servicios webs,
 tienen que implementar estas funciones, tralaraaaaaa
 \subsection*{Cache de alturas}
 %Para mejorar la latencia de datos
-Los servidores webs suelen ser muy lentos, para mejorar su respuesta utilizamos
-una base de datos, además podemos hacer interpolación de datos en el caso de
-que nuestra base de datos tenga la información suficiente.
+Los servidores webs suelen ser muy lentos, y el volumen de datos que
+necesitamos para la simulación puede ser muy grande.
 
-Usamos sqlLite porque es un fichero y listo.
+Obtener todos estos datos cada vez que necesitemos simular un escenario no es
+viable.
 
-La consulta sql puede devolver mas de un dato, hacemos la media
+La solución que nosotros implementamos es almacenar en local los datos para
+utilizarlos en posteriores simulaciones o incluso para poder reutilizarlos en
+otras simulaciones.
+
+La reutilización de datos se hace por medio de una interpolación (la media de
+las casillas adyacentes) de datos en el caso de que nuestra base de datos tenga
+la información suficiente.
+
+En nuestra implementación optamos por usar  sqlLite porque sencillez para la
+implementación y por la sencillez de la base de datos en si, que permite poder
+moverla de un ordenador a otro con un coste mínimo de instalación al ser un
+único fichero el que contiene todos los datos.
+
+El principal problema de sqlLite es que no puede albergar muchos datos, pero en
+nuestro caso esto se puede resolver creando mas ficheros, y de esta forma
+abordamos la escalabilidad.
+
+La base de datos solo contiene una única tabla
+\begin{center}
+\begin{tabular}{ | l | c | r | }
+\hline
+Clave & Tipo \\ \hline
+Lat & double \\ \hline
+Long & double \\ \hline
+Elev & double \\ \hline
+\end{tabular}
+\end{center}
+
+
 \subsubsection*{Patrón fachada}
 %pos una fachada pa poder usar distintos drivers
 No nos cerramos a una sola base de datos, le enchufamos el driver y listo
