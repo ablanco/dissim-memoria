@@ -369,19 +369,49 @@ pintamos.
 Esto soluciona el problema de las intersecciones.%TODO enlace al cap
 \subsection*{Rellenar Figuras}
 %Lineas poligonales cerradas y members
-Algunas figuras, como los parques vienen dadas por lineas cerradas, hay que
-detectarlas (primero nodo == ultimo nodo) y rellenarlas.
+Existen tres figuras diferentes a la hora de dibujar los mapas.
+Los puntos simples, las lineas rectas y las lineas polinomiales cerradas.
+
+Las lineas polinomiales cerradas se componen de lineas rectas que a su vez son
+una sucesión de puntos.
 
 \subsubsection*{Lineas poligonales cerradas}
 %los parques y contornos de edificios
-En geometría computacional hay un algoritmo sencillo que dada una lista de
+Esto es un problema de geometría computacional. Hallar los puntos que encierra
+una linea.
+
+Esto es importante si queremos reflejar la extensión de un río o de un parque,
+o cualquier otra superficie que ocupe mas de un punto.
+
+Es un problema muy conocido en geometría computacional por lo que hay muchos
+algoritmos sencillo que dada una lista de
 puntos que describen un polígono te dicen si el punto esta dentro o no.
+
+Por lo que una vez identificadas las lineas cerradas. El primer punto de la
+lista, es igual al ultimo punto de la lista. Simplemente hay que aplicar el
+algoritmo y rellenar las zonas con el valor adecuado.
 \subsubsection*{Relaciones}
 %rios, mares ....
-Hay polígonos que vienen descritos por mas de una linea poligonal y que no
-están cerrados, tales como los ríos y los mares, el tema esta en concatenar
-estas lineas en el mismo orden que te los da OSM y crear un polígono cerrado
-con ellas, y funciona relativamente bien.
+Sin embargo existen otras figuras mas complejas, como las orillas de los rios,
+o las costas. OSM también nos da esta información, pero no es tan sencillo de
+interpretar ya que solo nos dice que es una orilla, y que pertenece a un rio en
+concreto.
+Pero dadas dos orillas del mismo río, como se cual es cual y en que dirección
+hay que rellenar el agua. O peor aún, y si en nuestro mapa, solo tenemos una
+orilla del río.
+
+OSM ya provee este problema, y cuando pedimos la información de un lugar, no da
+también información de los alrededores, y si en nuestra zona solo aparece una
+orilla del río, OSM nos da la información también de la otra orilla.
+
+De esta forma, podemos calcular el cauce del río aunque este fuera de nuestro
+mapa, y pintar solo aquellas regiones que estén dentro del mismo.
+
+Una vez mas la forma que tiene OSM de organizar los datos nos da la solución,
+porque simplemente encadenando la información de las dos orillas del río nos da
+la figura que envuelve a las dos orillas del río.
+
+Para la Costa y otras formaciones de agua o figuras complejas es equivalente.
 \section*{Generador de KML}
 Necesitamos escribir en KML, y para ello contamos con unas librerías de XML y
 JAK, que es una librería de KML para Java.
