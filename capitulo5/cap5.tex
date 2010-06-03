@@ -8,7 +8,7 @@
 \begin{flushright}
 \begin{minipage}{7.85cm}
     {\em Si necesitas mas de tres niveles de indentación para tu código, estas
-jodido, y deberías arreglar tu programa}} \\  Linus Torvalds
+jodido, y deberías arreglar tu programa} \\  Linus Torvalds
 \end{minipage}
 \end{flushright}
 
@@ -79,7 +79,7 @@ pudieran llevar a cabo pruebas, y una vez completada, ir aumentando las
 funcionalidades en forma de módulos o complementos que fueran implementando las
 funcionalidades deseadas.
 
-\subsubsection*{Reparto de tareas dinámico} %TODO revisar redacción
+\subsubsection*{Reparto de tareas dinámico}
 El reparto de tareas equitativo y ágil es vital para mantener una buena
 relación entre los desarrolladores y el progreso del proyecto.
 
@@ -221,7 +221,7 @@ inserta, incrementamos en una unidad el valor, haciéndola impar, de esta forma
 detectamos las intersecciones.
 \subsection*{Coronas}
 %mantenimiento actualizado de la corona
-\subsection*{Coordenada a Tile}
+\subsection*{Coordenada a Tile} \label{coordToTile}
 %conversion de una coordenada a un tile, necesidad de los incrementos %TODO
 Nosotros hacemos una aproximación teniendo en cuenta que para distancias cortas
 podemos obviar la curvatura de la corteza terrestre y a pelo hallamos la
@@ -346,7 +346,7 @@ con lineas rectas.
 Esto plantea dos problemas.
 
 Uno de ellos lo resolvemos pasando de coordenadas a casillas, como ya hemos
-explicado en %TODO referencia a coordenada a casillas
+explicado en \hyperref[coordToTile]{\bf Coordenada a Casilla}
 
 El otro problema es crear una linea recta mediando dos puntos.
 Además hay que tener en cuenta el problema de las rectas en un plano hexagonal.
@@ -367,7 +367,8 @@ Con esto tenemos mas puntos de los necesarios para pintar una recta, por lo que
 al pintarla, guardamos siempre la casilla anterior, y si es la misma, no
 pintamos. 
 
-Esto soluciona el problema de las intersecciones.%TODO enlace al cap
+Esto soluciona el problema de las \hyperref[Intersecciones]
+{\bf intersecciones}.
 \subsection*{Rellenar Figuras}
 %Lineas poligonales cerradas y members
 Existen tres figuras diferentes a la hora de dibujar los mapas.
@@ -413,6 +414,18 @@ porque simplemente encadenando la información de las dos orillas del río nos d
 la figura que envuelve a las dos orillas del río.
 
 Para la Costa y otras formaciones de agua o figuras complejas es equivalente.
+\subsection*{Intersecciones de Caminos} \label{Intersecciones}
+Además del tipo de camino que estamos guardando en la matriz de calles del
+escenario, podemos almacenar de una forma inteligente información sobre las
+calles, como por ejemplo si una casilla en concreto forma parte de una
+intersección de calles, sin tener que mirar las casillas adyacentes. La forma
+de solucionar esto es simplemente dándoles por defecto una valor par a todos
+los tipos de caminos, y si alguna vez un camino se cruza (siempre y cuando sea
+de su mismo tipo) se guarda esta casilla con un valor impar.
+
+De esta manera tan simple, podemos identificar y almacenar las calles que
+conectan con otras calles.
+
 \section*{Generador de KML}
 Para general los archivos KML utilizamos
 JAK\footnote{JAK Java API for KML :
