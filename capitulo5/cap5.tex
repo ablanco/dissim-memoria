@@ -314,9 +314,11 @@ la jerarquía de información que sigue OSM.
 Tenemos la clase principal OsmMap, que contiene toda la información que nos da
 OSM.
 
- que parsearlo y después
-recorrerlo para extraer toda la información, según la API de OSM. Clases
-estáticas y guardamos el fichero en un directorio temporal.
+{\bf OsmWay} para la etiqueta way y {\bf OsmMember} para los caminos
+compuestos, {\bf OsmRelation} para los rios y parques, y {\bf OsmNode} para los
+puntos simples y puntos de interés. 
+
+Para almacenar la información extra tenemos OsmTag.
 \subsubsection*{Filtro de información}
 %Quedarnos con la información útil
 La etiqueta tag, nos vale para hacer filtros, y discriminar cierta información
