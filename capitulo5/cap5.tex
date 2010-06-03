@@ -258,12 +258,13 @@ La reutilización de datos se hace por medio de una interpolación (la media de
 las casillas adyacentes) de datos en el caso de que nuestra base de datos tenga
 la información suficiente.
 
-En nuestra implementación optamos por usar  sqlLite porque sencillez para la
+En nuestra implementación optamos por usar  SQLite\footnote{SQLite Home Page :
+\url{www.sqlite.org/}} porque sencillez para la
 implementación y por la sencillez de la base de datos en si, que permite poder
 moverla de un ordenador a otro con un coste mínimo de instalación al ser un
 único fichero el que contiene todos los datos.
 
-El principal problema de sqlLite es que no puede albergar muchos datos, pero en
+El principal problema de SQLite es que no puede albergar muchos datos, pero en
 nuestro caso esto se puede resolver creando mas ficheros, y de esta forma
 abordamos la escalabilidad.
 
@@ -281,13 +282,39 @@ Elev & double \\ \hline
 
 \subsubsection*{Patrón fachada}
 %pos una fachada pa poder usar distintos drivers
-No nos cerramos a una sola base de datos, le enchufamos el driver y listo
+El diseño de la interfaz para trabajar con servicios web ha sido realizado
+teniendo en cuenta el patrón fachada para poder incorporar nuevos servicios web
+de altura.
+
+Gracias a este diseño añadir nuevos servicios webs solo tienen el coste de
+implementar la clase que cumpla los métodos de la interfaz.
 \section*{Open Street Maps}
-OSM nos da los datos como strings, pero ahora tenemos que tratarlos y
-convertirlos a shorts.
+OSM tiene un servicio web, que a través de mandarle un url correctamente
+formada devuelve un fichero XML que contiene toda la información de OSM sobre
+unas coordinadas determinadas.
+
+La url se compone de una {\bf Dirección Base} + {\bf Coordenada Inferior
+ derecha} + {\bf Coordenada Superior Izquierda} y devolverá un fichero con el
+mismo nombre que la petición.
 \subsection*{Parseando XML}
 %Leer y obtener información
-La información viene codificada en un fichero xml, hay que parsearlo y después
+La información viene codificada en un fichero XML siguiendo el estándar de OSM.
+Para poder extraer la información es necesario primero parsear el fichero.
+Para ello utilizamos JAXB\footnote{Java Architecture for XML Binding :
+\url{https://jaxb.dev.java.net/}} que es una librería para recorrer ficheros
+XML. 
+
+Mientras realizamos el recorrido del fichero, hay que identificar la
+información de las etiquetas y almacenarla en nuestra estructura de datos para
+poder utilizarla de una forma mas cómoda.
+
+El diseño de las clases para almacenar la información de OSM es muy parecido a
+la jerarquía de información que sigue OSM.
+
+Tenemos la clase principal OsmMap, que contiene toda la información que nos da
+OSM.
+
+ que parsearlo y después
 recorrerlo para extraer toda la información, según la API de OSM. Clases
 estáticas y guardamos el fichero en un directorio temporal.
 \subsubsection*{Filtro de información}
