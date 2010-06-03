@@ -339,9 +339,34 @@ los limites políticos de las ciudades.
 
 \subsection*{Dibujar Calles}
 %De coordenadas a tiles
-El problema de una lista de puntos al mundo hexagonal, creamos aristas que son
-ecuaciones de recta con los vértices y con chapuzas de dirección y de dar
-saltitos mas cortos que el tile lo solucionamos
+OSM nos da la información de las calles como listas de puntos que hay que unir
+con lineas rectas.
+
+Esto plantea dos problemas.
+
+Uno de ellos lo resolvemos pasando de coordenadas a casillas, como ya hemos
+explicado en %TODO referencia a coordenada a casillas
+
+El otro problema es crear una linea recta mediando dos puntos.
+Además hay que tener en cuenta el problema de las rectas en un plano hexagonal.
+
+Para hallar los puntos de las rectas nos valemos de la ecuación de la recta
+dados dos puntos, y a través de su pendiente podemos saber cual será el próximo
+punto.
+
+Para el problema del mapa hexagonal usamos dos técnicas, la primer es buscar el
+siguiente punto de la recta pero con la mitad de distancia de una casilla, así
+hacemos los cambios gradualmente y nos aseguramos la conexión del camino con
+las casillas.
+Pero esto no soluciona el problema de las diagonales, para esto usamos vectores
+de direcciones para corregir el rumbo y hacerlo mas adecuado a la malla
+hexagonal.
+
+Con esto tenemos mas puntos de los necesarios para pintar una recta, por lo que
+al pintarla, guardamos siempre la casilla anterior, y si es la misma, no
+pintamos. 
+
+Esto soluciona el problema de las intersecciones.%TODO enlace al cap
 \subsection*{Rellenar Figuras}
 %Lineas poligonales cerradas y members
 Algunas figuras, como los parques vienen dadas por lineas cerradas, hay que
