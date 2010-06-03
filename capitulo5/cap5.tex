@@ -235,21 +235,40 @@ A veces es útil sobre todo para las calles saber cuando nos encontramos en un
 cruce, para ello cuando nos encontramos un valor igual al que nosotros queremos
 inserta, incrementamos en una unidad el valor, haciéndola impar, de esta forma
 detectamos las intersecciones.
-\subsection*{Coronas}
+\subsection*{Coronas} %TODO
 %mantenimiento actualizado de la corona
-\subsection*{Coordenada a Tile} \label{coordToTile}
-%conversion de una coordenada a un tile, necesidad de los incrementos %TODO
-Nosotros hacemos una aproximación teniendo en cuenta que para distancias cortas
-podemos obviar la curvatura de la corteza terrestre y a pelo hallamos la
-diferencia en grados decimales y a tirar millas
-\subsubsection*{Discretización}
+\subsection*{Coordenada a Casilla y Viceversa} \label{coordToCasilla}
+%conversión de una coordenada a un casilla, necesidad de los incrementos
+Para pasar de una casilla a una coordenada utilizamos los incrementos.
+
+\subsubsection*{Incrementos} \label{incrementos}
 %perdida de datos, caminos no conexos, indeterminacion de las posisciones
-Errores de aproximación, puede dar la de al lado. jodiendo caminos y cosas así
-\subsection*{Tile a Coordenada}
-%conversion de un tile a una coordenada, tener en cuenta las lineas
-%pares/impares
-Es mas fácil que el anterior, y además es determinista puesto que devuelve
-siempre el centro del tile.
+Para poder interpolar la posición desde una casilla a una determinada
+coordenada geográfica hemos optado por la técnica de los incrementos en vez de
+complicados cálculos trigonométricos terrestres.
+
+La técnica consiste en hallar la diferencia en grados decimales entre los
+extremos del mapa y dividirla entre el numero de filas y columnas, con esto
+obtenemos el incremento en Latitud o Longitud que hay entre cada casilla de
+nuestra rejilla.
+
+Debido a la forma de la rejilla hexagonal tenemos que tener en cuenta que las
+filas impares tienen un offset de \begin{math} ^1/_2 \end{math} de un incremento
+de latitud, y que las columnas tienen un incremento deEnvironment
+\begin{math} ^3/_4 \end{math} el incremento de la longitud.
+
+De esta forma tan sencilla podemos hacer las conversiones de casilla a
+coordenada y viceversa.
+\subsubsection*{Discretización}
+El problema de coordenada a casilla es un poco mas complejo, puesto que al
+tener una coordenada tenemos que aproximar a una casilla en concreto, para ello
+primero realizamos una aproximación intentando averiguar la casilla en filas y
+columnas, sin embargo la forma de las casillas es hexagonal, por lo que la
+distancia al centro  no nos asegura que la casilla sea la correcta.
+
+De esta forma perdemos un poco de información, pero los errores cometidos por
+este sistema no superan el \begin{math} 0.7\% \end{math}
+
 \subsection*{Especialización: Flood Hexagonal Grid}
 %cambios de la rejilla por desastre
 \section*{Implementación de la Elevación del Terreno}
@@ -355,14 +374,14 @@ También hay etiquetas que reconocemos y que no necesitamos, como por ejemplo,
 los limites políticos de las ciudades.
 
 \subsection*{Dibujar Calles}
-%De coordenadas a tiles
+%De coordenadas a casillas
 OSM nos da la información de las calles como listas de puntos que hay que unir
 con lineas rectas.
 
 Esto plantea dos problemas.
 
 Uno de ellos lo resolvemos pasando de coordenadas a casillas, como ya hemos
-explicado en \hyperref[coordToTile]{\bf Coordenada a Casilla}
+explicado en \hyperref[coordToCasilla]{\bf Coordenada a Casilla}
 
 El otro problema es crear una linea recta mediando dos puntos.
 Además hay que tener en cuenta el problema de las rectas en un plano hexagonal.
@@ -475,7 +494,8 @@ Tenemos dos problemas, las posiciones de los polígonos nos vienen dadas a
 través de un única coordenada, pero nosotros para dibujar el polígono
 necesitamos conocer los bordes.
 
-Esto se hace simplemente con los incrementos y un poco de trigonometría.
+Esto se hace simplemente con los \hyperref[incrementos]{\bf incrementos} y un
+poco de trigonometría.
 
 El otro problema que tenemos es mucho mas grande y es precisamente ese, el
 tamaño.
