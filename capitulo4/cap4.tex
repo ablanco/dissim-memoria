@@ -16,10 +16,10 @@
 
 \section*{Licencias}
 
-Para este proyecto vamos a usar la licencia GPL\footnote{Licencia Pública
-General de GNU} en su versión 3, escrita y mantenida por la FSF\footnote{Free
-Software Foundation: \url{http://www.fsf.org/}}. El texto legal se puede
-encontrar en el Apéndice primero. % TODO link ap1
+Para este proyecto vamos a usar la licencia GPL (Licencia Pública General de
+GNU) en su versión 3, escrita y mantenida por la FSF\footnote{Free Software
+Foundation: \url{http://www.fsf.org/}}. El texto legal se puede encontrar en el
+Apéndice primero. % TODO link ap1
 
 Al colocar el simulador bajo esta licencia nos tenemos que asegurar que todas
 las librerías que utilicemos estén bajo licencias compatibles con la nuestra. A
@@ -30,13 +30,43 @@ licencias libres con la GPL v3.
 
 \section*{JADE}
 
+La plataforma JADE (Java Agent DEvelopment Framework) es la escogida para el
+desarrollo del simulador. El objetivo principal de esta plataforma es la
+simplificación del desarrollo de sistemas multiagentes, siguiendo a su vez los
+estándares de comunicación entre sistemas de la FIPA\footnote{Foundation for
+Intelligent Physical Agents: \url{http://www.fipa.org/}}.
+
+Al utilizar JADE el desarrollador sólo tiene que concentrarse en los agentes
+que escriba, el resto de aspectos del sistema están ya resueltos, tales como el
+intercambio de mensajes, la búsqueda de agentes, el ciclo de vida de estos,
+etc. Además está escrita en Java, lo que aumenta la portabilidad a múltiples
+entornos de ejecución frente otros lenguajes de programación.
+
+El hecho de utilizar JADE nos condiciona a utilizar Java como lenguaje y
+plataforma de desarrollo para el proyecto. El resto de librerías y paquetes que
+utilizamos, y que describimos en los siguientes apartados, están pues escritos
+en este lenguaje.
+
+Dado que nuestro proyecto hace uso de la licencia GPL v3, es vital que el
+software que utilicemos sea también libre y esté bajo una licencia compatible.
+En concreto JADE usa la licencia LGPL\footnote{Licencia Pública General Reducida
+de GNU: \url{http://www.gnu.org/licenses/old-licenses/lgpl-2.0.html}} v2.
+
+Además de ser Software Libre, JADE tiene también la virtud de cumplir con la
+especificación completa de la FIPA. Cumplir con dichos estándares es muy
+importante para que sea posible la interacción entre sistemas multiagentes, y
+que el proyecto no sea un entorno cerrado sin capacidad de comunicación.
+
+JADE está desarrollado y mantenido por Telecom
+Italia\footnote{\url{http://jade.tilab.com/}}.
+
 \section*{Java}
 
 \section*{JAK}
 
-JAK\footnote{Java API for KML: \url{http://labs.micromata.de/display/jak/Home}}
-son un conjunto de librerías para el manejo de ficheros KML desde Java. JAK ha
-sido desarrollado por Micromata GmbH (\url{http://www.micromata.de/}).
+JAK (Java API for KML) son un conjunto de librerías para el manejo de ficheros
+KML desde Java. JAK ha sido desarrollado por Micromata
+GmbH\footnote{\url{http://labs.micromata.de/display/jak/Home}}.
 
 % TODO Imagen con el logo de JAK
 
@@ -46,8 +76,7 @@ Los desarrolladores de JAK optaron por liberar las librerías bajo una licencia
 BSD\footnote{Berkeley Software Distribution:
 \url{http://www.opensource.org/licenses/bsd-license.php}} de 3 clausulas, o como
 también se la conoce, licencia BSD modificada o nueva licencia BSD. La licencia
-de JAK se puede consultar en su sitio web
-(\url{http://labs.micromata.de/display/jak/Licenses}).
+de JAK se puede consultar en su sitio web.
 
 Gracias a JAK podremos generar los ficheros KML con el resultado de la
 simulación.
