@@ -81,11 +81,7 @@ de JAK se puede consultar en su sitio web.
 Gracias a JAK podremos generar los ficheros KML con el resultado de la
 simulación.
 
-\section*{Otros}
-
-% TODO comentar OSM y el servicio web de USGS
-
-\subsection*{Jcoord}
+\section*{Jcoord}
 
 Para el manejo de coordenadas geográficas utilizaremos
 Jcoord\footnote{\url{http://www.jstott.me.uk/jcoord/}}, un paquete de clases que
@@ -103,6 +99,18 @@ A diferencia de {\bf JADE} o {\bf JAK}, integraremos directamente el código en
 el simulador, por lo que no será una dependencia. De esta manera podremos
 modificar y adaptar el paquete a nuestras necesidades.
 
+\section*{Java CSV}
+
+\section*{Otros}
+
+% TODO comentar OSM y el servicio web de USGS
+
 \subsection*{OpenWFE}
 
-\subsection*{Java CSV}
+Del proyecto OpenWFE\footnote{Open WorkFlow Engine:
+\url{http://sourceforge.net/projects/openwfe/}} en realidad sólo utilizaremos
+una clase. Una implementación de Wget en Java (una herramienta para descargar
+ficheros de la web). La licencia de OpenWFE es una BSD de 3 clausulas.
+
+Dicha clase estará integrada en el código del simulador por lo que OpenWFE no
+será una dependencia.
