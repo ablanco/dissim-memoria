@@ -64,6 +64,8 @@ Italia\footnote{\url{http://jade.tilab.com/}}.
 
 \section*{Java}
 
+% TODO
+
 \section*{JAK}
 
 JAK (Java API for KML) son un conjunto de librerías para el manejo de ficheros
@@ -101,7 +103,9 @@ A diferencia de {\bf JADE} o {\bf JAK}, integraremos directamente el código en
 el simulador, por lo que no será una dependencia. De esta manera podremos
 modificar y adaptar el paquete a nuestras necesidades.
 
-\section*{Java CSV}
+\section*{Otras librerías}
+
+\subsection*{Java CSV}
 
 Java CSV\footnote{\url{http://sourceforge.net/projects/javacsv/}} es una
 sencilla librería que facilita la escritura y lectura de ficheros de valores
@@ -110,10 +114,6 @@ módulo de estadísticas.
 
 La licencia de esta librería es la LGPL v2.1 o posterior, y estará integrada en
 el código del proyecto por lo que no será una dependencia.
-
-\section*{Otros}
-
-% TODO comentar OSM y el servicio web de USGS
 
 \subsection*{OpenWFE}
 
@@ -124,3 +124,27 @@ ficheros de la web). La licencia de OpenWFE es una BSD de 3 clausulas.
 
 Dicha clase estará integrada en el código del simulador por lo que OpenWFE no
 será una dependencia.
+
+\section*{Servicios}
+
+Además de las librerías comentadas hasta ahora haremos uso de algunos
+servicios, como son Open Street Maps y el servicio web de elevaciones de la
+USGS descritos en el capítulo 3. % TODO link al capítulo
+
+\subsection*{Open Street Maps}
+
+Open Street Maps (OSM) permite que se le realicen peticiones GET por HTML, y
+devuelve directamente un fichero con la información solicitada en
+XML\footnote{Lenguaje de Marcado Extensible: \url{http://www.w3.org/XML/}}. La
+implementación de la petición será por lo tanto sencilla, aunque el tratamiento
+de los datos recibidos requerirá de un procesado mucho más complejo.
+
+\subsection*{Servicio de elevaciones de la USGS}
+
+Este servicio se trata de un servicio web al que se accede a través de
+SOAP\footnote{Simple Object Access Protocol: \url{http://www.w3.org/TR/soap/}}.
+Para consumir dicho servicio hace falta implementar un cliente, tarea que
+gracias a Java resulta bastante sencilla.
+
+Utilizaremos la herramienta {\bf wsimport} que trae Java para autogenerar el
+código del cliente del servicio web, código que irá incluido en el proyecto.
