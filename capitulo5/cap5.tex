@@ -204,11 +204,31 @@ velocidad de propagación que tendrá el agua.
 %pasarse el aguita de unos a otros
 \section*{Rejilla Hexagonal}
 %Discretización del mundo real
+Sobre la rejilla es donde se van a realizar todos los cálculos de la
+simulación, por lo tanto dispone de todos los métodos para manipular
+y obtener información contenida en ella.
+
+También contiene funciones básicas como dado un punto obtener todos sus
+adyacentes, o devolver todas las casillas que se puedan ver desde una posición
+y un rango de visión.
+
+También dispone de métodos para obtener caminos utilizando la adyacencia
+hexagonal.
 \subsection*{Matriz de Altura}
 Una matriz de short solo puede albergar un rango de alturas desde +-32,767, que
 dependiendo de la precisión puede ser mas o menos altura
 \subsection*{Matriz de Agua}
 %Hay que saber cuanta agua tenemos pa moverla
+Al igual que la matriz de alturas se trara de una matriz de short del mimo
+tamaño que la del entorno, pero esta contiene solo información de la cantidad
+de agua que hay en esta casilla.
+
+Este valor nunca podrá ser menor que cero.
+
+Sumando las matrices de alturas y agua se obtiene la altura total del terreno.
+
+Esta matriz es especifica de las inundaciones, puesto que para otras
+catástrofes no es necesaria.
 \subsection*{Matriz de Calles}
 %Las calles hay que guardarlas en algun lao
 Cada entorno necesita un mapa de la ciudad propio.
@@ -235,8 +255,19 @@ A veces es útil sobre todo para las calles saber cuando nos encontramos en un
 cruce, para ello cuando nos encontramos un valor igual al que nosotros queremos
 inserta, incrementamos en una unidad el valor, haciéndola impar, de esta forma
 detectamos las intersecciones.
-\subsection*{Coronas} %TODO
+\subsection*{Coronas}
 %mantenimiento actualizado de la corona
+Al poder efectuar las simulaciones en mas de un entorno, tenemos que crear un
+sistema de actualización a entornos vecinos, para facilitar esto disponemos de
+las coronas, las coronas son vectores que contienen información de las casillas
+adyacentes de los otros escenarios.
+
+De esta forma, cuando se modifica la información de los limites del escenario,
+es la corona la que se encarga de hacer el puente al siguiente escenario y las
+actualizaciones necesarias.
+
+De esta forma podemos hacer que los escenarios vean mas halla de su entorno.
+
 \subsection*{Coordenada a Casilla y Viceversa} \label{coordToCasilla}
 %conversión de una coordenada a un casilla, necesidad de los incrementos
 Para pasar de una casilla a una coordenada utilizamos los incrementos.
