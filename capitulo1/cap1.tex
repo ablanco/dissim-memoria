@@ -50,9 +50,33 @@ activa de objetivos.
 
 % http://en.wikipedia.org/wiki/Intelligent_agent#Classes_of_intelligent_agents
 
+Existen varios tipos de agentes según sus características y capacidades. Lo que
+sigue es sólo una de las posibles clasificaciones.
+
 \subsubsection*{Reactivos}
 
+Los agentes puramente reactivos actúan únicamente en base a su percepción. La
+funcionalidad del agente está basada en {\em la regla de condición-acción}: si
+tal condición entonces tal acción. Este tipo de agentes es particularmente
+interesante cuando el entorno es observable en su totalidad.
+
+También es posible que un agente reactivo contenga información de su estado en
+cada momento, lo que les permite obviar {\em condiciones} que ya hayan activado
+{\em acciones} en momentos anteriores.
+
 \subsubsection*{Reactivos basados en Modelo}
+
+Este tipo de agentes es capaz de desenvolverse en entornos que son sólo
+parcialmente observables. Almacenan su estado en cada momento manteniendo algún
+tipo de estructura que describa el entorno que no se puede percibir.
+Obviamente, esta cualidad requiere información sobre como se comporta y
+funciona el entorno. Es esta información adicional la que completa las
+percepciones del agente.
+
+Un agente reactivo basado en modelo realiza un seguimiento del estado del
+entorno en cada momento, usando su modelo interno. Con ambas informaciones (su
+modelo interno y sus percepciones) toma las decisiones de la misma manera que un
+agente puramente reactivo.
 
 \subsubsection*{Basados en Objetivos}
 
