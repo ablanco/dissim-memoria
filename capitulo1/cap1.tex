@@ -83,9 +83,18 @@ agente puramente reactivo.
 Los agentes basados en objetivos son agentes basados en modelo que además
 almacenan información relativa a situación que son deseables. Gracias a esto el
 agente es capaz de escoger de entre múltiples posibilidades aquellas que
-cumplen un objetivo, o que al menos ayudan a alcanzar uno.
+cumplen un objetivo.
 
 \subsubsection*{Basados en Utilidad}
+
+Loa agentes basados en objetivos sólo diferencian entre estados objetivo y no
+objetivo. Es posible definir una medida de cuan deseable es un estado en
+particular. Esta medida se obtiene a través del uso de una función de
+evaluación de la {\em utilidad} de un estado concreto.
+
+Gracias a esta función el agente es capaz de escoger aquellos estados que
+ayudan o favorecen la consecución de los objetivos, en el caso de que ningún
+estado posible cumpla un objetivo directamente.
 
 \subsubsection*{Con capacidad de Aprendizaje}
 
