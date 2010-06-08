@@ -7,83 +7,205 @@
 
 \begin{flushright}
 \begin{minipage}{7.85cm}
-    {\em Blah blah blah.} \\  Alguien
+    {\em Creo que para final de siglo el uso de las palabras y la opinión
+    general habrán cambiado tanto, que uno podrá hablar sobre máquinas pensantes
+    sin que le contradigan.} \\ Alan M. Turing
 \end{minipage}
 \end{flushright}
 
 \vspace*{5mm}
 
-\section*{Simulación}
+\section*{Agentes Inteligentes}
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum placerat
-urna egestas magna blandit quis tristique libero tincidunt. Aliquam erat
-volutpat. Mauris nec purus eu justo ultrices tempus quis nec justo. In hac
-habitasse platea dictumst. Vestibulum risus nisl, bibendum id pellentesque et,
-interdum in dui. Etiam mattis, odio volutpat facilisis imperdiet, neque lectus
-tempor nulla, vel pharetra elit tortor eu turpis. Pellentesque habitant morbi
-tristique senectus et netus et malesuada fames ac turpis egestas. Nunc arcu
-ligula, pretium nec bibendum at, porta nec justo. Duis ultrices tristique odio,
-sit amet elementum nisl mattis eu. Maecenas convallis purus a diam dictum vitae
-consectetur lacus tempor. Aenean sed orci mauris, id scelerisque arcu. Nulla
-tristique sollicitudin tortor vel pulvinar. Cras egestas aliquet nisi
-condimentum placerat. Cras pulvinar dolor eget eros iaculis commodo fermentum
-ipsum consectetur. Phasellus quis neque quis tellus faucibus feugiat. Proin
-rhoncus lectus lectus, eu rutrum nunc. Quisque sed ipsum vitae ligula gravida
-viverra. In ut libero est, a venenatis diam.
+% http://en.wikipedia.org/wiki/Intelligent_agent#A_variety_of_definitions
 
-Pellentesque nec nulla ut lacus blandit venenatis. Morbi vitae enim dolor.
-Vestibulum euismod odio non justo lobortis et lobortis magna mollis. Cras
-aliquet dapibus enim, nec interdum mi interdum sed. Sed porttitor magna ut dolor
-interdum pellentesque. Aliquam erat volutpat. Vestibulum ante ipsum primis in
-faucibus orci luctus et ultrices posuere cubilia Curae; Cras id felis neque.
-Suspendisse sem urna, euismod nec pharetra et, egestas quis nunc. Maecenas
-blandit viverra nisl eu dapibus. Ut auctor nunc et dui tincidunt volutpat. In ut
-metus nibh. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras at
-quam non lectus laoreet sollicitudin vel eget ligula. Lorem ipsum dolor sit
-amet, consectetur adipiscing elit. Curabitur sed diam dolor, id vestibulum arcu.
-Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus
-mus. Integer id vulputate leo. Phasellus feugiat, purus sit amet lacinia
-consequat, urna risus feugiat lacus, in lobortis velit mi et orci. Vivamus est
-est, dapibus sed rhoncus et, facilisis vitae sapien.
+Una posible definición muy resumida de agente inteligente sería la siguiente:
+{\em un agente inteligente es una entidad autónoma que observa y actúa sobre un
+entorno, y dirige su actividad en pos de uno o más objetivos}. Por supuesto
+esta definición no abarca muchos matices, pero nos da una idea general que nos
+sirve como punto de partida. La variedad de agentes es muy amplia, así como
+su complejidad, que puede ir desde un sencillo agente puramente reactivo a uno
+complejo que imite a una persona, por ejemplo.
 
-Mauris tempor bibendum odio, at varius erat tristique vitae. Duis sit amet erat
-non nisi convallis condimentum ut ut nulla. Fusce eros orci, egestas a congue
-at, egestas ut ligula. Praesent dolor dolor, mollis vitae tincidunt in, lobortis
-vitae odio. Nullam id nisl ipsum. Cras vel arcu mattis lectus ornare ornare eu a
-ligula. Cras non enim et risus aliquam aliquam sit amet a magna. Curabitur id
-gravida lectus. Curabitur semper arcu in dolor laoreet sed molestie sapien
-fringilla. Duis et lectus nisi, sit amet auctor dui. Nullam accumsan diam in
-purus scelerisque in commodo turpis sollicitudin. Donec congue egestas lectus a
-semper. Aliquam ullamcorper nibh eget massa fermentum hendrerit. Morbi felis
-risus, cursus semper sollicitudin ut, consequat quis orci. Duis ante lacus,
-varius ac consequat feugiat, gravida ac enim. Curabitur accumsan aliquet
-placerat. Phasellus ut mauris nisi. In hac habitasse platea dictumst. Mauris
-vehicula fringilla dolor, ut sodales mauris congue a. In hac habitasse platea
-dictumst.
+Existen muchas definiciones de agentes inteligentes, todas ellas diferentes,
+pero con puntos en común. Los puntos que se pueden extraer como fundamentales
+para considerar a un proceso como agente inteligente son:
 
-Vestibulum quam diam, rhoncus rhoncus tristique et, volutpat sed ipsum. Proin
-varius tristique magna, eu varius turpis malesuada at. Nam dignissim tempor
-augue a tristique. Fusce velit tortor, pulvinar quis mollis sed, iaculis ac
-urna. Donec urna diam, consectetur sed lacinia quis, consectetur suscipit
-mauris. Nullam malesuada faucibus porttitor. Nulla felis justo, lobortis sed
-varius id, dictum vel metus. Nam nunc arcu, imperdiet in malesuada ut, mollis
-eget neque. Quisque felis lacus, vulputate sit amet fringilla sed, feugiat nec
-tortor. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere
-cubilia Curae; In hac habitasse platea dictumst. Integer et nisi eros, quis
-pulvinar felis. Suspendisse semper tempor porta. Donec justo tellus, iaculis
-eget lacinia et, vulputate tincidunt urna. Lorem ipsum dolor sit amet,
-consectetur adipiscing elit. Sed sem tellus, sodales id tincidunt at, gravida ut
-eros.
+\begin{description}
+ \item[Autonomía]Deben ser capaces de funcionar sin la intervención del usuario.
+ \item[Reactividad]Han de poder observar su entorno, y responder a los eventos
+ o cambios que se produzcan.
+ \item[Proactividad]Para conseguir sus objetivos han de tomar decisiones y
+ realizar acciones según una estrategia.
+ \item[Comunicación]Deben poder comunicarse entre sí, compartir información, e
+ incluso, cooperar para la consecución de sus objetivos.
+\end{description}
 
-Nam turpis erat, pulvinar et porttitor euismod, ullamcorper sit amet ante.
-Suspendisse dapibus dapibus tellus, vel iaculis tortor congue adipiscing.
-Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia
-Curae; Sed nec diam vel nisl aliquam blandit. Proin massa quam, rutrum nec
-imperdiet molestie, hendrerit non est. Cras in dapibus lorem. Suspendisse eget
-tortor at risus hendrerit ultrices sed ut magna. Pellentesque libero dolor,
-eleifend vitae scelerisque sit amet, lobortis egestas justo. Integer nisl dui,
-ornare a scelerisque eget, faucibus vel risus. Pellentesque habitant morbi
-tristique senectus et netus et malesuada fames ac turpis egestas. Maecenas
-sodales, mauris in condimentum faucibus, lectus lectus laoreet felis, id gravida
-ipsum orci eu quam. Nunc tincidunt, ante a blandit lacinia, felis eros
-consectetur est, sed rutrum libero eros eget libero.
+Aunque existen agentes puramente reactivos, es difícil aplicarles la etiqueta
+de {\em inteligentes}. Un grado de proactividad es imprescindible, aunque se
+hace necesario encontrar un equilibrio entre la reactividad y la búsqueda
+activa de objetivos.
+
+% TODO Diagrama: http://upload.wikimedia.org/wikipedia/en/2/2e/Ch1-Nwanna.gif
+
+\subsection*{Qué no es un Agente}
+
+% http://en.wikipedia.org/wiki/Software_agent#What_an_agent_is_not
+
+A veces resulta más claro y práctico comparar lo que se quiere definir con
+elementos relacionados y resaltar las diferencias, que dar una definición. A
+continuación sigue una comparación entre un agente inteligente y otros tipos de
+software relacionados.
+
+\subsubsection*{Agentes frente a Programas}
+
+Las principales características que distinguen a un agente de un programa
+arbitrario son cuatro: {\em reactividad al entorno, autonomía, proactividad y
+persistencia}.
+
+% TODO CITAR Franklin & Graesser (1997)
+% http://www.msci.memphis.edu/~franklin/AgentProg.html
+
+\subsubsection*{Agentes frente a Objetos}
+
+Las diferencias que intuitivamente se pueden encontrar son las siguientes:
+
+\begin{itemize}
+ \item Los agentes son más autónomos que los objetos.
+ \item Los agentes tienen un comportamiento más flexible, reactivo, proactivo
+ y social.
+ \item Los agentes tienen como mínimo un hilo de control, pero pueden tener más.
+\end{itemize}
+
+% TODO CITAR (Wooldridge, 2002)[citation needed]
+
+\subsubsection*{Agentes frente a Sistemas Expertos}
+
+Las diferencias son las siguientes:
+
+\begin{itemize}
+ \item Los sistemas expertos no están emparejados a su entorno.
+ \item Los sistemas expertos no están diseñados para tener un comportamiento
+ reactivo ni proactivo.
+ \item Los sistemas expertos no tienen capacidades sociales.
+\end{itemize}
+
+% TODO CITAR (Wooldridge, 2003)
+
+\subsection*{Tipos de Agentes}
+
+Existen varios tipos de agentes según sus características y capacidades. Lo que
+sigue es sólo una de las posibles clasificaciones.
+
+\subsubsection*{Reactivos}
+
+Los agentes puramente reactivos actúan únicamente en base a su percepción. La
+funcionalidad del agente está basada en {\em la regla de condición-acción}: si
+tal condición entonces tal acción. Este tipo de agentes es particularmente
+interesante cuando el entorno es observable en su totalidad.
+
+También es posible que un agente reactivo contenga información de su estado en
+cada momento, lo que les permite obviar {\em condiciones} que ya hayan activado
+{\em acciones} en momentos anteriores.
+
+\subsubsection*{Reactivos basados en Modelo}
+
+Este tipo de agentes es capaz de desenvolverse en entornos que son sólo
+parcialmente observables. Almacenan su estado en cada momento manteniendo algún
+tipo de estructura que describa el entorno que no se puede percibir.
+Obviamente, esta cualidad requiere información sobre como se comporta y
+funciona el entorno. Es esta información adicional la que completa las
+percepciones del agente.
+
+Un agente reactivo basado en modelo realiza un seguimiento del estado del
+entorno en cada momento, usando su modelo interno. Con ambas informaciones (su
+modelo interno y sus percepciones) toma las decisiones de la misma manera que un
+agente puramente reactivo.
+
+\subsubsection*{Basados en Objetivos}
+
+Los agentes basados en objetivos son agentes basados en modelo que además
+almacenan información relativa a situación que son deseables. Gracias a esto el
+agente es capaz de escoger de entre múltiples posibilidades aquellas que
+cumplen un objetivo.
+
+\subsubsection*{Basados en Utilidad}
+
+Loa agentes basados en objetivos sólo diferencian entre estados objetivo y no
+objetivo. Es posible definir una medida de cuan deseable es un estado en
+particular. Esta medida se obtiene a través del uso de una función de
+evaluación de la {\em utilidad} de un estado concreto.
+
+Gracias a esta función el agente es capaz de escoger aquellos estados que
+ayudan o favorecen la consecución de los objetivos, en el caso de que ningún
+estado posible cumpla un objetivo directamente.
+
+\subsubsection*{Con capacidad de Aprendizaje}
+
+El aprendizaje presenta ventajas tales como que permite a los agentes operar en
+entornos inicialmente desconocidos, y convertirse en agentes más competentes
+de lo que su conocimiento inicial por sí mismo permitiría. Esta capacidad de
+aprendizaje requiere que el agente tenga memoria, y permite la mejora de la
+eficacia de éste a lo largo del tiempo.
+
+\section*{Sistemas MultiAgente (SMA)}
+
+% http://en.wikipedia.org/wiki/Multi-agent_system
+
+Un sistema multiagente (SMA) es un sistema compuesto de múltiples agentes
+inteligentes que interactúan entre sí. Estos sistemas se utilizan para resolver
+aquellos problemas que son complicados, o directamente imposibles, para un único
+agente o un sistema monolítico.
+
+Para que un sistema pueda ser considerado un SMA es necesario que se cumplan
+las siguientes condiciones:
+
+\begin{itemize}
+ \item Los agentes han de ser al menos parcialmente autónomos.
+ \item Ningún agente debe tener una visión completa y global del sistema, o
+ bien el sistema es tan complejo que ningún agente podría hacer un uso práctico
+ de un conocimiento completo.
+ \item No puede haber un agente designado para controlar el sistema al
+ completo, pues se convertiría en un sistema monolítico.
+\end{itemize}
+
+En un SMA puede manifestarse un comportamiento emergente complejo y sofisticado,
+incluso cuando las estrategias individuales de sus agentes sean simples y
+sencillas.
+
+Los agentes de un SMA pueden comunicarse entre sí y compartir conocimiento, con
+las limitaciones que imponga el protocolo de comunicación del sistema.
+
+\subsection*{Estrategia de Trabajo}
+
+Existen múltiples formas de plantear un sistema multiagente, pero una de la más
+habituales es la técnica de {\em divide y vencerás}. Básicamente se trata de
+subdividir el problema en problemas más pequeños resolubles por agentes
+particulares, o bien por un subconjunto de agentes que cooperen entre sí.
+
+La solución global surgiría de la combinación del trabajo de cada agente, esta
+supersolución puede surgir de manera automática como un comportamiento
+emergente, o puede ser necesario que otro agente explícitamente se encargue de
+elaborarla.
+
+El principal obstáculo a la hora de aplicar esta técnica es que los problemas
+normalmente no tienen una solución general. Muchas veces se ha necesario
+resolver cada caso por separado, lo que puede conducir a comportamientos
+erróneos o a la aparición de comportamientos emergentes no deseados.
+
+\subsection*{Protocolos de Comunicación}
+
+Es la capacidad de comunicación entre los agentes que componen un SMA lo que
+permite que el sistema funcione y resuelva problemas. Sin comunicación no hay
+SMA.
+
+Existen varios métodos de comunicación entre agentes, pero el más habitual es
+el paso de mensajes entre ellos. Para poder llevar esto a cabo es necesario
+definir protocolos de comunicación, y dos de los más utilizados son el {\em
+Knowledge Query Manipulation Language
+(KQML)}\footnote{\url{http://www.cs.umbc.edu/research/kqml/}} y el {\em Agent
+Communication Language
+(ACL)}\footnote{\url{http://www.fipa.org/repository/aclspecs.html}}.
+
+Es muy importante que estos protocolos se estandaricen para poder establecer
+interacciones entre diferentes plataformas de agentes.
