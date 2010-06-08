@@ -35,14 +35,14 @@ para considerar a un proceso como agente inteligente son:
  \item[Autonomía]Deben ser capaces de funcionar sin la intervención del usuario.
  \item[Reactividad]Han de poder observar su entorno, y responder a los eventos
  o cambios que se produzcan.
- \item[Pro-actividad]Para conseguir sus objetivos han de tomar decisiones y
+ \item[Proactividad]Para conseguir sus objetivos han de tomar decisiones y
  realizar acciones según una estrategia.
  \item[Comunicación]Deben poder comunicarse entre sí, compartir información, e
  incluso, cooperar para la consecución de sus objetivos.
 \end{description}
 
 Aunque existen agentes puramente reactivos, es difícil aplicarles la etiqueta
-de {\em inteligentes}. Un grado de pro-actividad es imprescindible, aunque se
+de {\em inteligentes}. Un grado de proactividad es imprescindible, aunque se
 hace necesario encontrar un equilibrio entre la reactividad y la búsqueda
 activa de objetivos.
 
@@ -60,7 +60,7 @@ software relacionados.
 \subsubsection*{Agentes frente a Programas}
 
 Las principales características que distinguen a un agente de un programa
-arbitrario son cuatro: {\em reactividad al entorno, autonomía, pro-actividad y
+arbitrario son cuatro: {\em reactividad al entorno, autonomía, proactividad y
 persistencia}.
 
 % TODO CITAR Franklin & Graesser (1997)
@@ -72,7 +72,7 @@ Las diferencias que intuitivamente se pueden encontrar son las siguientes:
 
 \begin{itemize}
  \item Los agentes son más autónomos que los objetos.
- \item Los agentes tienen un comportamiento más flexible, reactivo, pro-activo
+ \item Los agentes tienen un comportamiento más flexible, reactivo, proactivo
  y social.
  \item Los agentes tienen como mínimo un hilo de control, pero pueden tener más.
 \end{itemize}
@@ -86,7 +86,7 @@ Las diferencias son las siguientes:
 \begin{itemize}
  \item Los sistemas expertos no están emparejados a su entorno.
  \item Los sistemas expertos no están diseñados para tener un comportamiento
- reactivo ni pro-activo.
+ reactivo ni proactivo.
  \item Los sistemas expertos no tienen capacidades sociales.
 \end{itemize}
 
@@ -148,7 +148,7 @@ de lo que su conocimiento inicial por sí mismo permitiría. Esta capacidad de
 aprendizaje requiere que el agente tenga memoria, y permite la mejora de la
 eficacia de éste a lo largo del tiempo.
 
-\section*{Sistemas Multiagente (SMA)}
+\section*{Sistemas MultiAgente (SMA)}
 
 % http://en.wikipedia.org/wiki/Multi-agent_system
 
@@ -176,9 +176,24 @@ sencillas.
 Los agentes de un SMA pueden comunicarse entre sí y compartir conocimiento, con
 las limitaciones que imponga el protocolo de comunicación del sistema.
 
-% TODO
+\subsection*{Estrategia de Trabajo}
 
-\subsection*{Métodos de comunicación}
+Existen múltiples formas de plantear un sistema multiagente, pero una de la más
+habituales es la técnica de {\em divide y vencerás}. Básicamente se trata de
+subdividir el problema en problemas más pequeños resolubles por agentes
+particulares, o bien por un subconjunto de agentes que cooperen entre sí.
+
+La solución global surgiría de la combinación del trabajo de cada agente, esta
+supersolución puede surgir de manera automática como un comportamiento
+emergente, o puede ser necesario que otro agente explícitamente se encargue de
+elaborarla.
+
+El principal obstáculo a la hora de aplicar esta técnica es que los problemas
+normalmente no tienen una solución general. Muchas veces se ha necesario
+resolver cada caso por separado, lo que puede conducir a comportamientos
+erróneos o a la aparición de comportamientos emergentes no deseados.
+
+\subsection*{Métodos de Comunicación}
 
 Un par de lenguajes de ejemplo podrían ser el {\em Knowledge Query Manipulation
 Language (KQML)} o el {\em Agent Communication Language (ACL)}.
