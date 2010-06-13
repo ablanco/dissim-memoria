@@ -96,98 +96,102 @@ corriente en la superficie. % TODO Citar algo
 
 Pero una vez más, por falta de datos, se han tenido que quedar en el tintero.
 
-\section*{Inundaciones en un entorno urbano}
+\section*{Inundaciones en un Entorno Urbano}
 
 Simular una inundación en un entorno urbano tiene sus propios problemas, tales
-como la el papel de los ríos, las calles, la forma de los edificios, la red de
-alcantarillado, etc... \cite{simulator, katrina}
-\subsection*{Los ríos}
-En una ciudad, un río será por lo general, un sector conflictivo cuando se
-produzca una inundación, puesto que aparte de que probablemente sea el causante
-de la inundación  también es una zona en la que pueden producirse.
+como el papel de los ríos, las calles, la forma de los edificios, la red de
+alcantarillado, etc.
 
-Los cálculos necesarios para calcular el caudal introducido y caudal evacuado
-\cite{desvordamiento} son complejos de por si, pero podrían ser resueltos por
-nuestro sistema multi-agente, sin embargo el problema de la obtención de datos,
-es mucho mas complicado, puesto que en muy pocas circunstancias se tiene
-constancia de los datos necesarios.
+\subsection*{Ríos}
 
-\subsection*{La forma de los edificios}
+En una ciudad, un río será, por lo general, un sector conflictivo cuando se
+produzca una inundación, pues probablemente sea el causante de la inundación.
+
+Los cálculos necesarios para calcular el caudal introducido y el caudal evacuado
+son complejos de por sí\cite{Kollinger}, pero podrían ser resueltos por nuestro
+sistema multiagente si tuviésemos acceso a los datos necesarios, tales como la
+forma del lecho del río, etc.
+
+\subsection*{Forma de los Edificios}
+
 La forma de los edificios también va a influir en el desarrollo de la
-inundación, no solo en que cuando entre el agua dentro del edificio modificará
-su velocidad y trayectoria, sino con las paredes o fachadas, que pueden
-canalizar el agua e incluso formar piscinas en su interior o inundar sótanos.
+inundación. Cuando entre el agua dentro del edificio se modificará su velocidad
+y trayectoria, y además las paredes o fachadas pueden canalizar el agua y llegar
+a formar piscinas, o inundar sótanos.
 
 Sin conocer la forma del edificio no podemos hacer una simulación del todo fiel
-a realidad puesto que algunos terrenos serán afectados de forma diferente si
-hay un edificio delante de ellos que frena el avance del agua, o si por el
-contrario, un edificio hace de tapón y provoca un crecimiento anómalo del nivel
-del agua.
+a realidad, pues estos afectan al movimiento del agua y evolución de la
+inundación. Con una fuente de datos de elevación suficientemente buena, que
+contenga las alturas de los edificios, el simulador será capaz de simular
+adecuadamente el agua. Pero una vez más, estamos a merced de la calidad de los
+datos.
 
-\subsection*{Las calles y carreteras}
-Las calles y carreteras tienen una peculiaridad, puesto que al ser
-prácticamente planas y de inclinación suave las hacen idóneas para que el agua
-pueda moverse sin mucha dificultad por la ciudad. Ya que a un nivel pequeño del
-agua sirven como canales que conducen en agua hacia un lugar mas bajo pero a
-mucha mas velocidad que si lo hicieran a través de los edificios o por cualquier
-otra superficie no plana.
+\subsection*{Calles y Carreteras}
 
-\subsection*{El alcantarillado}
-Todas las ciudades tienen una red de alcantarillado, que no es mas que un
-conjunto de canales que desplazan el agua desde la ciudad hasta un punto de la
-ciudad. Por las redes del alcantarillado va a circular gran cantidad de agua
-durante una inundación y no se verá afectada por la elevación del terreno ya
-que al ser subterránea y estar canalizada va a llevar una gran cantidad de agua
-a otro punto.
+Las calles y carreteras tienen la particularidad de ser prácticamente planas, y
+de inclinación suave, lo que las hacen idóneas para que el agua pueda moverse
+sin mucha dificultad. Actúan como canales conduciendo el agua a más velocidad
+por la ciudad que el agua que atraviesa edificios.
 
-Este es un problema que se puede asemejar al de las filtraciones, pero con un
-factor mucho mas alto.
+\subsection*{Alcantarillado}
 
-Una vez mas habría que disponer de un mapa del alcantarillado y de sus zonas de
-desagüe, aunque, se puede asumir que prácticamente debajo de cada carretera
-habrá una alcantarilla, aún así se estarían ignorando muchos otros puntos de
-entrada o salida de agua.
+Todas las ciudades tienen una red de alcantarillado, al menos todas las del
+primer mundo, que no es mas que un conjunto de canales subterráneos dedicados
+al desplazamiento de agua.
+
+En caso de inundación, las redes del alcantarillado moverán una gran cantidad de
+agua que no se verá afectada por obstáculos o irregularidades del terreno. Es un
+problema que se puede asemejar al de las filtraciones, pero con un factor de
+incidencia mucho más alto.
+
+Para poder incluirlo en el simulador se hace necesario el disponer de un mapa
+del alcantarillado y de sus zonas de desagüe. Se podría asumir que prácticamente
+debajo de cada calle habrá una conducción de alcantarilla, pero se estarían
+ignorando los caudales de las conducciones y los puntos de entrada o salida de
+agua.
 
 \subsection*{Prioridades de las personas}
 
-Se han realizado estudios \cite{prioridades} sobre poblaciones acerca de que es
-lo que harían en caso de crisis, tales como su disponibilidad a salvar a sus
-familiares en apuros, o al vecino, o simplemente a alguien que lo necesite.
-Nuestro problema podría ser simular comportamientos de ayuda entre agentes
-tales como indicarles el camino a seguir o incluso acompañarles a un lugar
-seguro.
+Se han realizado estudios\cite{Liu07} en algunas poblaciones sobre qué es
+lo que harían sus habitantes en caso de crisis. Se han considerado aspectos
+tales como su disponibilidad a salvar a familiares en apuros, o a vecinos, o
+simplemente a cualquier desconocido que lo necesite.
+
+En el simulador esto se podría traducir en comportamientos de ayuda entre
+agentes, como indicarles el camino a seguir o incluso acompañarles a un
+lugar seguro.
 
 \subsection*{Supervivencia en un entorno inundado}
 
-También es importante ante una catástrofe, recoger información sobre los
-supervivientes \cite{survey}.
+También es importante, ante una catástrofe, recoger información acerca de los
+supervivientes para posteriores análisis. Por ejemplo, tras las inundaciones
+producidas por el huracán Katrina en Nueva Orleans se han realizado
+encuestas\cite{Washington05} de este tipo.
 
-Información como los peores momentos de la inundación, las zonas mas afectas,
-las mayores concentraciones de personas y ese tipo de datos pueden darnos una
-idea de como se podrían prevenir ciertas situaciones de riesgo.
+Información sobre los peores momentos de la inundación, las zonas más afectadas,
+los lugares de mayor concentración de personas, etc. Este tipo de datos pueden
+darnos una idea aproximada de cómo se podrían prevenir ciertas situaciones de
+riesgo. También nos puede ser útil para realizar un informe de daños y
+necesidades de la población tras el desastre.
 
-También nos puede ser útil para prever un informe de daños y necesidades de la
-población tras el desastre.
+En nuestro caso contar con este tipo de informaciones nos permitirá contrastar
+los resultados simulados con casos reales, para realizar comparaciones y sacar
+conclusiones.
 
 \subsection*{Evacuación de personas}
-%como se evacuan las personas de una ciudad
-La correcta evacuación de una ciudad ante un desastre es algo muy importante de
-lo que pueden depender la vida de muchas personas, la rapidez y eficacia de la
-evacuación puede determinar la magnitud de la catástrofe en vidas humanas. Por
-ello, poder simular como se realizaría una simulación podría darnos datos de
-rutas frecuentes de evacuación \cite{evac08} o en situaciones de pánico
-\cite{panicevac} y concentrar las esfuerzos de las autoridades para mantener
-estas vías abiertas, o en su defecto, detectar vías alternativas y posibles
-problemas.
 
-Otro problema a plantearse serían la evacuación de los edificios en si
-\cite{kyoto}, puesto que en una gran ciudad, tan importante es la evacuación de
-las calles, como de los grandes edificios donde se encuentran la mayoría de la
-gente.
- 
+La correcta evacuación de una ciudad ante un desastre es algo muy importante, y
+de ello dependen las vidas de muchas personas. La rapidez y eficacia de la
+evacuación puede determinar la magnitud de las pérdidas en vidas humanas. Por
+ello, poder simular una evacuación supone una gran ventaja dado que nos
+aportaría datos sobre rutas frecuentes de evacuación\cite{Lammel08}, o cómo se
+comportarían las personas en situaciones de pánico\cite{Chu05}, etc.
+
+Con esta información se podrían concentrar los esfuerzos de las autoridades en
+los puntos críticos. Manteniendo las vías principales abiertas, o en su defecto,
+proporcionando caminos alternativos y demás soluciones a los posibles problemas.
 
 \section*{Obtener información real sobre los terrenos}
-%obtención de información global
 
 Lo verdaderamente interesante de nuestro proyecto es poder probarlo sobre
 lugares reales, para ello es necesario obtener la información, pero además,
