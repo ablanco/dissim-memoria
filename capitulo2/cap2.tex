@@ -15,94 +15,86 @@
 \section*{Planteamiento del Problema}
 %simular el agua, simular las personas, obtener información real
 
-Nuestra simulación se basa en tres grandes pilares. El agua, las personas y la
-ciudad. 
+Nuestro simulador consta de tres grandes elementos: el agua, las personas y la
+ciudad.
 
-Para poder simular una inundación\cite{simulator} primero necesitamos saber
-como se comporta el
-agua, cosas básicas como que tiende a moverse hacia las zonas bajas del terreno
-hasta cosas no tan básicas como dinámica de fluidos.
+Para poder simular una inundación primero necesitamos saber como se comporta el
+agua. Desde aspectos básicos como que tiende a moverse hacia las zonas bajas del
+terreno, hasta cosas no tan básicas como puede ser dinámica de fluidos.
 
 Por otro lado queremos simular la reacción que tendrían las personas ante una
-inundación, por ello necesitamos saber desde la velocidad a la que pueden
-desplazarse, hasta sus posibles reacciones ante la llegada de una inundación.
+inundación, para ello necesitamos saber la velocidad a la que pueden desplazarse
+y los posibles cursos de acción que tomarían.
 
-Por ultimo queremos que nuestro sistema sea global, de tal forma que no este
-restringido solo a una zona concreta del planeta, por ello hemos utilizado
-sistemas de información global, como por ejemplo ''Open Streets Maps'', o en
-el caso de estados unidos, un servidor de alturas. Aunque siempre estemos a
-expensas de la disponibilidad de los datos, siempre que los haya y sean
-accesibles, los podremos utilizar.
+Por último queremos que nuestro sistema sea global, de tal forma que no esté
+restringido sólo a una zona concreta del planeta. Para ello hemos de utilizar
+sistemas de información global. Aunque siempre estaremos a expensas de la
+disponibilidad de los datos.
 
-\section*{El movimiento del agua}
+\section*{Movimiento del Agua}
 
-Para simular el movimiento del agua, hemos contemplado muchas posibles
-soluciones a la simulación, puesto que simular fluidos y mecánica de fluido no
-es algo para nada trivial, nosotros hemos optado por una simplificación para
-poder abordar el tema del movimiento del agua. Puesto que nuestro sistema no
-esta pensado para trabajar en tiempo real, sino a intervalos de tiempo, no
-estamos obligados a utilizar un modelo muy estricto del agua, por lo que optamos
-por varias simplificaciones.
+Para simular el movimiento del agua hemos contemplado muchas posibles
+soluciones. Puesto que aplicar mecánica de fluidos no es algo para nada trivial,
+hemos optado por una simplificación, de forma que el simulador no se vuelva
+computacionalmente pesado.
 
-\subsection*{Mecánica de fluidos}
+Nuestra intención no es crear un simulador del comportamiento del agua
+fidedigno a la realidad a pequeña escala. No requerimos de exactitud
+milimétrica, si no que nos podemos permitir trabajar de una manera más
+simplista y a gran escala.Tampoco nos preocupamos de si los elementos que
+arrastra la inundación modifican su trayectoria o comportamiento, puesto que
+este problema ya sería en sí el tema de una tesis completa.
 
-Como ya hemos comentado anterior mente nuestra intención no es hacer un sistema
-de agentes para simular grandes cantidades de fluidos moviéndose por un terreno
-irregular, con obstáculos y con cálculos exactos de velocidades. Tampoco nos
-preocupamos de si los elementos que arrastra la inundación modifican su
-trayectoria o comportamiento, puesto que este problema, ya sería en si el tema
-de una tesis completa.
-
-En esta simulación abordamos dos de los problemas del movimiento del agua, la
+En el simulador abordamos dos de los problemas del movimiento del agua, la
 dirección y la velocidad de propagación.
 
-\subsubsection*{Dirección del Agua}
+\subsection*{Dirección del Agua}
 
-Cuando se produce una inundación, es importante saber en que dirección se
-propagará la masa de agua, puesto que necesitamos saber cuales serán los
-terrenos afectos por la inundación.
+Cuando se simula una inundación es vital saber en qué dirección se moverá la
+masa de agua, puesto que queremos conocer cuáles serán los terrenos afectados
+por la inundación.
 
-La dirección del agua dependen de muchos factores, el mas determinante de ellos
-es, debido a la energía potencial, la altura, el agua siempre va a tender a ir
-desde donde se encuentra al punto mas bajo accesible.
+La dirección de movimiento del agua depende de muchos factores, el más
+determinante de ellos es, debido a la energía potencial, la altura. El agua
+siempre tiende a ir a zonas más bajas.
 
-Otro factor que influye en la dirección del agua, aunque en menor medida es la
-fuerza inicial del agua y su velocidad, puesto que pueden desviar un poco la
-corriente principal e incluso salvar obstáculos o subir hasta una determinada
-altura en un terreno e inundar terrenos que sin tener en cuenta estos factores
-nunca hubieran sido inundados.
+Otro factor que influye en la dirección del agua es la fuerza en cada momento
+de ésta y su velocidad, dado que puede llegar a salvar obstáculos e inundar
+terrenos, que sin tener en cuenta estos factores, nunca hubieran sido inundados.
 
-Para resolver este problema nosotros solo disponemos de la altura del terreno
+Para resolver este problema nosotros sólo disponemos de la altura del terreno
 como único dato.
 
-\subsubsection*{Velocidad de propagación del Agua}
+\subsection*{Velocidad de Propagación del Agua}
 
 La velocidad de propagación de un fluido en un entorno irregular es un problema
-muy complejo, nos hemos visto 
-obligados a simplificar muchísimo el sistema,
-puesto que tener en cuenta
-variables tales como la fuerza inicial del agua, dirección, la presión, la
-ganancia o perdida de fuerza al bajar por un terreno o subir, el posible
-desgaste del terreno o incluso su resistencia a paso del agua, al tener mas o
-menos obstáculos que pudieran oponerse y frenar el agua. 
+muy complejo, nos hemos visto obligados a simplificarlo considerablemente.
+Habría que tener en cuenta variables tales como la fuerza inicial del agua,
+dirección, presión, la ganancia o perdida de energía al bajar por un terreno o
+subir, el posible desgaste del terreno o incluso su resistencia al paso del
+agua, etc.
 
 El problema no es que no seamos capaces de simular este sistema con nuestros
-agentes, o que sea inabordable por su complejidad, sino que además no tenemos 
-datos para poder recrear el escenario
-esta simulación. Datos sobre la composición del terreno, los obstáculos,
-resistencias de materiales, dureza, permeabilidad al agua ... no se encuentran
-tan fácilmente.
+agentes, o que sea directamente inabordable por su complejidad, si no que no
+tenemos datos para poder recrear el escenario necesario. Datos sobre la
+composición del terreno, los obstáculos, la resistencia de los materiales,
+su rugosidad y permeabilidad al agua, etc. No se encuentran tan fácilmente.
 
-\subsubsection*{Otros problemas con el agua}
+\subsection*{Otros Problemas con el Agua}
 
-Entre otros muchos posibles problemas que podríamos haber abordado por su
-sencillez y por la versatilidad de nuestro sistema ya que el coste de
-implementación habría sido muy bajo son, entre otros el problema de la absorción
-de agua por parte del terreno, que podría no ser despreciable y por supuesto el
-tema de las filtraciones de agua, puesto que el agua también podría moverse por
-debajo de la tierra y llegar a zonas mas bajas sin tener contacto directo. Pero
-una vez mas por falta de datos, se han tenido que quedar en el tintero.
+Entre otros muchos posibles problemas que podríamos haber abordado, dada su
+sencillez y facilidad de implementación, y gracias a la versatilidad de nuestro
+sistema, están la absorción de agua por parte del terreno y las filtraciones de
+agua.
 
+La absorción de agua podría no ser despreciable, pero por otra parte cuando se
+produce una inundación es porque el terreno ya está saturado de agua y, por lo
+tanto, el agua no absorbida se queda en la superficie. % TODO Citar algo
+También podrían producirse filtraciones que podrían provocar movimientos de
+agua por debajo de la tierra, llegando a zonas bajas sin que aparezca una
+corriente en la superficie. % TODO Citar algo
+
+Pero una vez más, por falta de datos, se han tenido que quedar en el tintero.
 
 \section*{Inundaciones en un entorno urbano}
 
