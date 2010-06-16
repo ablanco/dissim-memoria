@@ -238,43 +238,22 @@ exponencial.
 
 \section*{Visualización de los Resultados}
 
-Nuestra intención no es solo simular una inundación, si no que se pueda ver,
-paso a paso, la evolución de esta misma. 
+Realizar una simulación carece de sentido si no podemos observar de alguna
+manera el resultado de la misma. Por lo tanto nos planteamos cuál o cuáles
+serían las mejores formas de mostrar la simulación.
 
-Esto conlleva los siguiente:
-\begin {itemize}
-\item Necesidad de conocer en que paso de la simulación nos encontramos.
-\item Llevar un historial de la inundación.
-\item Realizar la inundación ordenadamente.
-\end {itemize}
-
-\subsection*{Visor Simple}
-Para las primeras fases del desarrollo y para poder ver de una forma simple y
-sin ayuda de programas externos, necesitamos un visor nativo del sistema, con
-el que poder seguir el progreso y comportamiento del agua y de los demás
-agentes implicados en la simulación.
-\subsection*{Kml}
-
-Una vez terminada la simulación, queremos poder tener un historial de todo lo
-que haya ocurrido y la facilidad de poder navegar dentro de la simulación para
-poder recrear el estado de la simulación en un momento preciso.
-
-Para ello dispondremos de un sistema que guarde la información de cada
-instantánea de la simulación dentro de un fichero Kml.
-
-Hemos elegido Kml debido a que es un estándar y a la versatilidad y potencia
-gráfica que nos proporciona.
-
-Utilizar Kml también nos obligará a tratar con problemas de geometría
-computacional, y de topología. 
+Desde el principio ha sido requisito del proyecto utilizar alguna plataforma de
+mapas online con fotos satélite para mostrar resultados, tales como Google Maps,
+Google Earth, Bing Maps, Open Street Maps, etc. Queda escoger qué plataforma
+utilizar y cómo implementarlo, lo que se discutirá en los capítulos siguientes.
 
 \subsection*{Estadísticas}
-Una buena forma de comparar entre los distintos comportamientos implementados
-para el agua o las personas o cualquier otro agente, son las estadísticas, así
-que tendremos que crear un sistema que sea capaz de recoger estadísticas de tal
-forma que nos puedan dar información importante sobre la simulación y así poder
-discernir entre que métodos o estrategias son mejores con respecto a que
-objetivos.
+
+Además de mostrar la evolución de la inundación hace falta poder comparar
+distintas simulaciones, para ello es necesario extraer estadísticas de cada
+simulación. El sistema debe ser capaz, por tanto, de recoger estadísticas de tal
+forma que nos permitan discernir qué métodos o estrategias son más eficaces con
+respecto a los objetivos de supervivencia de los agentes.
 
 %%% Local Variables:
 %%% mode: latex
