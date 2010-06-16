@@ -149,7 +149,7 @@ debajo de cada calle habrá una conducción de alcantarilla, pero se estarían
 ignorando los caudales de las conducciones y los puntos de entrada o salida de
 agua.
 
-\subsection*{Prioridades de las personas}
+\subsection*{Prioridades de las Personas}
 
 Se han realizado estudios\cite{Liu07} en algunas poblaciones sobre qué es
 lo que harían sus habitantes en caso de crisis. Se han considerado aspectos
@@ -160,7 +160,7 @@ En el simulador esto se podría traducir en comportamientos de ayuda entre
 agentes, como indicarles el camino a seguir o incluso acompañarles a un
 lugar seguro.
 
-\subsection*{Supervivencia en un entorno inundado}
+\subsection*{Supervivencia en un Entorno Inundado}
 
 También es importante, ante una catástrofe, recoger información acerca de los
 supervivientes para posteriores análisis. Por ejemplo, tras las inundaciones
@@ -177,7 +177,7 @@ En nuestro caso contar con este tipo de informaciones nos permitirá contrastar
 los resultados simulados con casos reales, para realizar comparaciones y sacar
 conclusiones.
 
-\subsection*{Evacuación de personas}
+\subsection*{Evacuación de Personas}
 
 La correcta evacuación de una ciudad ante un desastre es algo muy importante, y
 de ello dependen las vidas de muchas personas. La rapidez y eficacia de la
@@ -190,55 +190,27 @@ Con esta información se podrían concentrar los esfuerzos de las autoridades en
 los puntos críticos. Manteniendo las vías principales abiertas, o en su defecto,
 proporcionando caminos alternativos y demás soluciones a los posibles problemas.
 
-\section*{Obtener información real sobre los terrenos}
+\section*{Obtener Información Real del Terreno}
 
-Lo verdaderamente interesante de nuestro proyecto es poder probarlo sobre
-lugares reales, para ello es necesario obtener la información, pero además,
-decidimos hacerlo de tal forma de que el lugar no fuera el problema, siempre que
-tengamos datos de ese lugar, podremos integrarlos en nuestro simulador y simular
-el problema allí donde se encuentre. Para ello necesitábamos usar un sistema de
-geolocalización y servidores de información globales.
+Lo verdaderamente interesante de nuestro proyecto es poder simular sobre
+lugares reales, para ello es necesario obtener la información de dicho lugar.
+Por lo tanto se presenta un nuevo problema, y es obtener datos de la elevación
+del terreno e información sobre las calles y edificios.
 
-Sin embargo para los servidores de información lo teníamos mas difícil al no
-existir servicios a nivel global, al menos, disponibles al publico.
+En principio el simulador no ha de estar limitado a ningún lugar o país, se
+debe poder simular en cualquier zona. Para ello necesitaremos usar un sistema de
+geolocalización y servicios de información geográfica globales.
 
-\subsection*{Elevación del terrenos}
+\subsection*{Posibles Rutas de Evacuación}
 
-No existe, o al menos no conocemos un servidor global de alturas.
+Con nuestro simulador no sólo pretendemos simular la inundación en sí, sino la
+posible reacción de las personas ante la catástrofe. Para ello, como ya hemos
+visto antes, necesitamos saber qué es lo que las personas harían ante una
+crisis, y además conocer la ciudad o el escenario en el que ésta se desarrolla.
 
-Por lo que de momento, solo disponemos de un servicio de alturas para el caso de
-nuestro estudio, ''Nueva Orleans''.
-
-Si embargo, como ya hemos comentado antes, nuestra pretensión es que la
-simulación se pueda realizar en cualquier parte del planeta, por lo que la
-nuestro sistema esta preparado para poder añadirle fácilmente otros servidores a
-fin de poder simular en cualquier otro lugar. 
-
-\subsection*{Posibles rutas de evacuación}
-
-Con nuestro simulador no solo pretendemos simular la inundación en sí, sino la
-posible reacción de las personas ante la inundación, para ello, como ya hemos
-visto antes, necesitamos saber que es lo que las personas harían ante una
-crisis y además, conocer la ciudad en sí en la que se desarrolla, sobre todo sus
-calles, puesto que es probablemente, la ruta mas probable de la ciudad.
-En una evacuación ante una inundación es muy importante conocer el plano de la
-ciudad, para poder registrar las posibles rutas de de evacuación.
-
-Para obtener los planos de las ciudades optamos por ''Open Streets Map'' ya que
-al ser un estándar abierto y con información de ciudades a nivel global pues
-tenía todo lo que le pudiéramos necesitar. 
-
-También contiene mucha información adicional, tales como parques, hospitales,
-aeropuertos, y lugares de interés que podrían ser identificados como puntos de
-salvamento, o al menos objetivos para los evacuados.
-
-Gracias a este servicio obtenemos también la posición y forma de los ríos,
-mares, puentes ... muy importantes para las inundaciones. 
-
-Nuestro problema ahora se centraría en adaptar esos datos de forma que pudieran
-ser codificados e interpretados por nuestro simulador, no solo trazando calles
-y carreteras por nuestro simulador, sino reconociendo posibles puntos de
-salvamento o objetivos de los evacuados.
+En el caso de una ciudad, lo más importante que necesitamos conocer es su
+callejero, dado que las calles determinarán las posibles rutas de escape para
+los afectados.
 
 \section*{Geolocalización}
 
