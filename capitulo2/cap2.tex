@@ -214,28 +214,27 @@ los afectados.
 
 \section*{Geolocalización}
 
-Nosotros queremos simular en terrenos reales, y los terrenos vienen
-localizados por coordenadas geográficas (WGS84).
+Nosotros queremos simular en terrenos reales lo que implica utilizar algún tipo
+de sistema de geolocalización, lo más habitual es el uso de coordenadas
+WGS84\footnote{Sistema Geodésico Mundial 1984}.
 
-Gracias a las coordenadas podemos obtener información geolocalizada de
-cualquier parte del mundo e identificarla con esa zona.
-
-Por lo que nos encontramos con el problema de la discretización de los
-datos y la inevitable perdida de información.
-
-\subsection*{Discretización de los Datos}
-Muchas veces, debido a que nosotros trabajamos sobre un mapa hexagonal, al
-hacer el cambio desde coordenadas geográficas, dependiendo del nivel de
-precisión de nuestra rejilla, inevitablemente vamos a sufrir una perdida de
+Una vez obtenida la información necesaria sobre el terreno nos encontramos con
+el problema de la discretización de estos datos, y la inevitable pérdida de
 información.
 
-Otras veces los datos recibidos de las localizaciones no son del todo exactos o
-precisos, como por ejemplo las localizaciones de los edificios, que vienen
-representadas por el centro del edificio, y no por su perímetro, por lo que a
-veces nos veremos obligados a aproximar puntos o a cambiarlos un poco de sitio.
+\subsection*{Discretización de los Datos}
 
-Por ello pueden aparecer calles de un tamaño mayor al real o incluso un poco
-desplazadas, pero suponemos que eso no tendrá consecuencias mayores.
+En el mundo de la informática no existe nada infinito, y nuestro simulador
+tampoco podrá trabajar con infinitos datos de elevación. Es imprescindible
+discretizar y reducir los datos a la pequeña muestra de la realidad con la que
+el programa trabajará.
+
+Este problema es inevitable, pero puede reducirse tanto como se quiera, y lo
+permita la capacidad de cálculo de nuestras máquinas. Se puede aumentar la
+precisión de la maya utilizada por el simulador tanto como se quiera, para
+representar de manera más fidedigna la realidad; pero no es posible evitar el
+incremento asociado de la carga computacional, un incremento que además es
+exponencial.
 
 \section*{Visualización de los Resultados}
 
