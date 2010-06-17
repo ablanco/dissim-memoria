@@ -27,7 +27,7 @@ En el siguiente esquema se muestran los agentes que conforman el simulador.
 Algunos de ellos tienen un papel más importante que otros, destacando los
 agentes {\bf Entorno} y los agentes {\bf Peatón}.
 
-% TODO esquema de agentes
+% TODO esquema de agentes sin comportamientos
 
 A continuación siguen descripciones detalladas de cada tipo de agente.
 
@@ -101,7 +101,11 @@ frente, por ejemplo, una cuadrícula, tiene considerables ventajas. La principal
 es que la distancia del centro de un hexágono al centro de sus seis hexágonos
 adyacentes es siempre la misma, mientras que en una cuadrícula esto no ocurre.
 
-%TODO Imagen rejilla hexagonal
+\begin{figure}
+ \centering
+ \includegraphics[width=100mm]{figuras/cap3/hexgrid.png}
+ \caption{Rejilla Hexagonal}
+\end{figure}
 
 Cada agente {\bf Entorno} mantiene una rejilla hexagonal con toda la
 información del terreno que está simulando.
