@@ -24,7 +24,11 @@ las librerías que utilicemos estén bajo licencias compatibles con la nuestra. 
 continuación sigue un gráfico con la relación de compatibilidad de otras
 licencias libres con la GPL v3.
 
-% TODO gráfico de compatibilidad de licencias con la GPL v3
+\begin{figure}[H]
+ \centering
+ \includegraphics[width=120mm]{figuras/cap4/gplv3_comp.png}
+ \caption{Compatibilidad de otras licencias libres con la GPL v3}
+\end{figure}
 
 \section*{JADE}
 
@@ -34,7 +38,11 @@ simplificación del desarrollo de sistemas multiagentes, siguiendo a su vez los
 estándares de comunicación entre sistemas de la FIPA\footnote{Foundation for
 Intelligent Physical Agents: \url{http://www.fipa.org/}}.
 
-% TODO Imagen con el logo de JADE
+\begin{figure}[H]
+ \centering
+ \includegraphics[width=30mm]{figuras/cap4/jade.png}
+ \caption{Logo de JADE}
+\end{figure}
 
 Al utilizar JADE el desarrollador sólo tiene que concentrarse en los agentes
 que escriba, el resto de aspectos del sistema están ya resueltos, tales como el
@@ -83,7 +91,11 @@ JAK (Java API for KML) son un conjunto de librerías para el manejo de ficheros
 KML desde Java. JAK ha sido desarrollado por Micromata
 GmbH\footnote{\url{http://labs.micromata.de/display/jak/Home}}.
 
-% TODO Imagen con el logo de JAK
+\begin{figure}[H]
+ \centering
+ \includegraphics[width=30mm]{figuras/cap4/jak.png}
+ \caption{Logo de JAK}
+\end{figure}
 
 Al igual que en el caso de {\bf JADE} es necesario que JAK sea compatible con
 la licencia de nuestro proyecto, la \hyperref[ap1]{GPL v3}.
@@ -149,15 +161,29 @@ XML\footnote{Lenguaje de Marcado Extensible: \url{http://www.w3.org/XML/}}. La
 implementación de la petición será por lo tanto sencilla, aunque el tratamiento
 de los datos recibidos requerirá de un procesado mucho más complejo.
 
+\begin{figure}[H]
+ \centering
+ \includegraphics[width=20mm]{figuras/cap4/osm.png}
+ \caption{Logo de Open Street Maps}
+\end{figure}
+
 \subsection*{Servicio de elevaciones de la USGS}
 
-Este servicio se trata de un servicio web al que se accede a través de
-SOAP\footnote{Simple Object Access Protocol: \url{http://www.w3.org/TR/soap/}}.
-Para consumir dicho servicio hace falta implementar un cliente, tarea que
-gracias a Java resulta bastante sencilla.
+La U.S. Geological Survey (USGS) proporciona un método para obtener la elevación
+del terreno si éste pertenece a los Estados Unidos. Este servicio consiste en un
+servicio web al que se accede a través de SOAP\footnote{Simple Object Access
+Protocol: \url{http://www.w3.org/TR/soap/}}. Para consumir dicho servicio hace
+falta implementar un cliente, tarea que gracias a Java resulta bastante
+sencilla.
 
 Utilizaremos la herramienta {\bf wsimport} que trae Java para autogenerar el
 código del cliente del servicio web, código que irá incluido en el proyecto.
+
+\begin{figure}[H]
+ \centering
+ \includegraphics[width=35mm]{figuras/cap4/usgs.png}
+ \caption{Logo de la USGS}
+\end{figure}
 
 %%% Local Variables:
 %%% mode: latex
