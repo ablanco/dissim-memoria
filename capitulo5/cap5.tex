@@ -158,45 +158,61 @@ Gantt para ayudarte con la planificación.
 % TODO incluir dicho diagrama
 
 \subsection*{Blog}
-%Es una buena idea, porque al escribir articulos sirve para pensar mas en lo que
-%haces y darle visiblidad, tambien era un requisito para el concurso de software
-%libre y sirve para historico y desarrollo  del proyecto.
-El llevar al día un blog \footnote{Simulación de Catástrofes
-:\url{http://pfc.mensab.com/}} con las actualizaciones y las direcciones
-generales sobre el desarrollo proyecto es algo altamente recomendable si se
-quiere que el proyecto cree una comunidad, puesto que es una manera muy cómoda y
-eficaz de mantener a la comunidad informada de los cambios y el estado del
-proyecto.
 
-Además también tiene otras implicaciones mas sutiles, por ejemplo permite
+La decisión de comenzar un blog para registrar la evolución del proyecto viene
+motivada por el CUSL, que lo exige como requisito de los proyectos
+participantes.
+
+El llevar al día un blog\footnote{Simulación de Catástrofes:
+\url{http://pfc.mensab.com/}}, con las actualizaciones y las direcciones
+generales de desarrollo del proyecto, es algo altamente recomendable si se
+quiere que el proyecto cree una comunidad. Es una manera muy cómoda y eficaz de
+mantener a la comunidad informada de los cambios y el estado del proyecto.
+
+Además también tiene otras consecuencias más sutiles; por ejemplo, permite
 reafirmar las decisiones de diseño o de desarrollo tomadas a lo largo de la
 implementación, puesto que queda constancia de las decisiones tomadas y las
 razones para llevarlas a cabo.
-\subsubsection*{Git}
-%Nueva forma de ver las cosas, muchos commits, cambios muy controlaos,
-%posibilidad de hacer ramas y mantener siempre una rama estable.
-Git\footnote{Git - Fast Version Control System : \url{http://git-scm.com/}} es
-un sistema de control de versiones distribuido que cambia un poco la filosofía
-de SVN.
+
+\subsection*{Git}
+
+Git\footnote{Git - Fast Version Control System: \url{http://git-scm.com/}} es
+un sistema de control de versiones distribuido con filosofía distinta a la de
+SVN, que es centralizado.
+
+\begin{figure}[H]
+ \centering
+ \includegraphics[width=40mm]{figuras/cap5/git.png}
+ \caption{Logo de Git}
+\end{figure}
 
 En cada proyecto colaborativo hay muchos desarrolladores que necesitan hacer
 muchos cambios, probar muchas alternativas de su código y sin embargo mantener
 a todo el mundo informado y a su vez mantener una rama estable de desarrollo.
-SVN tiene problemas al gestionar las diferentes ramas de desarrollo, sobre todo
-al unirlas.
+SVN no es demasiado eficiente a la hora de gestionar diferentes ramas de
+desarrollo, ni al crearlas ni al unirlas.
 
-Git soluciona este problema al fomentar los commits pequeños y una herramienta
-de merge mas eficiente, que facilita trabajar con ramas, así todas las ramas
-que tengan puntos en común pueden ser agrupadas y mantenidas muy fácilmente.
+Git soluciona este problema al fomentar los {\em commits} pequeños y una
+herramienta de {\em merge} más eficiente, lo que facilita trabajar con ramas y
+mantenerlas muy fácilmente. El trabajo con diferentes ramas de desarrollo y
+una rama {\em master} siempre funcional, de fácil integración entre sí, facilita
+el desarrollo considerablemente. Git fomenta este estilo de desarrollo.
 
-Con su sistema de log y sus normas de estilo siempre se podrá tener un
-seguimiento de todos los cambios muy bien documentados del código, y una rama
-master siempre funcional con muchas ramas de desarrollo alternativo y de fácil
-integración.
+Con su sistema de log y sus normas de estilo mejora el seguimiento de todos los
+cambios, muy bien documentados, del código.
 
-Por estas razones decidimos migrar la aplicación a de SVN en RedIris a GIT en
-Gitorious\footnote{Hosting de proyectos en GIT :
-\url{http://gitorious.org/}} sin ningún esfuerzo y con muchísimas ventajas.
+Por estas razones decidimos migrar la aplicación de SVN a Git cuando terminó el
+CUSL. Esta migración nos obligó a buscar una nueva forja que nos proporcionara
+este avanzado sistema de control de versiones. La elegida fue
+Gitorious\footnote{\url{http://gitorious.org/}}, forja libre para proyectos
+libres.
+
+\begin{figure}[H]
+ \centering
+ \includegraphics[width=40mm]{figuras/cap5/gitorious.png}
+ \caption{Logo de Gitorious}
+\end{figure}
+
 %Ahora pasamos a nuestra implementación concreta.
 \section*{Implementación del Escenario de Simulación}
 \section*{Implementación de los Agentes en la Simulación}
