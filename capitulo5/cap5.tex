@@ -213,8 +213,66 @@ libres.
  \caption{Logo de Gitorious}
 \end{figure}
 
-%Ahora pasamos a nuestra implementación concreta.
 \section*{Implementación del Escenario de Simulación}
+
+El escenario de simulación es la manera que tenemos de decirle a nuestro
+simulador qué es lo que queremos simular precisamente. Dado que el simulador es
+versátil y tiene capacidad de simular, en principio, cualquier lugar, hay que
+definir una serie de parámetros de entrada.
+
+En un escenario hemos de especificar cuál es el área con la que se va a
+trabajar, cuáles son las entradas de agua y qué agentes humanos intervienen.
+Aparte se definen también algunos parámetros técnicos como pueden ser los datos
+de conexión a la base de datos de alturas.
+
+Entrando en detalles los elementos de los que consta un escenario son:
+
+\begin{description}
+ \item[Nombre y descripción] Los escenarios se nombran para poder
+identificarlos con facilidad, este nombre y descripción se muestra también en
+los resultados de la simulación.
+ \item[Fecha y hora] También se define la fecha y hora del comienzo de la
+simulación, lo que permite localizar en el tiempo cada momento de la simulación.
+ \item[Resolución temporal] Es necesario definir el tiempo transcurrido entre
+dos estados de la simulación, tanto el tiempo simulado (en minutos) que
+transcurre, como el tiempo de ejecución (en milisegundos) que se le concede a
+la máquina -o máquinas- para simular un paso.
+ \item[Área de simulación] El área viene definida por dos coordenadas
+geográficas, la coordenada noroeste y la sureste del rectángulo -en realidad
+no es un rectángulo si tenemos en cuenta la curvatura terrestre- que definen si
+tomamos como diagonal el segmento que las une.
+ \item[Resolución espacial] Uno de los parámetros más importantes que hay que
+definir es la resolución espacial, tanto superficial como en altura. Hay que
+especificar el tamaño de los hexágonos, lo que se hace a través del diámetro de
+la circunferencia circunscrita en ellos -los hexágonos son regulares-. También
+hay que definir la resolución espacial en altura, es decir, cómo se discretiza
+la altura del terreno y del agua; se define como \begin{math}^1/_p\end{math}
+metros de precisión donde {\em p} es el parámetro que aparece en el escenario.
+ \item[Agentes Entorno] El número de agentes Entorno que se encargaran de
+simular el escenario, el número adecuado depende de la cantidad de núcleos o
+procesadores del que disponga la máquina donde se lleve a cabo la simulación.
+ \item[Base de datos de alturas] En el escenario se incluyen también los datos
+necesarios para realizar la conexión a la base de datos donde se almacenan la
+elevación del terreno. Estos datos se obtienen de internet, pero se almacenan
+localmente para agilizar simulaciones sucesivas en el mismo área.
+ \item[Entradas de agua] A la hora de simular una inundación es básico simular
+dónde y cuánta agua está entrando al sistema. Dichos datos se encuentran en el
+escenario.
+ \item[Peatones] La posición y características de los peatones, tales como su
+distancia de visión, velocidad y objetivos -refugios que conocen de antemano-.
+ \item[Frecuencia de actualización de resultados] Cada cuánto tiempo deben los
+agentes Entorno enviar el estado de la simulación a los agentes encargados de
+mostrar los resultados, así se define la finura de los resultados obtenidos.
+\end{description}
+
+Hay que destacar que los datos definidos en el escenario son los datos
+iniciales de la simulación, y que muchos se traducen a agentes, como por
+ejemplos las entradas de agua o las personas. Esto permite que en caliente se
+puedan añadir, por ejemplo, nuevas fuentes de agua a la simulación, pues se
+puede añadir agentes nuevos a una simulación en marcha.
+
+% TODO ejemplo de escenario y descripción de cada número
+
 \section*{Implementación de los Agentes en la Simulación}
 \subsection*{Agente Creador}
 \subsection*{Agente Reloj}
