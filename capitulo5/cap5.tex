@@ -213,7 +213,7 @@ libres.
  \caption{Logo de Gitorious}
 \end{figure}
 
-\section*{Implementación del Escenario de Simulación}
+\section*{Escenario de Simulación}
 
 El escenario de simulación es la manera que tenemos de decirle a nuestro
 simulador qué es lo que queremos simular precisamente. Dado que el simulador es
@@ -271,9 +271,94 @@ ejemplos las entradas de agua o las personas. Esto permite que en caliente se
 puedan añadir, por ejemplo, nuevas fuentes de agua a la simulación, pues se
 puede añadir agentes nuevos a una simulación en marcha.
 
-% TODO ejemplo de escenario y descripción de cada número
+\subsection*{Ejemplo de Escenario}
 
-\section*{Implementación de los Agentes en la Simulación}
+\lstinputlisting[caption=Escenario de ejemplo]{capitulo5/Ejemplo.scen}
+
+Como se puede ver en el listado el formato de los ficheros escenario es {\em
+clave=valor}, y para escribir un array -que son anidables, como se puede ver
+también en el ejemplo- {\em clave=[elem,elem,elem...]}.
+
+Lo primero que aparece es el {\em type}, es decir, el tipo de escenario del que
+se trata. El valor es el nombre de la clase que hay que instanciar -que debe
+heredar de {\em util.Scenario}-, por ahora sólo está implementado el caso de la
+inundación, pero el escenario está preparado para múltiples tipos de desastres.
+
+Es importante destacar que el orden en el que aparecen los elementos del
+escenario en el fichero es irrelevante, cualquier orden es válido siempre que
+aparezcan los elementos mínimos.
+
+A continuación en el ejemplo aparecen el nombre ({\em name}), descripción ({\em
+description}), fecha de inicio de la simulación ({\em date}) y hora inicial
+({\em hour}).
+
+Los dos siguientes elementos, {\em tick} y {\em realTick}, representan el
+tiempo asignado a cada paso de la simulación. El primero se mide en
+milisegundos y representa el tiempo de computación, es el que transcurre en
+nuestro mundo; y el segundo se mide en minutos y representa cuanto tiempo ha
+pasado dentro de la simulación.
+
+{\em NW} y {\em SE} son dos arrays con las coordenadas geográficas de las dos
+esquinas del área de simulación. Al igual que el resto de coordenadas que
+aparecen en el escenario se escriben con el formato {\em [latitud,longitud]}.
+{\em NW} hace referencia a la esquina noroeste, mientras que {\em SE}
+referencia a la sureste.
+
+{\em tileSize} corresponde al tamaño de los hexágonos, en metros, mientras que
+{\em precision} define la resolución espacial en altura, en
+\begin{math}^1/_{precision}\end{math} metros.
+
+Seguido aparece el número de agentes {\bf Entorno}, con la clave {\em numEnvs}.
+{\em randomTerrain} es un valor booleano que define si los entornos van a
+utilizar datos reales de alturas, o van a generar terrenos aleatorios. Los dos
+posibles valores que puede tomar son {\em True} y {\em False}, significando el
+primero que el terreno simulado va a ser aleatorio.
+
+A continuación vienen los datos necesarios para la conexión con la base de
+datos de alturas. Todos comienzan por {\em DB}. {\em DBServer} es la url, ip,
+nombre de fichero, etc, del servidor de base de datos. En este caso se trata de
+un servidor que se encuentra en la misma máquina, y al que se accede por red
+-de ahí las {\em //}-. {\em DBPort} es el puerto a usar para la conexión. {\em
+DBUser} es el usuario con el que identificarse, y {\em DBPass} es la contraseña
+en claro a utilizar. {\em DBDriver} especifica qué tipo de servidor se está
+utilizando, en este caso se utiliza MySQL\footnote{\url{http://www.mysql.com/}}.
+{\em DBDb} es el nombre de la base de datos donde se encuentra la tabla
+{\bf Elevations}, dicha tabla está descrita en la sección donde se trata la
+obtención de datos de alturas.
+
+No todos los elementos {\em DB} son imprescindibles. Por ejemplo, si se utiliza
+el servidor de base de datos de fichero
+SQLite\footnote{\url{http://www.sqlite.org/}} no es necesario definir más que
+{\em DBServer} y {\em DBDriver}.
+
+Cada línea con la clave {\em waterSource} representa una entrada de agua
+diferente al sistema, todas las entradas definidas en el fichero del escenario
+se activan nada más comenzar la simulación. Para añadir fuentes de agua que
+aparecen un tiempo después del comienzo de la simulación hay que añadir agentes
+{\bf Entrada de Agua} en caliente. El array contiene los siguientes datos:
+latitud, longitud y cantidad de agua que entra en cada tick medida en unidades
+de altura de la simulación. El orden en que aparecen estos elementos es fijo.
+
+Al igual que con las entradas de agua, puede haber múltiples líneas con la clave
+{\em person}. Representan a agentes {\bf Peatón} en la simulación. Los
+parámetros del array son, en orden, los siguientes: latitud, longitud,
+distancia de visión en hexágonos, velocidad en hexágonos, número de clones y un
+array de objetivos -con múltiples pares latitud y longitud, aunque en este caso
+sólo hay un objetivo-. Todos estos parámetros serán discutidos en la sección de
+los agentes {\bf Peatón}.
+
+{\em updateTimeKML} y {\em updateTimeVisor} se miden ambos en milisegundos, y
+hacen referencia al tiempo que transcurre entre que los agentes {\bf Entorno}
+envían actualizaciones a los generadores de KML y a los visores respectivamente.
+
+\subsection*{Generación de Escenarios}
+
+Aunque es perfectamente posible escribir un fichero escenario con un editor de
+textos, resulta más sencillo utilizar el script de lanzamiento de la simulación
+para generar uno en un modo interactivo. Dicho modo se explica en detalle en la
+sección dedicada al script de lanzamiento.
+
+\section*{Agentes}
 \subsection*{Agente Creador}
 \subsection*{Agente Reloj}
 %la necesidad de determinar el tiempo
