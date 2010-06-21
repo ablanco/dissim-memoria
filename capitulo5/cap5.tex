@@ -359,7 +359,48 @@ para generar uno en un modo interactivo. Dicho modo se explica en detalle en la
 sección dedicada al script de lanzamiento.
 
 \section*{Agentes}
+
+En esta sección se explicarán uno a uno todos los agentes que intervienen en la
+simulación, y cómo se han implementado. Todos los agentes se encuentran en el
+paquete, o en subpaquetes de éste, {\em agents}.
+
+% TODO Diagrama de agentes y comportamientos en horizontal
+
+% TODO Programación de agentes con JADE?
+
 \subsection*{Agente Creador}
+
+La misión de este agente es la de crear al resto de agentes y lanzar la
+simulación.
+
+\begin{figure}[H]
+ \centering
+ \includegraphics[width=100mm]{figuras/cap5/ag_creator.png}
+ \caption{Agente Creador y sus comportamientos}
+\end{figure}
+
+Su ejecución consta de tres fases. En la primera procesa el fichero escenario y
+crea a los agentes {\em Entorno}, a través del comportamiento {\em
+CreateAgentBehav}, que es el comportamiento utilizado para crear agentes y que
+se encuentra en el paquete {\em behaviours}. El agente se queda esperando a que
+los agentes {\bf Entorno} terminen de inicializarse, para ello utiliza el
+comportamiento {\em WaitForReadyBehav}, del mismo paquete.
+
+Una vez listos, el agente {\bf Creador} pasa a la segunda fase en donde crea al
+resto de agentes: {\bf Entradas de Agua}, {\bf Peatones}, etc, todo según se
+describa en el escenario. Es necesario esperar a que se inicialicen los
+entornos, dado que es un proceso lento (han de obtener las alturas y las
+calles) y el resto de agentes los necesitan preparados pues les preguntan cosas.
+Por último crea al agente {\bf Reloj} dando comienzo así a la simulación.
+
+En la tercera y última fase, el {\bf Creador} se queda inactivo a la espera de
+mensajes que soliciten el objeto escenario, enviándoselo a los agentes que
+manden dichos mensajes. Esta actividad la realiza a través del comportamiento
+{\em SendScenarioBehav}.
+
+Este último comportamiento actúa como servidor del objeto escenario, y se
+implementa mediante un {\em CyclicBehaviour} de JADE.
+
 \subsection*{Agente Reloj}
 %la necesidad de determinar el tiempo
 \subsection*{Agentes Entorno}
