@@ -424,6 +424,8 @@ manden dichos mensajes. Esta actividad la realiza a través del comportamiento
 Este último comportamiento actúa como servidor del objeto escenario, y se
 implementa mediante un {\em CyclicBehaviour} de JADE.
 
+% TODO Esquemas de comunicación
+
 \subsection*{Agente Reloj}
 
 Este agente apareció en nuestro sistema considerablemente tarde, por lo que
@@ -462,7 +464,8 @@ jade.core.behaviours.TickerBehaviour}, que se ejecuta periódicamente según un
 intervalo definido en el escenario. Cada vez que se ejecuta manda un mensaje a
 los agentes comentados anteriormente, dando lugar a un nuevo paso de la
 simulación. En dicho mensaje manda la fecha y hora dentro de la simulación,
-correspondiente a ese paso.
+correspondiente a ese paso. Todos los agentes que reciben estos mensajes lo
+hacen a través del comportamiento {\em behaviours.ReceiveClockTickBehav}.
 
 De esta forma se solucionan los problemas de sincronización entre agentes, se
 eliminan los desajustes del KML, se soluciona el problema del cálculo de la
@@ -473,9 +476,61 @@ menos potentes.
 Esta técnica de sincronización se utiliza mucho cuando se trabaja con JADE y
 hay que sincronizar los agentes, pues JADE es de naturaleza asíncrona.
 
+% TODO Esquemas de comunicación
+
 \subsection*{Agentes Entorno}
 
-\subsubsection{El Movimiento del Agua}
+Los agentes {\em Entorno} son sin duda los más complejos y los más importantes
+de cuantos forman la simulación. Su papel es manejar y mantener la información
+del terreno simulado. Se encarga de obtener los datos de altura y calles, de
+mover el agua de la inundación, de responder a los {\bf Peatones}, de enviar el
+estado de la simulación a los agentes {\bf Actualización}, etc.
+
+Durante su inicialización este agente obtiene los datos necesarios del terreno
+que le toca simular, o de una base de datos o bien de un servicio web. La manera
+en la que se descargan estos datos será explicada en la sección correspondiente.
+
+Una vez inicializado el terreno, el agente crea y añade sus comportamientos, y
+se registra en el servicio de ``páginas amarillas'' de JADE -{\em Directory
+Facilitator} (DF)- para que el resto de agentes pueda encontrarlo. Por último
+avisa al agente {\bf Creador} de que está listo para comenzar la simulación.
+
+Para representar este terreno optamos por una maya hexagonal, que manejamos
+mediante la clase {\em util.HexagonalGrid}. Cada agente {\bf Entorno} posee una
+instancia de dicha clase con los datos de su trozo de simulación. Como es el
+entorno el que posee los datos del terreno, proporciona también servicios de
+consulta de dicha información al resto de agentes. Dichos servicios se
+implementan mediante comportamientos del tipo {\em
+jade.core.behaviours.CyclicBehaviour}, en particular se trata de los
+comportamientos {\em AdjacentsGridBehav} y {\em QueryGridBehav}.
+
+% TODO esquema
+
+Los comportamientos {\em behaviours.flood.AddWaterBehav}, de tipo cíclico, y el
+{\em behaviours.flood.UpdateFloodGridBehav}, de tipo periódico, son propios de
+inundaciones. El primero recibe y procesa los mensajes de las entradas de agua,
+añadiendo más agua a la simulación si fuera necesario -si resulta que la fuente
+de agua no está a un nivel superior que el agua que la rodea, el nuevo agua se
+desestima-. El segundo es el encargado de mover el agua por el terreno.
+
+{\em behaviours.InterGridBehav} es un comportamiento que se encarga de la
+comunicación entre {\bf Entornos}. Cuando, por ejemplo, el agua llega al borde
+del terreno simulado por el agente, busca al {\bf Entorno} que simula el trozo
+correspondiente y le avisa de que le llega agua, si es que existe tal {\bf
+Entorno}.
+
+El comportamiento {\em behaviours.SyndicateBehav} es el comportamiento
+utilizado por los agentes {\bf Actualización} para darse de alta o baja en la
+recepción del estado de la simulación.
+
+{\em behaviours.people.RegisterPeopleBehav} es el comportamiento con el que se
+comunican los {\bf Peatones} para avisar al entorno de su posición y salud.
+
+% TODO Esquemas de comunicación
+
+\subsubsection*{Adyacentes}
+
+\subsubsection{Movimiento del Agua}
 %Esto ya forma parte de las explicaciones
 Por lo tanto, vistas nuestras limitaciones y sobre todo nuestra intención de un
 modelo simple, a la hora de simular la propagación de una cierta cantidad de
