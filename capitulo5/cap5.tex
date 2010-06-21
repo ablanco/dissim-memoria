@@ -364,9 +364,32 @@ En esta sección se explicarán uno a uno todos los agentes que intervienen en l
 simulación, y cómo se han implementado. Todos los agentes se encuentran en el
 paquete, o en subpaquetes de éste, {\em agents}.
 
-% TODO Diagrama de agentes y comportamientos en horizontal
+En programación con agentes lo habitual es que los agentes en sí no contengan
+la lógica de su actividad, si no que tan sólo contienen el código de
+inicialización y de finalización. Toda actividad que desarrolle el agente
+durante su vida debe estar contenida en sus comportamientos, luego para que el
+agente haga cualquier acción ha de añadírsele el comportamiento adecuado.
 
-% TODO Programación de agentes con JADE?
+Para la programación de agentes utilizamos JADE, y JADE funciona mediante
+herencia. Por ejemplo, para programar un agente hemos de extender la clase {\em
+jade.core.Agent}. Y lo mismo para los comportamientos de los agentes, se
+extiende la clase {\em jade.core.behaviours.Behaviour}. Una vez extendida la
+clase correspondiente se implementan los métodos abstractos y se sobreescriben
+los que se consideren necesarios.
+
+Por ejemplo, en el caso de un agente, JADE proporciona una manera de
+inicializarlo, que es sobreescribir el método {\em setup()}. JADE nos garantiza
+que dicho método se ejecutará una única vez al crear el agente.
+
+De la misma manera se trabaja con los comportamientos. Además JADE proporciona
+múltiples clases de las que extender, estos comportamientos refinados -heredan
+todos de {\em jade.core.behaviours.Behaviour}- facilitan la programación. Por
+ejemplo, para un comportamiento que cree a otro agente lo habitual es sólo se
+ejecute una vez, para ello se hereda directamente de {\em
+jade.core.behaviours.OneShotBehaviour} y JADE nos asegura de que sólo se
+ejecutará una vez.
+
+% TODO Diagrama de agentes y comportamientos en horizontal
 
 \subsection*{Agente Creador}
 
