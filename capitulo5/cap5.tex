@@ -364,6 +364,8 @@ En esta sección se explicarán uno a uno todos los agentes que intervienen en l
 simulación, y cómo se han implementado. Todos los agentes se encuentran en el
 paquete, o en subpaquetes de éste, {\em agents}.
 
+% TODO Diagrama de agentes y comportamientos en horizontal
+
 En programación con agentes lo habitual es que los agentes en sí no contengan
 la lógica de su actividad, si no que tan sólo contienen el código de
 inicialización y de finalización. Toda actividad que desarrolle el agente
@@ -389,8 +391,6 @@ ejecute una vez, para ello se hereda directamente de {\em
 jade.core.behaviours.OneShotBehaviour} y JADE nos asegura de que sólo se
 ejecutará una vez.
 
-% TODO Diagrama de agentes y comportamientos en horizontal
-
 \subsection*{Agente Creador}
 
 La misión de este agente es la de crear al resto de agentes y lanzar la
@@ -399,7 +399,7 @@ simulación.
 \begin{figure}[H]
  \centering
  \includegraphics[width=100mm]{figuras/cap5/ag_creator.png}
- \caption{Agente Creador y sus comportamientos}
+ \caption{Agente Creador}
 \end{figure}
 
 Su ejecución consta de tres fases. En la primera procesa el fichero escenario y
@@ -425,9 +425,56 @@ Este último comportamiento actúa como servidor del objeto escenario, y se
 implementa mediante un {\em CyclicBehaviour} de JADE.
 
 \subsection*{Agente Reloj}
-%la necesidad de determinar el tiempo
+
+Este agente apareció en nuestro sistema considerablemente tarde, por lo que
+tuvimos que hacer bastantes cambios para incluirlo. Nació de la necesidad de
+sincronizar los diferentes agentes de la simulación.
+
+Esta necesidad quedó patente cuando generábamos ficheros KML con datos de
+múltiples entornos. Al visualizar estos ficheros veíamos cómo zonas de la
+simulación se adelantaban a otras, efecto que no se apreciaba fuera del KML
+porque era consecuencia del desajuste de la fecha y hora de los entornos, no
+porque no se hubiesen simulado al mismo tiempo.
+
+En un primer momento implementamos un sistema que escogía arbitrariamente a un
+agente {\bf Entorno} y lo designaba como reloj, el encargado de esta selección
+era el agente {\bf Creador} -porque se trata del único agente del que no hay
+puede haber múltiples copias en una simulación-. Los agentes {\bf Entorno} se
+proponían como relojes cuando recibían agua de una {\bf Entrada de Agua}, pues
+usaban éstas como forma de medir el tiempo. El {\bf Creador} escogía al primero
+de ellos y éste se encarga de avisar al resto cada vez que se actualizaba el
+reloj. Este sistema se demostró muy poco eficaz y provocó la aparición de los
+mencionados desajustes.
+
+La solución fue la creación del agente {\bf Reloj} y el establecimiento de un
+tick de simulación. Los agentes sometidos a ese tick son todos aquellos cuya
+tarea depende del tiempo simulado, que son los {\bf Entornos}, {\bf Entradas
+de Agua} y {\bf Peatones}.
+
+\begin{figure}[H]
+ \centering
+ \includegraphics[width=50mm]{figuras/cap5/ag_clock.png}
+ \caption{Agente Reloj}
+\end{figure}
+
+Este agente tiene un comportamiento de tipo {\em
+jade.core.behaviours.TickerBehaviour}, que se ejecuta periódicamente según un
+intervalo definido en el escenario. Cada vez que se ejecuta manda un mensaje a
+los agentes comentados anteriormente, dando lugar a un nuevo paso de la
+simulación. En dicho mensaje manda la fecha y hora dentro de la simulación,
+correspondiente a ese paso.
+
+De esta forma se solucionan los problemas de sincronización entre agentes, se
+eliminan los desajustes del KML, se soluciona el problema del cálculo de la
+velocidad de los peatones e, incluso, se mejora la escalabilidad del sistema,
+dado que aumentando el periodo permitimos que el simulador corra en máquinas
+menos potentes.
+
+Esta técnica de sincronización se utiliza mucho cuando se trabaja con JADE y
+hay que sincronizar los agentes, pues JADE es de naturaleza asíncrona.
+
 \subsection*{Agentes Entorno}
-\subsection*{Agentes Entrada de Agua}
+
 \subsubsection{El Movimiento del Agua}
 %Esto ya forma parte de las explicaciones
 Por lo tanto, vistas nuestras limitaciones y sobre todo nuestra intención de un
@@ -444,7 +491,10 @@ Para el cálculo de este parámetro ............ bla bla bla %TODO
 De esta forma tan simple, podemos controlar de una cierta manera razonable la
 velocidad de propagación que tendrá el agua.
 
+\subsection*{Agentes Entrada de Agua}
+
 \subsection*{Agentes Peatón}
+
 \subsubsection*{Actualización del estado}
 %como determina el estado del peaton segun el entorno
 \subsection*{Agentes Actualización}
