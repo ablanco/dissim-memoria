@@ -560,19 +560,56 @@ transparente.
 
 \subsubsection{Movimiento del Agua}
 
-Dadas limitaciones y sobre todo nuestra intención de un
-modelo simple, a la hora de simular la propagación de una cierta cantidad de
-agua sobre un terreno nos apoyamos en la iteración sobre el bucle del
-comportamiento del agua, asumimos (que ya es mucho asumir), que en cada paso del
-bucle, el agua se mueve hacia cuadrado adyacente que tenga una altura menor que
-la propia, por lo tanto, el agua se moverá a tantas casillas adyacentes como
-vueltas de el bucle. Así es de una manera muy simple, como simulamos la
-propagación, dándole un valor de repetición a ese bucle.
+Dadas las limitaciones vistas en el \hyperref[cap2]{capítulo 2}, y sobre todo
+dada nuestra intención de crear un modelo sencillo y abarcable, hemos
+implementado un relativamente sencillo comportamiento para simular el
+movimiento del agua. Dicho comportamiento es {\em UpdateFloodGridBehav}.
 
-Para el cálculo de este parámetro ............ bla bla bla %TODO
+El funcionamiento del algoritmo es el siguiente:
 
-De esta forma tan simple, podemos controlar de una cierta manera razonable la
-velocidad de propagación que tendrá el agua.
+\begin{enumerate}
+ \item Se solicitan a la maya hexagonal las casillas cuyo nivel de agua ha sido
+ modificado desde la última vez que se ejecutó el algoritmo.
+ \item Se recorren dichas casillas, y se consulta el valor del agua y terreno
+ de las casillas inmediatamente adyacentes.
+ \item Si se encuentran casillas adyacentes más bajas entonces se mueve agua a
+ dichas casillas -se mueve la mitad de la diferencia en altura, es decir, se
+ iguala el nivel-. Si se encuentran casillas más altas se trae agua de dichas
+ casillas.
+ \item Todas las casillas cuyo nivel de agua haya sido afectado se marcan como
+ modificadas, y serán revisadas por la siguiente pasada del algoritmo.
+\end{enumerate}
+
+Para el funcionamiento de este algoritmo cuando se simula en múltiples {\bf
+Entornos} se hizo necesario incluir un borde exterior extra o corona a las mayas
+hexagonales. Esta corona es del ancho de una casilla y mantiene el valor del
+terreno y nivel de agua, aunque no se muestra en los visores. La utilidad de
+esta corona es saber cuándo se debe pasar agua, y cuánta, a otros {\bf
+Entornos}.
+
+Cuando un {\bf Entorno} decide mover agua de una de sus casillas a una de la
+corona comprueba a qué {\bf Entorno} pertenece dicha casilla. Si lo encuentra
+le avisa de que ha añadido agua a la casilla. Si no lo encuentra es que es una
+casilla fuera de la simulación con lo que el agua se pierde. El simulador
+desconoce qué le ocurre a todo el agua que se sale de la simulación, por lo que
+los bordes exteriores, no las fronteras entre {\bf Entornos}, son sumideros por
+los que desaparece agua de la simulación. La cantidad de agua que desaparece
+viene determinada por la altura del terreno, otra utilidad de la corona.
+
+También ocurre que cuando un {\bf Entorno} modifica el nivel de agua de una
+casilla del borde inmediatamente interior a la corona -es decir, el borde
+exterior de su área de simulación- debe avisar del nuevo nivel al agente que
+tenga esa casilla como corona, si es que lo hay.
+
+Para manejar toda esta comunicación entre {\bf Entornos} creamos el
+comportamiento {\em InterGridBehav}.
+
+Como anécdota cabe comentar que en una primerísima versión del simulador,
+cuando estábamos aún diseñándolo y haciendo pruebas, optamos por agentificar el
+agua. De esta forma cada ``gota'' de agua era un agente que recorría el terreno
+y escogía donde quedarse, inundando la casilla. El sistema funcionaba pero muy
+poco escalable, dado que la cantidad de agentes agua era abrumadora. Lo
+desechamos rápidamente y comenzamos el diseño del sistema actual.
 
 \subsection*{Agentes Entrada de Agua}
 
