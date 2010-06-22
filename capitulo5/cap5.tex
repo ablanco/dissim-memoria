@@ -502,9 +502,14 @@ entorno el que posee los datos del terreno, proporciona también servicios de
 consulta de dicha información al resto de agentes. Dichos servicios se
 implementan mediante comportamientos del tipo {\em
 jade.core.behaviours.CyclicBehaviour}, en particular se trata de los
-comportamientos {\em AdjacentsGridBehav} y {\em QueryGridBehav}.
+comportamientos {\em behaviours.AdjacentsGridBehav} y {\em
+behaviours.QueryGridBehav}.
 
-% TODO esquema
+\begin{figure}[H]
+ \centering
+ \includegraphics[width=130mm]{figuras/cap5/ag_environment.png}
+ \caption{Agente Entorno}
+\end{figure}
 
 Los comportamientos {\em behaviours.flood.AddWaterBehav}, de tipo cíclico, y el
 {\em behaviours.flood.UpdateFloodGridBehav}, de tipo periódico, son propios de
@@ -528,11 +533,34 @@ comunican los {\bf Peatones} para avisar al entorno de su posición y salud.
 
 % TODO Esquemas de comunicación
 
-\subsubsection*{Adyacentes}
+\subsubsection*{Casillas Adyacentes y Múltiples Entornos}
+
+El {\bf Entorno} recibe muchas peticiones, normalmente de los {\bf Peatones},
+solicitando las casillas adyacentes a una dada. El agente consulta su maya
+hexagonal y devuelve las casillas pedidas.
+
+El único problema es que un {\bf Entorno} sólo conoce lo que ocurre en el
+terreno que simula, pero no los datos del resto de {\bf Entornos}. Para los
+{\bf Peatones} esto es un problema, pues para ellos el que se simule con
+múltiples {\bf Entornos} debería ser transparente. Esto significa que las
+fronteras que separan los trozos de terreno de los diferentes agentes {\bf
+Entorno} suponen una barrera a la visión de los {\bf Peatones}, lo cual no
+tiene ningún sentido.
+
+Para solucionar dicho problema tuvimos que refinar el comportamiento {\em
+AdjacentsGridBehav}, y hacer que cuando detectase que la casilla de la que se
+solicitan los adyacentes está más cerca del borde del terreno que la distancia
+de visión pedida, entonces solicitase los adyacentes restantes a los agentes
+{\bf Entorno} correspondientes.
+
+Es decir, que cuando un agente {\bf Peatón} solicita los hexágonos adyacentes a
+uno dado a un {\bf Entorno} concreto, puede estar involucrando a más agentes en
+el proceso pero sin saberlo. Para los {\bf Peatones} este proceso es del todo
+transparente.
 
 \subsubsection{Movimiento del Agua}
-%Esto ya forma parte de las explicaciones
-Por lo tanto, vistas nuestras limitaciones y sobre todo nuestra intención de un
+
+Dadas limitaciones y sobre todo nuestra intención de un
 modelo simple, a la hora de simular la propagación de una cierta cantidad de
 agua sobre un terreno nos apoyamos en la iteración sobre el bucle del
 comportamiento del agua, asumimos (que ya es mucho asumir), que en cada paso del
