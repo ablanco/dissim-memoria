@@ -731,6 +731,29 @@ ilimitado.
 
 \subsection*{Agentes Actualización}
 
+Estos agentes nos permiten sacar información de la simulación. Durante su
+inicialización lo que hacen es subscribirse a los agentes {\bf Entorno} que se
+le pasen por parámetros.
+
+Los {\bf Entornos} le enviarán periódicamente un objeto de tipo {\em
+util.Snapshot} con el estado de la simulación en ese momento.
+
+\begin{figure}[H]
+ \centering
+ \includegraphics[width=50mm]{figuras/cap5/ag_update.png}
+ \caption{Agente Actualización}
+\end{figure}
+
+Todos los agentes {\bf Actualización} tiene un objeto cliente, que debe
+implementar la interfaz {\em util.Updatable}. Son estos objetos los que
+procesan los {\em snapshots} y producen algún resultado.
+
+Por ejemplo, los generadores KML o los extractores de estadísticas, interactúan
+con la simulación a través de un agente {\bf Actualización}, y ambos
+implementan {\em Updatable}. Se pueden escribir nuevos clientes para estos
+agentes sin tener que modificarlos, dado que reciben por parámetros el nombre
+de la clase del cliente de la que crean la instancia mediante reflexión.
+
 \section*{Rejilla Hexagonal}
 %Discretización del mundo real
 Sobre la rejilla es donde se van a realizar todos los cálculos de la
