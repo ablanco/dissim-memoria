@@ -754,44 +754,49 @@ implementan {\em Updatable}. Se pueden escribir nuevos clientes para estos
 agentes sin tener que modificarlos, dado que reciben por parámetros el nombre
 de la clase del cliente de la que crean la instancia mediante reflexión.
 
-\section*{Rejilla Hexagonal}
-%Discretización del mundo real
-Sobre la rejilla es donde se van a realizar todos los cálculos de la
-simulación, por lo tanto dispone de todos los métodos para manipular
-y obtener información contenida en ella.
+\section*{Maya Hexagonal}
 
-También contiene funciones básicas como dado un punto obtener todos sus
-adyacentes, o devolver todas las casillas que se puedan ver desde una posición
-y un rango de visión.
+Sobre la rejilla es donde se van a realizar todos los cálculos de la simulación,
+por lo tanto dispone de todos los métodos para manipular y obtener la
+información contenida en ella. También contiene funcionalidad básica como
+obtener todos los adyacentes a un punto, o calcular la distancia que separa a
+dos casillas. La implementación de la maya hexagonal se encuentra en la clase
+{\em util.HexagonalGrid}.
 
-También dispone de métodos para obtener caminos utilizando la adyacencia
-hexagonal.
-\subsection*{Matriz de Altura}
-Una matriz de short solo puede albergar un rango de alturas desde +-32,767, que
-dependiendo de la precisión puede ser mas o menos altura
+La manera de almacenar la información es a través de matrices cuadradas, los
+métodos de acceso y cálculo de adyacentes la hacen parecer una maya hexagonal a
+quien los usa. Todas las matrices almacenan datos de tipo {\em short}, pues no
+es necesario un rango mayor y así se ahorra memoria. Todas las matrices son de
+la misma dimensión.
+
+\subsection*{Matriz de Alturas}
+
+El rango del tipo básico {\em short} en Java va desde -32768 hasta 32767, y
+dependiendo de la precisión en altura que se esté utilizando el rango en metros
+será menor o mayor que éste.
+
 \subsection*{Matriz de Agua}
-%Hay que saber cuanta agua tenemos pa moverla
-Al igual que la matriz de alturas se trara de una matriz de short del mimo
-tamaño que la del entorno, pero esta contiene solo información de la cantidad
-de agua que hay en esta casilla.
 
-Este valor nunca podrá ser menor que cero.
+Para el caso de inundación se añade esta matriz, que a diferencia de la matriz
+de alturas, sólo almacena valores positivos -no tiene sentido un nivel de agua
+negativo-. Los valores de esta matriz cambiarán a lo largo de la simulación,
+otra diferencia con respecto a la matriz de alturas.
 
-Sumando las matrices de alturas y agua se obtiene la altura total del terreno.
+Sumando los valores de una casilla en las matrices de alturas y agua se obtiene
+la altura total del terreno en ese punto.
 
-Esta matriz es especifica de las inundaciones, puesto que para otras
-catástrofes no es necesaria.
 \subsection*{Matriz de Calles}
-%Las calles hay que guardarlas en algun lao
-Cada entorno necesita un mapa de la ciudad propio.
 
-Este mapa solo se calculará en el inicio y no cambiará durante la simulación.
+Esta matriz no se modifica una vez rellena, y almacena valores clave que definen
+el tipo de casilla del que se trata. Valores del tipo ``calle'', ``avenida'',
+``autovía'', ``hotel'', ``río'', etc.
 
-Para mejorar el tamaño en memoria usamos una matriz de short del mismo tamaño
-que el entorno.
+Gracias a estos valores los agentes tienen una representación de las
+construcciones y calles que los rodean.
+
 \subsubsection*{Tipos de Calles}
-%Especificación de OSM
-Para saber en que tipo de calle nos encontramos nos ayudamos de la información
+
+Para saber en qué tipo de calle nos encontramos nos ayudamos de la información
 de OSM que viene categorizada en grupos. Por cada grupo le asignamos un rango
 de valores, teniendo en cuenta el numero de subgrupos.
 
