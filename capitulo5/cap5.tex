@@ -633,11 +633,104 @@ un mensaje en cada tick del {\bf Reloj}.
 
 \subsection*{Agentes Peatón}
 
-\subsubsection*{Actualización del estado}
-%como determina el estado del peaton segun el entorno
+Durante la inicialización estos agentes averiguan cuál es el {\bf Entorno} cuyo
+terreno contiene su coordenada inicial, para ello utilizan el escenario que
+solicitan al agente {\bf Creador}. Una vez inicializados comienzan a moverse
+por el terreno tratando de salvarse de la inundación.
+
+\begin{figure}[H]
+ \centering
+ \includegraphics[width=130mm]{figuras/cap5/ag_pedestrian.png}
+ \caption{Agente Peatón}
+\end{figure}
+
+Como hemos visto en el escenario de simulación, los agentes {\bf Peatón}
+reciben una serie de parámetros de entrada. A saber:
+
+\begin{description}
+ \item[Posición inicial] Dado en coordenadas geográficas latitud,longitud.
+ \item[Distancia de visión] Medida en hexágonos, representa cuantos hexágonos
+ es capaz de ver el peatón en línea recta. Se utiliza a la hora de solicitar
+ casillas adyacentes a la posición en ese momento.
+ \item[Velocidad] La cantidad de hexágonos que la persona es capaz de recorrer
+ en un único paso de simulación.
+ \item[Objetivos] Coordenadas geográficas de los refugios que el {\bf Peatón}
+ conozca desde el principio. Pueden ser más de uno, uno, o directamente ninguno.
+\end{description}
+
+El comportamiento base de todos los {\bf Peatones} funciona de la siguiente
+manera:
+
+\begin{enumerate}
+ \item Solicitar casillas adyacentes según distancia de visión al {\bf Entorno}.
+ \item Recibir casillas y escoger a cuál moverse.
+ \item Si se ha escogido casilla, avisar al {\bf Entorno} de la nueva posición.
+ Si no, volver al paso 1 sin moverse de la posición.
+\end{enumerate}
+
+Es en el segundo paso donde reside toda la complejidad, justo a la hora de
+escoger a qué casilla moverse. Para facilitar la implementación de diferentes
+comportamientos hemos implementado un comportamiento base abstracto, {\em
+behaviours.people.PedestrianBehav}, del que heredar. Heredando de dicho
+comportamiento lo único que hay que hacer es implementar un método {\em
+choose(Set$<$Point$>$ adjacents)} que es dónde se escoge la casilla a la que
+moverse.
+
+Nosotros hemos ido perfeccionando y refinando el comportamiento de las
+personas, habiendo desarrollado los siguientes -todos ellos en el paquete {\em
+behaviours.people.flood}-:
+
+\begin{description}
+ \item[FarFromWaterPedestrianBehav] El primer y más simple de los
+ comportamientos, el agente tan sólo escoge la casilla más alejada del agua
+ que alcanzaba a ver.
+ \item[HighFarStreetPedestrianBehav] Esta segunda aproximación es un poco más
+ sofisticada pues tiene en cuenta también la altura de las casillas. Se pondera
+ y se asigna una puntuación a cada casilla según lo alejada del agua que esté,
+ y lo alta que sea. Escoge la casilla con mejor puntuación.
+ \item[SafepointPedestrianBehav] Este comportamiento ya es bastante más
+ complejo. Los agentes se desplazan según una dirección aleatoria, pero
+ manteniéndola. De esta forma van recorriendo las calles de la ciudad, y
+ cuando llegan a cruces de calles existe la posibilidad de que cambien de
+ dirección y comiencen a recorrer alguna bocacalle. Cuando ven agua escogen la
+ dirección contraria y huyen de ella, y cuando ven un refugio corren a él y se
+ ponen a salvo.
+ \item[KnownSafepointPedestrianBehav] La última evolución del comportamiento
+ implica el conocimiento a priori por parte de los agentes de la posición de
+ algún refugio. El agente trata de alcanzar algunos de los refugios que conoce,
+ aunque si por el camino encuentra algún refugio se recoge en él. En caso de no
+ tener objetivos o ser estos inaccesibles -la inundación le ha cortado el paso,
+ por ejemplo- se comporta como el {\em SafepointPedestrianBehav}.
+\end{description}
+
+En este último comportamiento, el {\em KnownSafepointPedestrianBehav}, fue
+necesario dotar al agente de memoria. Un problema que encontramos cuando
+probábamos el comportamiento es que en ocasiones el agente se quedaba atascado
+intentando atravesar edificios. Y es que la casilla más cercana al refugio
+podía coincidir con su posición actual, dado que el cálculo de la distancia no
+tiene en cuenta los edificios ni las calles. Al dotar de memoria al agente, y
+penalizar severamente el moverse a casillas por las que acaba de pasar,
+solucionó el problema. El agente prefiere dar un rodeo y alejarse temporalmente
+del refugio a volver sobre sus pasos o quedarse quieto.
+
+\begin{figure}[H]
+ \centering
+ \includegraphics[width=35mm]{figuras/cap5/atasco.png}
+ \caption{Peatón atascado}
+\end{figure}
+
+Como se puede apreciar en la imagen la casilla en la que se encuentra el peatón
+-el punto rojo- es la más cercana al refugio -hexágono de borde rojo-. Esto
+provocaba que el agente se quedase quieto u oscilase alrededor de dicha casilla.
+
+Cabe destacar que no se han tenido en cuenta ni la capacidad de las calles ni
+de los refugios, el número de personas que puede haber en una casilla es
+ilimitado.
+
+% TODO esquemas de comunicación
+
 \subsection*{Agentes Actualización}
-\subsubsection*{Actualización entre entornos adyacentes}
-%pasarse el aguita de unos a otros
+
 \section*{Rejilla Hexagonal}
 %Discretización del mundo real
 Sobre la rejilla es donde se van a realizar todos los cálculos de la
