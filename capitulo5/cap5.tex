@@ -613,6 +613,24 @@ desechamos rápidamente y comenzamos el diseño del sistema actual.
 
 \subsection*{Agentes Entrada de Agua}
 
+Este tipo de agente es de lo más sencillo. Son agentes para nada inteligentes,
+cuya única misión es enviar un mensaje al {\bf Entorno} correspondiente en cada
+paso de la simulación avisándole de la cantidad de agua que debe añadir.
+
+\begin{figure}[H]
+ \centering
+ \includegraphics[width=120mm]{figuras/cap5/ag_water_source.png}
+ \caption{Agente Entrada de Agua}
+\end{figure}
+
+En su inicialización el agente busca su {\bf Entorno}, para ello necesita
+conocer el escenario de simulación que solicita al agente {\bf Creador}.
+Consultando las coordenadas geográficas donde está situado y el escenario
+descubre en qué trozo del terreno ha caído. A partir de ahí se limita a mandar
+un mensaje en cada tick del {\bf Reloj}.
+
+% TODO esquemas de comunicación
+
 \subsection*{Agentes Peatón}
 
 \subsubsection*{Actualización del estado}
