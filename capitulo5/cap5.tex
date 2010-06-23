@@ -929,8 +929,22 @@ existe una posibilidad de error.
 De esta forma perdemos un poco de información, pero los errores cometidos por
 este sistema no superan el \begin{math}0.7\%\end{math}.
 
-\subsection*{Especialización: Flood Hexagonal Grid}
-%cambios de la rejilla por desastre
+\section*{Especialización: Múltiples Desastres}
+
+Siguiendo el estilo de JADE, con el que se trabaja a través de los mecanismos
+de herencia de Java, hemos diseñado nuestro simulador para que se pueda
+extender a múltiples desastres mediante herencia.
+
+Por ejemplo, clases como {\em Scenario} o {\em HexagonalGrid} no se pueden
+instanciar directamente, si no que hay que utilizar las clases hijas {\em
+FloodScenario} y {\em FloodHexagonalGrid}. De la misma manera, implementando
+nuevas clases hijas que sobreescriban de otra manera los métodos se podría dar
+soporte a nuevos tipos de desastres naturales.
+
+Las clases padres dan funcionalidad básica y común a todos los desastres. Por
+ejemplo, {\em HexagonalGrid} mantiene las matrices de alturas y de calles,
+mientras que es {\em FloodHexagonalGrid} la que añade la matriz de agua.
+
 \section*{Implementación de la Elevación del Terreno}
 %Solucion particular
 Usamos los servicios web para extraer las alturas, un bucle por cada casilla
