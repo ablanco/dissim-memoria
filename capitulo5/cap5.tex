@@ -987,85 +987,76 @@ necesario implementar el cliente del nuevo servicio cumpliendo con la interfaz
 
 \section*{Open Street Maps}
 
-OSM tiene un servicio web, que a través de mandarle un url correctamente
-formada devuelve un fichero XML que contiene toda la información de OSM sobre
-unas coordinadas determinadas.
+OSM permite la descarga de ficheros XML que contienen toda la información de
+sobre las calles, puntos de interés, etc, contenidas en unas coordenadas
+determinadas.
 
-La url se compone de una {\bf Dirección Base} + {\bf Coordenada Inferior
- derecha} + {\bf Coordenada Superior Izquierda} y devolverá un fichero con el
-mismo nombre que la petición.
-\subsection*{Parseando XML}
-%Leer y obtener información
+La {\em url} para descargar estos ficheros se compone de la siguiente manera: 
+{\em dirección base + coordenada suroeste + coordenada noreste}. El fichero
+descargado tendrá el mismo nombre que la petición.
+
+\subsection*{Parsear XML}
+
 La información viene codificada en un fichero XML siguiendo el estándar de OSM.
-Para poder extraer la información es necesario primero parsear el fichero.
-Para ello utilizamos JAXB\footnote{Java Architecture for XML Binding :
-\url{https://jaxb.dev.java.net/}} que es una librería para recorrer ficheros
+Para poder extraer la información es necesario parsear el fichero. Para ello
+utilizamos JAXB\footnote{Java Architecture for XML Binding: 
+\url{https://jaxb.dev.java.net/}}, que es una librería para recorrer ficheros
 XML. 
 
-Mientras realizamos el recorrido del fichero, hay que identificar la
-información de las etiquetas y almacenarla en nuestra estructura de datos para
-poder utilizarla de una forma mas cómoda.
+Mientras realizamos el recorrido del fichero hay que identificar la información
+de las etiquetas y almacenarla en nuestra estructura de datos para poder
+utilizarla de una forma mas cómoda. El diseño de las clases que hemos
+implementado para almacenar la información es muy parecido a la jerarquía de
+información que sigue OSM.
 
-El diseño de las clases para almacenar la información de OSM es muy parecido a
-la jerarquía de información que sigue OSM.
+La clase principal es {\em OsmMap}, que contiene toda la información que nos da
+OSM. {\em OsmWay} es para la etiqueta {\em way} (camino o vía) de OSM, y {\em
+OsmMember} para los caminos compuestos. {\em OsmRelation} para los ríos y
+parques, y {\em OsmNode} para los puntos simples y puntos de interés. Para
+almacenar la información extra creamos {\em OsmTag}.
 
-Tenemos la clase principal OsmMap, que contiene toda la información que nos da
-OSM.
+\subsubsection*{Filtro de Información}
 
-{\bf OsmWay} para la etiqueta way y {\bf OsmMember} para los caminos
-compuestos, {\bf OsmRelation} para los rios y parques, y {\bf OsmNode} para los
-puntos simples y puntos de interés. 
+{\em OsmTag} contiene dos atributos principales, clave y valor. Nos valemos de
+estos dos atributos para almacenar la información extra que nos ofrece OSM, como
+el nombre de la calle, el tipo de calle, o si se trata de un edificio o un
+parque. Con esta información podemos determinar con qué tipo de objeto estamos
+tratando, y asignarle un valor concreto en la matriz de calles de cada {\bf
+Entorno}.
 
-Para almacenar la información extra tenemos OsmTag.
-\subsubsection*{Filtro de información}
-%Quedarnos con la información útil
-OsmTag contiene dos atributos principales, clave y valor. Nos valemos de estos
-dos atributos para almacenar la información extra que nos ofrece OSM, como el
-nombre de la calle, el tipo de calle, o si se trata de un edificio o un parque.
-
-Con esta información podemos determinar de que tipo de objeto estamos tratando
-y asignarle un valor concreto en la matriz de calles de cada escenario.
-
-También nos valemos de esta información para filtrar la información.
-
-Hasta ahora hemos optado por quedarnos solo con la información que queremos,
-pero si algún día se añade un nuevo tipo de información que no tenemos habría
-que añadirlo al filtrado de etiquetas.
-
-También hay etiquetas que reconocemos y que no necesitamos, como por ejemplo,
-los limites políticos de las ciudades.
+También nos valemos de esta información para filtrar los datos. Hasta ahora
+hemos optado por almacenar sólo con la información que queremos, desechando el
+resto; pero si algún día se añade un nuevo tipo de información que no se
+almacena, únicamente habría que añadirlo al filtrado de etiquetas.
 
 \subsection*{Dibujar Calles}
-%De coordenadas a casillas
-OSM nos da la información de las calles como listas de puntos que hay que unir
-con lineas rectas.
 
-Esto plantea dos problemas.
+OSM nos da la información de las calles como listas de coordenadas geográficas
+que hay que unir con líneas rectas. Esto plantea dos problemas.
 
-Uno de ellos lo resolvemos pasando de coordenadas a casillas, como ya hemos
-explicado en \hyperref[coordToCasilla]{\bf Coordenada a Casilla}
+Uno de ellos, el manejo de las coordenadas geográficas, lo resolvemos pasando de
+coordenadas a casillas, como ya hemos explicado en el apartado
+\hyperref[coordToCasilla]{{\em Coordenada a Casilla, y Viceversa}}.
 
-El otro problema es crear una linea recta mediando dos puntos.
-Además hay que tener en cuenta el problema de las rectas en un plano hexagonal.
+El otro problema es crear una línea recta a partir de dos puntos, teniendo en
+cuenta que el plano es hexagonal, consiguiendo siempre que sea conexa.
 
-Para hallar los puntos de las rectas nos valemos de la ecuación de la recta
-dados dos puntos, y a través de su pendiente podemos saber cual será el próximo
-punto.
+Para hallar los puntos que componen las rectas nos valemos de la ecuación
+matemática de la recta, y a partir de su pendiente podemos averiguar cual será
+el próximo punto.
 
-Para el problema del mapa hexagonal usamos dos técnicas, la primer es buscar el
-siguiente punto de la recta pero con la mitad de distancia de una casilla, así
+Para el problema del mapa hexagonal usamos dos técnicas. La primera es buscar el
+siguiente punto de la recta avanzando la mitad de distancia de una casilla, así
 hacemos los cambios gradualmente y nos aseguramos la conexión del camino con
-las casillas.
-Pero esto no soluciona el problema de las diagonales, para esto usamos vectores
-de direcciones para corregir el rumbo y hacerlo mas adecuado a la malla
-hexagonal.
+las casillas. Pero así no solucionamos el problema que presentan las diagonales,
+para esto usamos vectores de direcciones para corregir el rumbo y adaptarlo a la
+malla hexagonal. Es vital que las calles sean conexas y no aparezcan cortadas
+por un mal paso de coordenadas a casillas.
 
-Con esto tenemos mas puntos de los necesarios para pintar una recta, por lo que
-al pintarla, guardamos siempre la casilla anterior, y si es la misma, no
-pintamos. 
+Al usar estas técnicas obtenemos más puntos de los necesarios para pintar la
+recta, por lo que guardamos siempre la casilla anterior a la que se calcula en
+ese momento y si es la misma, no la pintamos.
 
-Esto soluciona el problema de las \hyperref[Intersecciones]
-{\bf intersecciones}.
 \subsection*{Rellenar Figuras}
 %Lineas poligonales cerradas y members
 Existen tres figuras diferentes a la hora de dibujar los mapas.
@@ -1111,7 +1102,7 @@ porque simplemente encadenando la información de las dos orillas del río nos d
 la figura que envuelve a las dos orillas del río.
 
 Para la Costa y otras formaciones de agua o figuras complejas es equivalente.
-\subsection*{Intersecciones de Caminos} \label{Intersecciones}
+\subsection*{Intersecciones de Caminos}
 Además del tipo de camino que estamos guardando en la matriz de calles del
 escenario, podemos almacenar de una forma inteligente información sobre las
 calles, como por ejemplo si una casilla en concreto forma parte de una
