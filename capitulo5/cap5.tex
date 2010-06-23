@@ -364,7 +364,15 @@ En esta sección se explicarán uno a uno todos los agentes que intervienen en l
 simulación, y cómo se han implementado. Todos los agentes se encuentran en el
 paquete, o en subpaquetes de éste, {\em agents}.
 
-% TODO Diagrama de agentes y comportamientos en horizontal
+A continuación sigue un esquema con todos los agentes del simulador, los
+comportamientos que utiliza cada agente, y flechas entre agentes que denotan
+qué agentes se comunican entre sí.
+
+\begin{figure}[H]
+ \centering
+ \includegraphics[height=100mm,angle=90]{figuras/cap5/agents.png}
+ \caption{Esquema con todos los agentes}
+\end{figure}
 
 En programación con agentes lo habitual es que los agentes en sí no contengan
 la lógica de su actividad, si no que tan sólo contienen el código de
@@ -390,6 +398,19 @@ ejemplo, para un comportamiento que cree a otro agente lo habitual es sólo se
 ejecute una vez, para ello se hereda directamente de {\em
 jade.core.behaviours.OneShotBehaviour} y JADE nos asegura de que sólo se
 ejecutará una vez.
+
+A continuación pasamos a explicar los agentes del simulador. Por cada agente
+hay un esquema de los comportamientos que utiliza, y en algunos de ellos -los
+que inicien un diálogo con otros agentes- también hay un esquema de las
+comunicaciones que mantienen.
+
+Dichos esquemas de comunicación siguen el siguiente formato: A cada lado se
+sitúa un agente, a la izquierda el que comienza el diálogo. Entre los agentes
+hay flechas que representan mensajes, el sentido de la fecha denota al emisor y
+al receptor. Sobre cada flecha va descrito, y en este orden, desde qué
+comportamiento se envía, que comportamiento lo recibe, y de qué trata el
+mensaje -tipo o contenido del mismo-. Obviamente el comportamiento que envía el
+mensaje es del agente emisor, y el que recibe es del agente receptor.
 
 \subsection*{Agente Creador}
 
@@ -423,8 +444,6 @@ manden dichos mensajes. Esta actividad la realiza a través del comportamiento
 
 Este último comportamiento actúa como servidor del objeto escenario, y se
 implementa mediante un {\em CyclicBehaviour} de JADE.
-
-% TODO Esquemas de comunicación
 
 \subsection*{Agente Reloj}
 
@@ -476,7 +495,11 @@ menos potentes.
 Esta técnica de sincronización se utiliza mucho cuando se trabaja con JADE y
 hay que sincronizar los agentes, pues JADE es de naturaleza asíncrona.
 
-% TODO Esquemas de comunicación
+\begin{figure}[H]
+ \centering
+ \includegraphics[width=120mm]{figuras/cap5/com_clock.png}
+ \caption{Comunicaciones del agente Reloj}
+\end{figure}
 
 \subsection*{Agentes Entorno}
 
@@ -531,7 +554,11 @@ recepción del estado de la simulación.
 {\em behaviours.people.RegisterPeopleBehav} es el comportamiento con el que se
 comunican los {\bf Peatones} para avisar al entorno de su posición y salud.
 
-% TODO Esquemas de comunicación
+\begin{figure}[H]
+ \centering
+ \includegraphics[width=120mm]{figuras/cap5/com_environment.png}
+ \caption{Comunicaciones del agente Entorno}
+\end{figure}
 
 \subsubsection*{Casillas Adyacentes y Múltiples Entornos}
 
@@ -629,7 +656,11 @@ Consultando las coordenadas geográficas donde está situado y el escenario
 descubre en qué trozo del terreno ha caído. A partir de ahí se limita a mandar
 un mensaje en cada tick del {\bf Reloj}.
 
-% TODO esquemas de comunicación
+\begin{figure}[H]
+ \centering
+ \includegraphics[width=120mm]{figuras/cap5/com_water_source.png}
+ \caption{Comunicaciones del agente Entrada de Agua}
+\end{figure}
 
 \subsection*{Agentes Peatón}
 
@@ -640,7 +671,7 @@ por el terreno tratando de salvarse de la inundación.
 
 \begin{figure}[H]
  \centering
- \includegraphics[width=130mm]{figuras/cap5/ag_pedestrian.png}
+ \includegraphics[width=135mm]{figuras/cap5/ag_pedestrian.png}
  \caption{Agente Peatón}
 \end{figure}
 
@@ -727,7 +758,11 @@ Cabe destacar que no se han tenido en cuenta ni la capacidad de las calles ni
 de los refugios, el número de personas que puede haber en una casilla es
 ilimitado.
 
-% TODO esquemas de comunicación
+\begin{figure}[H]
+ \centering
+ \includegraphics[width=135mm]{figuras/cap5/com_pedestrian.png}
+ \caption{Comunicaciones del agente Peatón}
+\end{figure}
 
 \subsection*{Agentes Actualización}
 
@@ -753,6 +788,12 @@ con la simulación a través de un agente {\bf Actualización}, y ambos
 implementan {\em Updatable}. Se pueden escribir nuevos clientes para estos
 agentes sin tener que modificarlos, dado que reciben por parámetros el nombre
 de la clase del cliente de la que crean la instancia mediante reflexión.
+
+\begin{figure}[H]
+ \centering
+ \includegraphics[width=100mm]{figuras/cap5/com_update.png}
+ \caption{Comunicaciones del agente Actualización}
+\end{figure}
 
 \section*{Maya Hexagonal}
 
