@@ -887,37 +887,47 @@ casilla y le avisa de la actualización realizada. Así se mantiene la coherenci
 entre {\bf Entornos} y el paso de uno a otro se vuelve transparente para el
 resto de agentes.
 
-\subsection*{Coordenada a Casilla y Viceversa} \label{coordToCasilla}
-%conversión de una coordenada a un casilla, necesidad de los incrementos
-Para pasar de una casilla a una coordenada utilizamos los incrementos.
+\subsection*{Coordenada a Casilla, y Viceversa} \label{coordToCasilla}
+
+El paso de coordenada geográfica a coordenada en la maya, y viceversa, es un
+problema complejo que ha requerido un considerable esfuerzo. Hay que tener en
+cuenta que la maya es hexagonal, y que la tierra no es plana.
 
 \subsubsection*{Incrementos} \label{incrementos}
-%perdida de datos, caminos no conexos, indeterminacion de las posisciones
-Para poder interpolar la posición desde una casilla a una determinada
-coordenada geográfica hemos optado por la técnica de los incrementos en vez de
-complicados cálculos trigonométricos terrestres.
+
+Para poder convertir la posición de una casilla a una determinada coordenada
+geográfica hemos optado por la técnica de los incrementos, en vez de complicados
+cálculos trigonométricos terrestres.
 
 La técnica consiste en hallar la diferencia en grados decimales entre los
-extremos del mapa y dividirla entre el numero de filas y columnas, con esto
-obtenemos el incremento en Latitud o Longitud que hay entre cada casilla de
+extremos del mapa, y dividirla entre el número de filas y columnas. Con esto
+obtenemos el incremento en latitud o longitud que hay entre cada casilla de
 nuestra rejilla.
 
 Debido a la forma de la rejilla hexagonal tenemos que tener en cuenta que las
-filas impares tienen un offset de \begin{math} ^1/_2 \end{math} de un incremento
-de latitud, y que las columnas tienen un incremento deEnvironment
-\begin{math} ^3/_4 \end{math} el incremento de la longitud.
+filas impares tienen un offset de \begin{math}^1/_2\end{math} de incremento de
+latitud, y que las columnas tienen un incremento de \begin{math}^3/_4\end{math}
+de incremento de la longitud.
 
-De esta forma tan sencilla podemos hacer las conversiones de casilla a
-coordenada y viceversa.
+De esta forma tan sencilla podemos hacer las conversiones de ''casilla a
+coordenada``.
+
 \subsubsection*{Discretización}
-El problema de coordenada a casilla es un poco mas complejo, puesto que al
-tener una coordenada tenemos que aproximar a una casilla en concreto, para ello
-primero realizamos una aproximación intentando averiguar la casilla en filas y
-columnas, sin embargo la forma de las casillas es hexagonal, por lo que la
-distancia al centro  no nos asegura que la casilla sea la correcta.
+
+El problema de ''coordenada a casilla'' es un poco más complejo, puesto que al
+trabajar con una coordenada tenemos que aproximar a una casilla en concreto
+-la coordenada, muy probablemente, no va a coincidir con el centro de ningún
+hexágono-.
+
+Para ello primero realizamos una aproximación a grandes rasgos intentando
+averiguar la casilla, sin embargo la forma de las casillas es hexagonal, por lo
+que hay que asegurarse de que la casilla sea la correcta. Se refina la casilla
+escogida calculando la distancia al centro de los hexágonos, escogiendo siempre
+la más cercana. Pero como las casillas son hexagonales, no circulares, siempre
+existe una posibilidad de error.
 
 De esta forma perdemos un poco de información, pero los errores cometidos por
-este sistema no superan el \begin{math} 0.7\% \end{math}
+este sistema no superan el \begin{math}0.7\%\end{math}.
 
 \subsection*{Especialización: Flood Hexagonal Grid}
 %cambios de la rejilla por desastre
