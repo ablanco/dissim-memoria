@@ -797,21 +797,37 @@ construcciones y calles que los rodean.
 \subsubsection*{Tipos de Calles}
 
 Para saber en qué tipo de calle nos encontramos nos ayudamos de la información
-de OSM que viene categorizada en grupos. Por cada grupo le asignamos un rango
-de valores, teniendo en cuenta el numero de subgrupos.
+de OSM, que viene categorizada en grupos, tales como ``carreteras``, ''puntos
+de interés``, ``vías de agua``, etc. A cada grupo le asignamos un rango de
+valores, teniendo en cuenta el número de subgrupos que tiene. Por ejemplo, el
+grupo ''carreteras`` tiene múltiples subgrupos, como pueden ser ''calle``,
+''avenida``, ''autovía``, etc.
 
-Estos valores vienen identificados por medio de constantes globales y funciones
-estáticas que nos devuelven el tipo concreto o los valores padre.
-\subsubsection*{Prioridad de la información}
-En cada casilla solo podemos almacenar un valor, por lo que la forma de
-rellenar la matriz sobreescribe el valor de la matriz si el nuevo valor es
-mayor que el viejo. Así nos aseguramos que la información que consideramos mas
-prioritaria (de mayor valor) permanezca en la matriz
+Estos valores los identificamos por medio de constantes globales; y se
+comparan mediante funciones estáticas, que nos devuelven el tipo concreto o los
+valores padre -para los subgrupos-.
+
+\subsubsection*{Prioridad de la Información}
+
+Ocurre que en ocasiones varios elementos caen en la misma casilla, pues están
+muy cercanos geográficamente y les corresponde el mismo hexágono. Pero en cada
+casilla sólo podemos almacenar un valor, por lo que rellenamos la matriz de
+forma que se sobreescribe el valor que hubiera si el nuevo valor es mayor que el
+viejo. Así nos aseguramos que la información que consideramos más prioritaria
+-de mayor valor- permanezca en la matriz.
+
 \subsubsection*{Intersecciones}
-A veces es útil sobre todo para las calles saber cuando nos encontramos en un
-cruce, para ello cuando nos encontramos un valor igual al que nosotros queremos
-inserta, incrementamos en una unidad el valor, haciéndola impar, de esta forma
-detectamos las intersecciones.
+
+A veces es útil, sobre todo en el caso de las calles, saber cuando se cruzan
+dos o más elementos. Para ello, a la hora de sobreescribir valores, si nos
+encontramos con que había un valor igual al que nosotros queremos insertar,
+incrementamos en una unidad el valor que hubiese -haciéndolo impar-.
+
+Obviamente para que este sistema funcione, los valores que insertemos
+normalmente en la matriz -cuando no se sobreescribe ningún valor- tienen que ser
+todos pares. Así si el valor de una casilla es impar sabemos que en ese punto
+hay una intersección de dos elementos.
+
 \subsection*{Coronas}
 %mantenimiento actualizado de la corona
 Al poder efectuar las simulaciones en mas de un entorno, tenemos que crear un
