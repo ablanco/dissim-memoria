@@ -558,7 +558,7 @@ uno dado a un {\bf Entorno} concreto, puede estar involucrando a más agentes en
 el proceso pero sin saberlo. Para los {\bf Peatones} este proceso es del todo
 transparente.
 
-\subsubsection{Movimiento del Agua}
+\subsubsection{Movimiento del Agua}\label{waterMovement}
 
 Dadas las limitaciones vistas en el \hyperref[cap2]{capítulo 2}, y sobre todo
 dada nuestra intención de crear un modelo sencillo y abarcable, hemos
@@ -829,17 +829,22 @@ todos pares. Así si el valor de una casilla es impar sabemos que en ese punto
 hay una intersección de dos elementos.
 
 \subsection*{Coronas}
-%mantenimiento actualizado de la corona
-Al poder efectuar las simulaciones en mas de un entorno, tenemos que crear un
-sistema de actualización a entornos vecinos, para facilitar esto disponemos de
-las coronas, las coronas son vectores que contienen información de las casillas
-adyacentes de los otros escenarios.
 
-De esta forma, cuando se modifica la información de los limites del escenario,
-es la corona la que se encarga de hacer el puente al siguiente escenario y las
-actualizaciones necesarias.
+Como se comentó en la sección del \hyperref[waterMovement]{movimiento del agua}
+de los agentes {\bf Entorno}, las mayas hexagonales disponen de una corona, o
+borde extra, de casillas. Esta corona -de ancho un único hexágono- contiene los
+datos de altura y nivel de agua de casillas que pueden pertenecer a {\bf
+Entornos} vecinos.
 
-De esta forma podemos hacer que los escenarios vean mas halla de su entorno.
+La necesidad de establecer estas coronas viene de poder efectuar las
+simulaciones en más de un {\bf Entorno}, pues teníamos que crear un sistema para
+actualizar valores de casillas en los {\bf Entornos} vecinos.
+
+De esta forma, cuando se modifica la información de una corona, el agente {\bf
+Entorno} busca qué otro agente {\bf Entorno} -si que lo hay- posee dicha
+casilla y le avisa de la actualización realizada. Así se mantiene la coherencia
+entre {\bf Entornos} y el paso de uno a otro se vuelve transparente para el
+resto de agentes.
 
 \subsection*{Coordenada a Casilla y Viceversa} \label{coordToCasilla}
 %conversión de una coordenada a un casilla, necesidad de los incrementos
