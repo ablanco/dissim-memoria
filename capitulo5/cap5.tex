@@ -945,60 +945,48 @@ Las clases padres dan funcionalidad básica y común a todos los desastres. Por
 ejemplo, {\em HexagonalGrid} mantiene las matrices de alturas y de calles,
 mientras que es {\em FloodHexagonalGrid} la que añade la matriz de agua.
 
-\section*{Implementación de la Elevación del Terreno}
-%Solucion particular
-Usamos los servicios web para extraer las alturas, un bucle por cada casilla
-\subsection*{Patrón Fachada} %TODO
-%Para poder utilizar todos los servicios web de alturas que hagan falta
-Tenemos una fachada para implementar los posibles distintos servicios webs,
-tienen que implementar estas funciones, tralaraaaaaa
-\subsection*{Cache de alturas}
-%Para mejorar la latencia de datos
-Los servidores webs suelen ser muy lentos, y el volumen de datos que
-necesitamos para la simulación puede ser muy grande.
+\section*{Elevación del Terreno}
 
-Obtener todos estos datos cada vez que necesitemos simular un escenario no es
-viable.
+Para la obtención de alturas utilizamos servicios de información en la red. Por
+desgracia la obtención de estos datos puede resultar lenta, por lo que se hizo
+necesario implementar una caché de alturas.
 
-La solución que nosotros implementamos es almacenar en local los datos para
-utilizarlos en posteriores simulaciones o incluso para poder reutilizarlos en
-otras simulaciones.
+\subsection*{Caché de Alturas}
 
-La reutilización de datos se hace por medio de una interpolación (la media de
-las casillas adyacentes) de datos en el caso de que nuestra base de datos tenga
-la información suficiente.
+Obtener todas las alturas de todas las casillas cada vez que necesitemos
+simular un escenario no es viable. La solución que nosotros implementamos es
+almacenar en local los datos para utilizarlos de nuevo en posteriores
+simulaciones, o incluso para poder reutilizarlos en otras máquinas.
 
-En nuestra implementación optamos por usar  SQLite\footnote{SQLite Home Page :
-\url{www.sqlite.org/}} porque sencillez para la
-implementación y por la sencillez de la base de datos en si, que permite poder
-moverla de un ordenador a otro con un coste mínimo de instalación al ser un
-único fichero el que contiene todos los datos.
+El almacenamiento se realiza en un servidor de base de datos, al que se accede
+a través de JDBC\footnote{Java Database Connectivity:
+\url{http://java.sun.com/products/jdbc/overview.html}}. Por ahora están
+soportados por el simulador los servidores MySQL, PostgreSQL y SQLite, pero
+sería muy sencillo incluir más servidores siempre que haya un driver para JDBC.
 
-El principal problema de SQLite es que no puede albergar muchos datos, pero en
-nuestro caso esto se puede resolver creando mas ficheros, y de esta forma
-abordamos la escalabilidad.
+La base de datos sólo contiene una tabla, de nombre Elevations, con tres campos:
 
-La base de datos solo contiene una única tabla
 \begin{center}
 \begin{tabular}{ | l | c | r | }
 \hline
-Clave & Tipo \\ \hline
-Lat & double \\ \hline
-Long & double \\ \hline
-Elev & double \\ \hline
+{\bf Campo} & {\bf Tipo de datos} \\ \hline
+Lat & DOUBLE \\ \hline
+Long & DOUBLE \\ \hline
+Elev & DOUBLE \\ \hline
 \end{tabular}
 \end{center}
 
+El simulador intenta obtener los datos de la base de datos local, para ello
+busca las alturas de las coordenadas que caigan dentro del hexágono y hace la
+media de los resultados, y en caso de que no haya ninguna altura en la base de
+datos la descarga del servicio web y la añade.
 
-\subsubsection*{Patrón fachada}
-%pos una fachada pa poder usar distintos drivers
-El diseño de la interfaz para trabajar con servicios web ha sido realizado
-teniendo en cuenta el patrón fachada para poder incorporar nuevos servicios web
-de altura.
+Es posible añadir nuevas fuentes de datos de alturas al simulador. Para ello es
+necesario implementar el cliente del nuevo servicio cumpliendo con la interfaz
+{\em elevation.ElevationService}.
 
-Gracias a este diseño añadir nuevos servicios webs solo tienen el coste de
-implementar la clase que cumpla los métodos de la interfaz.
 \section*{Open Street Maps}
+
 OSM tiene un servicio web, que a través de mandarle un url correctamente
 formada devuelve un fichero XML que contiene toda la información de OSM sobre
 unas coordinadas determinadas.
