@@ -1102,20 +1102,24 @@ Una vez más, la forma que tiene OSM de organizar los datos nos da la solución
 a este problema. Porque simplemente encadenando las listas de puntos de las dos
 orillas del río obtenemos la figura que envuelve al agua del río, con lo que
 pasamos a tener el problema anterior, de fácil solución, que es rellenar una
-polilínea cerrada. Para la costa y otras formaciones de agua o figuras complejas
-es equivalente.
+polilínea cerrada. Para la costa, y otras formaciones de agua, o figuras
+complejas, es equivalente.
 
 \subsection*{Intersecciones de Caminos}
-Además del tipo de camino que estamos guardando en la matriz de calles del
-escenario, podemos almacenar de una forma inteligente información sobre las
-calles, como por ejemplo si una casilla en concreto forma parte de una
-intersección de calles, sin tener que mirar las casillas adyacentes. La forma
-de solucionar esto es simplemente dándoles por defecto una valor par a todos
-los tipos de caminos, y si alguna vez un camino se cruza (siempre y cuando sea
-de su mismo tipo) se guarda esta casilla con un valor impar.
 
-De esta manera tan simple, podemos identificar y almacenar las calles que
-conectan con otras calles.
+Además del tipo de camino, que es lo que estamos guardando en la matriz de
+calles del {\bf Entorno}, podemos almacenar de una forma inteligente información
+extra sobre las calles. Como por ejemplo el que una casilla en concreto forme
+parte de una intersección entre calles, ahorrándole a los agentes la necesidad
+de mirar las casillas adyacentes para detectarla.
+
+La forma de almacenarlo es simplemente dar por defecto un valor par a todos los
+tipos de caminos, y si alguna vez un camino se cruza con otro -siempre y cuando
+sean del mismo tipo- se guarda en la casilla un valor impar -se incrementa en
+una unidad el valor anterior-.
+
+De esta manera tan simple podemos identificar y almacenar las intersecciones
+entre calles.
 
 \section*{Generador de KML}
 Para general los archivos KML utilizamos
