@@ -1204,7 +1204,32 @@ Con este sencillo método podemos representar la información de manera muy
 visual y expresiva.
 
 \section*{Visor Bidimensional}
-\subsection*{Múltiples escenarios}
+
+Para poder ver la evolución en pseudo tiempo real, y no tener que esperar a que
+se completase para consultar el KML, implementamos un sencillo visor
+bidimensional. Dicho visor, al igual que el generador de KML, se utiliza
+mediante un agente {\bf Actualización}, por lo que implementa la interfaz {\em
+Updatable}.
+
+Como recibe los datos periódicamente, depende de si dicho período es mayor o
+menor que el tick de la simulación el que muestre todos los pasos de la
+simulación. Si el visor recibe datos según un período mayor que un paso de
+simulación no podrá mostrar todos los pasos, por eso es en pseudo tiempo real.
+
+El visor utiliza Java 2D para dibujar la simulación.
+
+\begin{figure}[H]
+ \centering
+ \includegraphics[width=120mm]{figuras/cap5/visor.png}
+ \caption{Río Mississippi visto por el visor bidimensional}
+\end{figure}
+
+Los colores escogidos son: azul para el agua, verde para el terreno no
+inundado, borde amarillo para las calles, borde rojo para los refugios, punto
+rojo para las personas. La intensidad del color determina su altura, a más
+claro el color, mayor es la altura de la casilla -se ignora la profundidad,
+sólo se tiene en cuenta la altura-.
+
 \section*{Estadísticas}
 Siguiendo la misma estrategia que los demás objetos que se actualizan
 periódicamente, hemos diseñado un agente estadístico que se encarga de recoger
