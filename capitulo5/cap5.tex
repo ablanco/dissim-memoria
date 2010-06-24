@@ -1122,93 +1122,87 @@ De esta manera tan simple podemos identificar y almacenar las intersecciones
 entre calles.
 
 \section*{Generador de KML}
-Para general los archivos KML utilizamos
-JAK\footnote{JAK Java API for KML :
-\url{http://labs.micromata.de/display/jak/Home}}.
-\subsection*{Múltiples Escenarios}
-%Soporte para varios escenarios
-El visor de KML puede recibir información de varios escenarios, ya que al estar
-todo geolocalizado, no tengo problema de integrar múltiples
-escenarios, salvo por el volumen de datos.
-\subsection*{Secuencia de Tiempo}
-%Soporte para la temporalidad de los eventos
-Para podes simular la simulación fielmente necesito una marca de tiempo, para
-ello tenemos que llevar un control del tiempo real en la simulación, 
-%TODO enlace a clokagent
-\subsection*{KmlPolygon}
-%Agrupar poligonos por altura
-Al igual que creamos una clase para tratar la información de OSM, creamos una
-clase amigable para tratar los polígonos en KML.
 
-Toda la información de la simulación la tenemos que representar por medio de
-polígonos en el KML. La cual nos facilita la creación y la asignación de las
-propiedades que queremos que tenga nuestro polígono.
+El generador de ficheros KML, que se usa a través de un agente {\bf
+Actualización} e implementa la interfaz {\em Updatable}, recibe el estado de la
+simulación periódicamente y lo procesa. Este procesado no es trivial y presenta
+algunos escollos que hemos tenido que superar.
 
-Para ello contamos con la posición, la forma, la altura del polígono, el color,
-y la transparencia.
+El visor de KML puede recibir información de varios {\bf Entornos}, ya que al
+utilizar todas las mayas índices absolutos la integración de éstas es directa.
 
-Haciendo un buen uso de estas características podemos expresar mucha
-información de una forma eficaz y elegante.
-\subsubsection*{Bordes}
-Tenemos dos problemas, las posiciones de los polígonos nos vienen dadas a
-través de un única coordenada, pero nosotros para dibujar el polígono
-necesitamos conocer los bordes.
+KML permite asignar una fecha y hora a los polígonos que se van a dibujar, de
+esta manera se puede crear una animación. A la hora de plasmar los resultados
+de la simulación utilizamos esta capacidad para animarlos.
 
-Esto se hace simplemente con los \hyperref[incrementos]{\bf incrementos} y un
-poco de trigonometría.
+Creamos la clase {\em KmlPolygon} para tratar los polígonos en KML de manera
+sencilla. Toda la información de la simulación la tenemos que representar por
+medio de polígonos en el KML, con lo que facilitar la manipulación de estos era
+vital. La clase nos facilita la creación y la asignación de las propiedades que
+queremos que tenga nuestro polígono.
 
-El otro problema que tenemos es mucho mas grande y es precisamente ese, el
-tamaño.
+Para cada polígono contamos con la posición, la forma, la altura, el color, y la
+transparencia. Haciendo un buen uso de estas características podemos mostrar
+mucha información de una forma eficaz y elegante.
 
-La simulación produce mucha información que reflejar en un solo archivo. Por
-cada casilla inundada son 7 coordenadas, si eso lo multiplicamos por las
-casillas inundadas y por el numero de instantáneas y que todo eso va almacenado
-en un fichero KML acabamos teniendo ficheros de tamaño muy considerable, que al
-ser representados por un visor nos da un límite de información.
+\subsection*{Bordes}
 
-Para poder almacenar la mayor cantidad posible de datos, usamos la versión KMZ
-de los archivos, (que no es mas que versiones comprimidas en zip de los
-archivos KML) y además una agrupación de casillas inundadas al mismo nivel.
+Nos enfrentamos a dos problemas: Las posiciones de los polígonos nos vienen
+dadas a través de un única coordenada, pero nosotros para dibujar el polígono
+necesitamos conocer los seis lados. Y el segundo problema es cómo reducir el
+número de polígonos y lados a pintar en el KML, para que no se generen archivos
+gigantescos imposibles de visualizar.
 
-Esto quiere decir, que si tenemos un conjunto de casillas adyacentes que con el
-mismo nivel en la inundación, estas casillas pasan a 1 único polígono y solo
-tendríamos que almacenar el valor de su perímetro, no de todas las casillas que
-lo contienen.
+Hallar los seis vértices del polígono se resuelve fácilmente con los
+\hyperref[incrementos]{incrementos en latitud y longitud} y un poco de
+trigonometría.
 
-Con este sistema condensaremos mucha información debido a la naturaleza del
-agua, a permanecer a un nivel determinado.
+El otro problema es mucho más complicado y no se resuelve fácilmente. La
+simulación produce mucha información que reflejar en un solo archivo. Por
+cada casilla inundada tenemos siete coordenadas, si eso lo multiplicamos por las
+casillas inundadas y por el número de instantáneas, acabamos teniendo ficheros
+de tamaño muy considerable. Si el fichero se vuelve demasiado pesado tendremos
+problemas a la hora de abrirlo con un visor.
 
-Para ello hacemos uso otra vez de conocimientos de geometría computacional y
-del operador borde, en este caso, con el que podemos hallar el borde de
-cualquier figura.
+Para poder almacenar la mayor cantidad posible de datos usamos la versión KMZ
+de los archivos -que no es más que versiones comprimidas en zip de los
+archivos KML normales-, y además agrupamos las casillas inundadas al mismo
+nivel en un único polígono.
 
-Para detectar los bordes y sobre todo escribirlos en el orden correcto,
-utilizamos el operador borde (elimina los opuestos) y las listas de adyacentes.
+Esto quiere decir que si tenemos un conjunto de casillas adyacentes con el
+mismo nivel podemos agruparlas. Estas casillas pasan a dibujarse mediante un
+único polígono, con lo que sólo tenemos que almacenar en el KML la forma de su
+perímetro, no los hexágonos completos de todas las casillas que contiene.
 
-Asumimos que la lista de adyacentes mas larga es el borde exterior
-\subsubsection*{Color y Transparencia}
-%decidimos usar hexagonos de distintos colores
-Como ya comentamos antes, nos valemos del color para representar información de
-manera intuitiva. Azul para el agua, Verde para personas a salvo ... etc.
+Para implementarlo hacemos uso, otra vez, de conocimientos de geometría
+computacional y del operador borde. Dicho operador nos permite hallar el
+borde de cualquier figura.
 
-KML permite asignarle color a las figuras de forma nativa, así que simplemente
-creamos unos estilos predefinidos, y los asignamos a los polígonos.
+% TODO poner fórmula matemática con un esquema o algo
 
-El color se calcula para cada uno de los objetos, y es común para los objetos
-equivalentes. 
+% TODO explicar bien las listas de adyacencias, no con dos frases mal puestas
 
-Para el agua, si un polígono tiene la
-misma altura de agua, todos tendrán el mismo color y transparencia por ser
-equivalentes.
+\subsection*{Color y Transparencia}
 
-Para las personas igual, les asignamos colores (y una altura de 5 metros para
-que sean fácilmente identificables) y ninguna transparencia.
-Así tenemos que las personas que están en refugios tendrán el color verde, las
-personas que se encuentren en peligro tendrán el color amarillo, y las personas
-que se hallen atrapadas o muertas tendrán color gris.
+Como ya hemos comentado anteriormente, nos valemos del color para representar
+la información de manera intuitiva. Azul para el agua, verde para personas a
+salvo, etc.
+
+KML permite asignarle color a las figuras a través de estilos, así que
+simplemente creamos unos estilos y los asignamos a los polígonos. El color se
+calcula para cada uno de los objetos, y es común para los objetos equivalentes.
+Por ejemplo, en el caso del agua, si un polígono tiene la misma altura que
+otros, todos tendrán el mismo color y transparencia por ser equivalentes.
+
+Para las personas funciona igual, les asignamos colores (y una altura de 5
+metros para que sean fácilmente identificables) y ninguna transparencia. Así
+tenemos que las personas que están a salvo en refugios tendrán el color verde,
+las personas que se encuentren en peligro corriendo por las calles tendrán el
+color amarillo, y las personas que se hayan fallecido tendrán color gris.
 
 Con este sencillo método podemos representar la información de manera muy
 visual y expresiva.
+
 \section*{Visor Bidimensional}
 \subsection*{Múltiples escenarios}
 \section*{Estadísticas}
