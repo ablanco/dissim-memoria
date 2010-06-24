@@ -1231,14 +1231,18 @@ claro el color, mayor es la altura de la casilla -se ignora la profundidad,
 sólo se tiene en cuenta la altura-.
 
 \section*{Estadísticas}
-Siguiendo la misma estrategia que los demás objetos que se actualizan
-periódicamente, hemos diseñado un agente estadístico que se encarga de recoger
-información de cada estado de la simulación.
 
-Recogiendo la información deseada, en nuestro caso, el estado de las personas,
-y el tiempo de la simulación, podemos hacer una evaluación estadística de la
-evolución de la inundación, sabiendo cuales han sido las zonas donde mas
-personas han perecido, o salvado y la hora en la que sucedió.
+Siguiendo la misma estrategia que los demás objetos que se actualizan
+periódicamente, hemos diseñado un cliente de los agentes {\bf Actualización} que
+se encarga de recoger información de cada estado de la simulación. Con esta
+información se pueden elaborar después estadísticas. Los datos se almacenan en
+un fichero de valores separados por comas (CSV).
+
+Los datos recogidos son: el estado de las personas y el momento de la
+simulación. Gracias a ellos podemos hacer una evaluación estadística de la
+evolución de la inundación, sabiendo cuáles han sido los momentos cuando más
+personas han perecido, o se han salvado.
+
 \subsection*{Múltiples Escenarios}
 %Soporte para varios escenarios
 Nuestra simulación puede tener mas de un escenario, por ello necesitamos
