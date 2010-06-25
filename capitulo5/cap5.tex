@@ -985,6 +985,10 @@ Es posible añadir nuevas fuentes de datos de alturas al simulador. Para ello es
 necesario implementar el cliente del nuevo servicio cumpliendo con la interfaz
 {\em elevation.ElevationService}.
 
+Un problema al utilizar consultas sql, y en este caso, la hacer muchas
+consultas, hay que tener controlar las conexiones abiertas con la base de datos
+y cerrar las consultas cuando ya se ha terminado de procesarlas.
+
 \section*{Open Street Maps}
 
 OSM permite la descarga de ficheros XML que contienen toda la información de
