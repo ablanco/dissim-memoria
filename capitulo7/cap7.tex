@@ -86,6 +86,8 @@ fácil de averiguar el funcionamiento de la nueva funcionalidad.
 
 \subsubsection*{Investigación}
 
+% TODO Poner algo y eso
+
 Y de esta experiencia aprendimos a investigar, a buscar en las bases de datos
 publicas de los gobiernos, de la ONU, y a buscar entre montañas de información
 los datos realmente importantes.
@@ -94,78 +96,98 @@ los datos realmente importantes.
 
 Al pasar tanto tiempo desarrollando nuestra idea, e invertir tanto esfuerzo y
 esperanzas en un sistema en el que ves el resultado de toda una carrera de
-estudios, hemos aprendido el valor humano de lleva detrás un desarrollo
+estudios, hemos aprendido el valor humano que lleva detrás un desarrollo
 software.
 
-\subsubsection*{Trabajo en grupo}
+\subsubsection*{Trabajo en Grupo}
 
 El trabajo con otras personas es imprescindible si quieres llevar a cabo un
-desarrollo medianamente grande. Prácticamente para todo lo que quieras hacer,
-si quieres que funcione y se utilice, tiene que pensar en que mas de una
-persona pueda trabajar con el.
-
-Para ello es muy importante la documentación, los comentarios en el código y
-mantener buenas relaciones entre los miembros del grupo.
+desarrollo medianamente grande. Para ello es muy importante la documentación,
+los comentarios en el código y mantener buenas relaciones entre los miembros del
+grupo.
 
 Establecer objetivos a corto plazo, llevar un control equitativo del reparto de
-tareas y sobre todo compartir las opiniones y pedir opinión a los demás
-desarrolladores sobre los problemas que surgen, buscar el consenso y
-unificar el desarrollo son cosas muy importantes que hemos podido experimentar
-en este desarrollo.
+tareas y, sobre todo, compartir las opiniones y pedir consejo a los demás
+desarrolladores sobre los problemas que surgen. Buscar el consenso y unificar el
+desarrollo son aspectos muy importantes que hemos podido experimentar en este
+proyecto.
 
-Simplemente, dos ojos ven mejor que uno solo, y si los dos miran al mismo
-sitio, y hablan entre ellos, pues entonces seremos capaces de ver realmente
-bien.
-\subsubsection*{Comunidad de desarrollo libre}
+\subsubsection*{Comunidad de Desarrollo Libre}
+
 Aunque para nuestro proyecto no podíamos aceptar colaboraciones externas,
-creemos que el futuro de nuestra aplicación tiene mucho mas potencia en una
-comunidad de desarrollo libre que en un cd entre una pila de papeles olvidados
+creemos que el futuro de nuestra aplicación tiene mucho más potencial en una
+comunidad de desarrollo libre que en un CD olvidado entre una pila de papeles
 en algún despacho.
 
 Por ello apostamos por la comunidad.
-\subsubsection*{Licencias Software}
-La experiencia nos dice, que las licencias privativas no nos valían para
-nuestro propósito, y utilizar una licencia libre como \hyperref[ap1]{\bf
-GPL} nos era mucho mas
-favorable en el ámbito de la investigación y el desarrollo.
 
-Puesto que nuestra aplicación no esta enfocada a ser vendida, pero si a ser
-utilizada por todo el mundo.
+\subsubsection*{Licencias Software}
+
+La experiencia nos dice que las licencias privativas no nos valían para
+nuestro propósito, y utilizar una licencia libre como la \hyperref[ap1]{\bf GPL}
+nos era mucho más favorable, sobre todo en el ámbito de la investigación y el
+desarrollo.
 
 Dejando a un lado nuestras opiniones personales, creemos que este tipo de
-licencia es la que mas se ajustaba a nuestras necesidades y expectativas.
+licencia es la que más se ajustaba a nuestras necesidades y expectativas.
+
 \section*{Ampliaciones y mejoras}
-Por  mucho que nos hayamos implicado en este proyecto, somos perfectamente
-conscientes de que tenemos que terminarlo en algún momento, y lejos de
-pretender entregar el producto perfecto o que simplemente compile, le hemos
+
+Por mucho que nos hayamos implicado en este proyecto, somos perfectamente
+conscientes de que tenemos que terminarlo en algún momento. Lejos de querer
+pretender entregar el producto perfecto, o que simplemente compile, le hemos
 dado prioridad a llegar a un nivel de calidad y acabado óptimo en relación al
 tiempo disponible.
 
 Y aunque estamos muy satisfechos con el resultado final, siempre se puede
-mejorar.
+mejorar y ampliar.
+
 \subsection*{Rendimiento}
+
 El rendimiento de algunas funciones se podría mejorar, algunas búsquedas no son
 del todo óptimas y en algunos cálculos se ha buscado más la claridad y la
-simpleza que la optimización y la rapidez. Sin embargo no forman parte del
-núcleo crítico de la aplicación, por lo que hemos decidido dejarlos a una
+simpleza que la optimización y la rapidez. Sin embargo, no forman parte del
+núcleo crítico de la aplicación, por lo que hemos decidido dejarlos para una
 posible ampliación. 
 
 Estos métodos aparecen indicados y comentados en el código para una futura
-reimplementación mas eficiente.
+implementación más eficiente.
+
 \subsection*{Otras catástrofes}
-Como ya hemos dicho antes, nuestro proyecto no se limita solo a las
-inundaciones, y fácilmente podría ser ampliado a simular otro tipo de
-catástrofes, como terremotos, incendios, sequías ...
+
+Como ya hemos dicho antes, nuestro proyecto no se limita sólo a las
+inundaciones, se trata de una plataforma para poder simular múltiples tipos de
+desastres. Puede ser ampliado fácilmente para simular otro tipo de catástrofe
+como puedan ser terremotos, incendios, sequías, etc.
 
 La estructura de datos ha sido creada para que añadir nuevas catástrofes sea
-simple, permitiendo incluso simular catástrofes múltiples.
-\subsection*{Interfaz Gráfica}
-Somos perfectamente conscientes de que si queremos que nuestra aplicación sea
-utilizada por terceras personas ajenas al mundo universitario y de la
-investigación la implementación de una interfaz gráfica es esencial para
-facilitar el manejo de esta aplicación.
+simple. Para la implementación de un nuevo desastre es necesario extender
+ciertas clases, y realizar modificaciones menores a otras.
 
-Sin embargo en este desarrollo no lo hemos considerado prioritario ya que
+Hay que extender las clases {\em util.Scenario} y {\em util.HexagonalGrid}. En
+ambos casos hay que sobreescribir los métodos que se consideren oportunos y
+añadir nuevos según las necesidades del nuevo desastre. Habría, probablemente,
+que crear agentes nuevos específicos de la catástrofe, pero muchos se pueden
+reutilizar, como los agentes {\bf Creador}, {\bf Entorno}, {\bf Actualización},
+{\bf Reloj} o {\bf Peatones}.
+
+Para los peatones habría que crear comportamientos nuevos adecuados para el
+desastre, extendiendo la clase {\em behaviours.people.PedestrianBehav}. Sería
+necesario añadir al agente {\bf Creador} una sección donde crease los agentes
+específicos, y posiblemente hubiera que añadir comportamientos específicos a
+los agentes {\bf Entorno}.
+
+En cuanto a la visualización de resultados, habría que adaptar el generador de
+KML para que mostrase las particularidades de la catástrofe. Lo mismo ocurre
+con el visor bidimensional.
+
+\subsection*{Interfaz Gráfica}
+
+Comprendemos que si queremos que nuestra aplicación sea utilizada por terceras
+personas ajenas al mundo universitario y de la investigación, la implementación
+de una interfaz gráfica es esencial para facilitar el manejo.
+
+Sin embargo en este desarrollo no lo hemos considerado prioritario, ya que
 el script utilizado para lanzar la aplicación es bastante simple y flexible.
 
 %%% Local Variables:
