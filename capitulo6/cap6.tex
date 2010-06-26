@@ -12,8 +12,113 @@
 
 \vspace*{5mm}
 
-\section*{Escalabilidad}
-%Lo podemos echar a correr en varias maquinas, eso es cosa de jade
+\section*{Preparando el escenario}
+Todo buen simulador tiene que demostrar que lo simulado tiene una relación
+directa con lo que realmente pasó.
+
+Para ello hemos recopilado la información de la inundación provocada por el
+Katrina en Nueva Orleans y para poder simular la catástrofe con los parámetros
+reales.
+\subsection*{Área de simulación}
+El huracán Katrina afectó a una parte considerable del estado de Luisiana, pero
+nosotros nos centraremos en la zona mas afectada en Nueva Orlenas
+\begin{figure}[H]
+ \centering
+ \includegraphics[width=30mm]{figuras/cap6/NOarea1.png}
+ % NOarea1.png: 1066x626 pixel, 96dpi, 28.20x16.56 cm, bb=0 0 799 469
+\caption{Area de Simuñación}
+\end{figure}
+
+Como se puede ver en la figura, las zonas mas afectadas por la inundación se
+podrían dividir por el lecho del río.
+\begin{figure}[H]
+ \centering
+ \includegraphics[width=30mm]{figuras/cap6/Areas Afectadas.png}
+ % NOarea1.png: 1066x626 pixel, 96dpi, 28.20x16.56 cm, bb=0 0 799 469
+\caption{División en zonas del área afectada}
+\end{figure}
+
+Aqui podemos apreciarlas mas en detalle.
+
+\begin{figure}[H]
+ \centering
+ \includegraphics[width=30mm]{figuras/cap6/NOarea2.png}
+ % NOarea1.png: 1066x626 pixel, 96dpi, 28.20x16.56 cm, bb=0 0 799 469
+\caption{Zona 1 de simulación}
+\end{figure}
+
+\begin{figure}[H]
+ \centering
+ \includegraphics[width=30mm]{figuras/cap6/NOarea3.png}
+ % NOarea1.png: 1066x626 pixel, 96dpi, 28.20x16.56 cm, bb=0 0 799 469
+\caption{Zona 2 de simulación}
+\end{figure}
+
+\begin{figure}[H]
+ \centering
+ \includegraphics[width=30mm]{figuras/cap6/NOarea4.png}
+ % NOarea1.png: 1066x626 pixel, 96dpi, 28.20x16.56 cm, bb=0 0 799 469
+\caption{Zona 3 de simulación}
+\end{figure}
+
+
+\subsection*{Obteniendo Alturas}
+Para poder simular la inundación uno de los datos que tenemos que obtener son
+las alturas, para una zona tan grande como Nueva Orleans hacen falta millones
+de datos de altura, sin embargo para nuestra simulación nos hemos limitado a la
+parte de nueva orleans que resultó mas afectada y con una precision de 50
+metros por casilla.
+\subsection*{Localización de las roturas de los diques}
+De este mapa podemos ver las localizzaciones donde los diques se rompieron.
+
+\begin{figure}[H]
+ \centering
+ \includegraphics[width=30mm]{figuras/cap6/Roturas de Diques.png}
+ % NOarea1.png: 1066x626 pixel, 96dpi, 28.20x16.56 cm, bb=0 0 799 469
+\caption{Mapa con las localizaciones de las roturas de los diques}
+\end{figure}
+A continuación mostramos la información con la que hemos realizado la
+simulación de donde se encontraban los diques.
+
+\begin{figure}[H]
+ \centering
+ \includegraphics[width=30mm]{figuras/cap6/Roturas de Diques.png}
+ % NOarea1.png: 1066x626 pixel, 96dpi, 28.20x16.56 cm, bb=0 0 799 469
+\caption{Mapa con las localizaciones de las roturas de los diques}
+\end{figure}
+
+
+\begin{figure}[H]
+ \centering
+ \includegraphics[width=30mm]{figuras/cap6/Roturas de Diques1.png}
+ % NOarea1.png: 1066x626 pixel, 96dpi, 28.20x16.56 cm, bb=0 0 799 469
+\caption{Detalle de las roturas de los diques}
+\end{figure}
+
+
+\begin{figure}[H]
+ \centering
+ \includegraphics[width=30mm]{figuras/cap6/Roturas de Diques2.png}
+ % NOarea1.png: 1066x626 pixel, 96dpi, 28.20x16.56 cm, bb=0 0 799 469
+\caption{Detalle de las roturas de los diques}
+\end{figure}
+
+\subsection*{Rutas de evacuación y refugios}
+Refugios oficiales no hubo en la inundación, lo que se hizo fué una evacuación
+completa de la ciudad, para ello, hemos marcado como objetivo tres posibles
+rutas de escape para los ciudadanos.
+
+También consideramos que los edificios de los cuales podemos obtener
+información a través de OSM pudieron ser refugios de emergencia donde
+temporalmente pudieron refugiarse algunos ciudadanos.
+
+\begin{figure}[H]
+ \centering
+ \includegraphics[width=30mm]{figuras/cap6/Rutas de evacuacion.png}
+ % NOarea1.png: 1066x626 pixel, 96dpi, 28.20x16.56 cm, bb=0 0 799 469
+\caption{Rutas de evacuación}
+\end{figure}
+
 \section*{Resultados}
 %echamos a correr el simulador y comentamos la jugada
 \subsection*{Visualización de Resultados}
