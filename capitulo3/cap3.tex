@@ -27,7 +27,11 @@ En el siguiente esquema se muestran los agentes que conforman el simulador.
 Algunos de ellos tienen un papel más importante que otros, destacando los
 agentes {\bf Entorno} y los agentes {\bf Peatón}.
 
-% TODO esquema de agentes sin comportamientos
+\begin{figure}[H]
+ \centering
+ \includegraphics[width=120mm]{figuras/cap3/agents.png}
+ \caption{Agentes del simulador}
+\end{figure}
 
 A continuación siguen descripciones detalladas de cada tipo de agente.
 
@@ -90,7 +94,6 @@ de agua}.
 dada su posición.
  \item Informar a los agentes {\bf Actualización} de la evolución de la
 simulación.
-% TODO más cosas?
 \end{itemize}
 
 \subsubsection*{Rejilla Hexagonal}
@@ -177,9 +180,9 @@ la podremos representar por medio de las casillas.
 
 Para la información relativa a calles, puntos de interés, etc, recurriremos a
 OSM\footnote{Open Street Maps: \url{http://www.openstreetmap.org/}}. OSM es un
-esfuerzo colaborativo para crear cartografía libre, es gratuito y de libre uso.
-La calidad de los mapas en las ciudades más grandes e importantes es muy buena,
-aunque en lugares menos poblados decae.
+esfuerzo colaborativo para crear cartografía libre, es gratuito y de libre
+uso\cite{Pinto09}. La calidad de los mapas en las ciudades más grandes e
+importantes es muy buena, aunque en lugares menos poblados decae.
 
 Pero al igual que con los datos de elevación, el simulador ha de ser
 independiente de OSM y ha de poder utilizar otras fuentes de datos.
