@@ -12,28 +12,35 @@
 
 \vspace*{5mm}
 
-\section*{Preparando el escenario}
+\section*{Preparando el Escenario}
 
-Todo buen simulador tiene que demostrar que lo simulado tiene una relación
-directa con lo que realmente pasó.
+Para poder validar el trabajo realizado, hemos de simular lo ocurrido en el
+caso guía y comparar los resultados con lo que realmente pasó. Para ello hemos
+recopilado información de la inundación provocada por el paso del huracán
+Katrina por Nueva Orleans en el año 2005.
 
-Para ello hemos recopilado la información de la inundación provocada por el
-Katrina en Nueva Orleans y para poder simular la catástrofe con los parámetros
-reales.
+Utilizando la información obtenida, creamos un escenario de simulación que
+recrea la catástrofe que asoló la ciudad de Nueva Orleans. Como datos de
+entrada utilizamos las roturas de los diques que contenían al río Mississippi
+-nuestras Entradas de Agua-, la distribución de la población -los agentes
+Peatón-, el terreno real y las calles reales de la ciudad.
 
 \subsection*{Área de simulación}
 
 El huracán Katrina afectó a una parte considerable del estado de Luisiana, pero
-nosotros nos centraremos en la zona mas afectada en Nueva Orlenas
+nosotros nos centraremos en la ciudad de Nueva Orleans. En concreto el área que
+se inundó de la ciudad viene resaltada en la siguiente imagen.
 
 \begin{figure}[H]
  \centering
- \includegraphics[height=130mm,angle=90]{figuras/cap6/NOarea1.png}
+ \includegraphics[height=120mm,angle=90]{figuras/cap6/NOarea1.png}
  \caption{Área de Simulación}
 \end{figure}
 
-Como se puede ver en la figura, las zonas mas afectadas por la inundación se
-podrían dividir por el lecho del río.
+Al producirse la inundación por el desbordamiento del río, entre el mismo río y
+los canales que atraviesan la ciudad dividieron la inundación en tres grandes
+zonas casi independientes. En la siguiente imagen se puede apreciar la división
+de la inundación en las tres zonas afectadas.
 
 \begin{figure}[H]
  \centering
@@ -41,7 +48,10 @@ podrían dividir por el lecho del río.
  \caption{División en zonas del área afectada}
 \end{figure}
 
-Aquí podemos apreciarlas mas en detalle.
+Al ser el mismo río el que separa las diferentes zonas, éstas pueden simularse
+por separado. Para ahorrar recursos y reducir la carga computacional nos
+planteamos la creación de tres escenarios de simulación separados. Las
+siguientes imágenes muestran las áreas de cada uno de dichos escenarios.
 
 \begin{figure}[H]
  \centering
@@ -51,7 +61,7 @@ Aquí podemos apreciarlas mas en detalle.
 
 \begin{figure}[H]
  \centering
- \includegraphics[height=130mm,angle=90]{figuras/cap6/NOarea3.png}
+ \includegraphics[width=135mm]{figuras/cap6/NOarea3.png}
  \caption{Zona 2 de simulación}
 \end{figure}
 
