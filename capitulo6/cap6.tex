@@ -34,18 +34,18 @@ se inundó de la ciudad viene resaltada en la siguiente imagen.
 \begin{figure}[H]
  \centering
  \includegraphics[height=120mm,angle=90]{figuras/cap6/NOarea1.png}
- \caption{Área de Simulación}
+ \caption{Área de simulación}
 \end{figure}
 
 Al producirse la inundación por el desbordamiento del río, entre el mismo río y
 los canales que atraviesan la ciudad dividieron la inundación en tres grandes
-zonas casi independientes. En la siguiente imagen se puede apreciar la división
-de la inundación en las tres zonas afectadas.
+zonas casi independientes\cite{Pennington06}. En la siguiente imagen se puede
+apreciar la división de la inundación en las tres zonas afectadas.
 
 \begin{figure}[H]
  \centering
  \includegraphics[width=100mm]{figuras/cap6/affected.png}
- \caption{División en zonas del área afectada}
+ \caption{División en 3 zonas del área afectada}
 \end{figure}
 
 Al ser el mismo río el que separa las diferentes zonas, éstas pueden simularse
@@ -71,34 +71,37 @@ siguientes imágenes muestran las áreas de cada uno de dichos escenarios.
  \caption{Zona 3 de simulación}
 \end{figure}
 
+\subsection*{Elevación del Terreno}
 
-\subsection*{Obteniendo Alturas}
+Para poder simular la inundación uno de los datos que tenemos que obtener es
+la elevación del terreno. Para una zona tan grande como Nueva Orleans hacen
+falta millones de datos de altura, sin embargo para nuestra simulación nos hemos
+limitado a la parte de Nueva Orleans que resultó mas afectada, y hemos utilizado
+hexágonos de 50 metros de tamaño.
 
-Para poder simular la inundación uno de los datos que tenemos que obtener son
-las alturas, para una zona tan grande como Nueva Orleans hacen falta millones
-de datos de altura, sin embargo para nuestra simulación nos hemos limitado a la
-parte de nueva orleans que resultó mas afectada y con una precision de 50
-metros por casilla.
+Dado que el servicio web del que obtenemos la información nos obliga a
+solicitar las alturas de las casillas una a una, y a que son muchísimas
+casillas, la obtención de estos datos ha sido muy lenta. Es en estos casos
+cuando la \hyperref[cache]{caché de alturas} demuestra su utilidad, dado que
+nos permite ejecutar varias simulaciones sin tener que volver a descargar las
+alturas.
 
-\subsection*{Localización de las roturas de los diques}
+\subsection*{Roturas de los Diques}
 
-De este mapa podemos ver las localizaciones donde los diques se rompieron.
+La causa de que la ciudad se inundase fue que los diques no resistieron el paso
+del huracán, se rompieron en múltiples localizaciones y el crecido Mississippi
+anegó los barrios de la ciudad. Las posiciones\cite{Pennington06} de estas
+roturas son las entradas de agua a la simulación.
 
 \begin{figure}[H]
  \centering
  \includegraphics[width=135mm]{figuras/cap6/dikes.png}
- \caption{Mapa con las localizaciones de las roturas de los diques}
+ \caption{Localización de las roturas de los diques}
 \end{figure}
 
-A continuación mostramos la información con la que hemos realizado la
-simulación de donde se encontraban los diques.
-
-% \begin{figure}[H]
-%  \centering
-%  \includegraphics[width=30mm]{figuras/cap6/Roturas de Diques.png}
-%  % NOarea1.png: 1066x626 pixel, 96dpi, 28.20x16.56 cm, bb=0 0 799 469
-% \caption{Mapa con las localizaciones de las roturas de los diques}
-% \end{figure}
+En las siguientes imágenes se muestran geolocalizadas las posiciones de las
+diferentes roturas que sufrieron los diques. En cada una de estas coordenadas
+estará posicionado en la simulación un agente {\bf Entrada de Agua}.
 
 \begin{figure}[H]
  \centering
@@ -106,10 +109,9 @@ simulación de donde se encontraban los diques.
  \caption{Detalle de las roturas de los diques 1}
 \end{figure}
 
-
 \begin{figure}[H]
  \centering
- \includegraphics[width=140mm]{figuras/cap6/dikes2.png}
+ \includegraphics[width=135mm]{figuras/cap6/dikes2.png}
  \caption{Detalle de las roturas de los diques 2}
 \end{figure}
 
