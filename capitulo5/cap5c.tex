@@ -1,7 +1,5 @@
-% Metodología e implementación
-
-\chapter*{Implementación} \label{cap5}
-\addcontentsline{toc}{chapter}{Implementación}
+\chapter*{Implementación (III): Sistema Multiagente} \label{cap5c}
+\addcontentsline{toc}{chapter}{Implementación (III): Sistema Multiagente}
 
 \begin{flushright}
 \begin{minipage}{7.85cm}
@@ -12,359 +10,9 @@
 
 \vspace*{5mm}
 
-\section*{Metodología}
+\section*{Introducción}
 
-Al ser este un proyecto de tamaño considerable, y al realizarse en grupo, es
-necesario establecer una metodología para evitar el trabajo inútil o redundante.
-
-Para organizar nuestro trabajo, y poder mantener siempre cierto control sobre la
-evolución de la aplicación, nos hemos servido tanto de herramientas como de
-algunas buenas prácticas.
-
-Habiendo desarrollado nuestro proyecto en el marco del IV CUSL\footnote{Concurso
-Universitario de Software Libre: \url{http://www.concursosoftwarelibre.org}}
-hemos seguido una política de divulgación de la información y unos plazos de
-entrega. Desde la organización del concurso pusieron a nuestra disposición una
-forja, en concreto la forja
-IRIS-Libre\footnote{\url{https://forja.rediris.es/projects/cusl4-catastrof/}},
-gracias a la que pudimos agilizar y centralizar las labores de administración y
-planificación del proyecto.
-
-Además adoptamos una política de entrevistas frecuentes con los tutores para
-así motivarnos y que nos aconsejaran sobre el mejor paso a seguir, o en dónde
-deberíamos profundizar más, o cuándo seguir otras vías de investigación.
-
-De esta manera teníamos objetivos a corto plazo, herramientas para la
-planificación gracias al IV CUSL, y guía por parte de los tutores.
-
-\subsection*{Metodologías Ágiles}
-
-Una buena planificación no implica el éxito, pero por lo menos te asegura unos
-resultados mínimos.
-
-No hemos aplicado ninguna metodología en concreto, si no un conjunto de técnicas
-y buenos métodos. Creemos en una metodología de desarrollo ágil.
-
-\subsubsection*{Reuniones de Desarrollo}
-
-Lo principal es la comunicación entre los desarrolladores, para ello decidimos
-reunirnos y comentar las avances o principales problemas al menos dos veces a
-la semana.
-
-Las reuniones no tenían por qué ser en persona, ni muy formales, podían
-realizarse a través de mensajería instantánea, ayudados con herramientas de
-pizarras virtuales. De esta forma siempre se tiene una idea muy cercana del
-desarrollo del proyecto sin perder mucho tiempo.
-
-Además mantiene un fuerte lazo entre los desarrolladores y les permite ayudarse
-unos a otros, evitando así estancamientos o frustraciones con problemas
-difíciles.
-
-\subsubsection*{Reuniones con los Tutores}
-
-Nos reuníamos con nuestros tutores al menos dos veces al mes, dependiendo del
-ritmo de trabajo y progresos. Estas reuniones eran de carácter informativo y
-orientativo.
-
-Las reuniones permiten un crecimiento guiado y controlado del producto final, y
-un nivel de acabado mayor al centrarnos solo en las partes realmente importantes
-de la investigación y el desarrollo para los objetivos del proyecto.
-
-\subsubsection*{Sistema Incremental}
-
-Lo principal era desarrollar una plataforma muy básica y sencilla donde se
-pudieran llevar a cabo pruebas, y una vez completada, ir aumentando las
-prestaciones en forma de módulos o complementos que fueran implementando las
-funcionalidades deseadas.
-
-Seguimos pues un modelo iterativo de desarrollo del software, que es el ciclo
-de vida del software que probablemente mejor se adapte a metodologías ágiles.
-
-\begin{figure}[H]
- \centering
- \includegraphics[width=100mm]{figuras/cap5/iterative.png}
- \caption{Ciclo de vida iterativo del software}
-\end{figure}
-
-\subsubsection*{Reparto de Tareas Dinámico}
-
-El reparto de tareas equitativo y ágil es vital para mantener una buena
-relación entre los desarrolladores, y para el adecuado progreso del proyecto.
-
-Por ello es importante identificar las tareas a realizar e ir asignándolas a
-los desarrolladores, de forma que ellos mismos puedan decidir cómo organizarse,
-pero siempre teniendo en cuenta unos plazos finales.
-
-El reparto no siempre es estático, puesto que las tareas se pueden alargar o
-acortar debido a una mala estimación inicial, incluso a veces se pueden
-reasignar o subdividir para agilizar el desarrollo.
-
-Al haber más de un desarrollador en el proyecto hemos tendido un poco a la
-especialización en las tareas. Si un desarrollador ha estado trabajando en una
-parte, o tiene experiencia y aptitudes para determinado aspecto del desarrollo,
-tendrá prioridad a la hora de asignar las tareas relacionadas.
-
-Sin embargo, no se trata de dividir el proyecto en dos, puesto que siempre se
-intenta que todos los desarrolladores estén implicados en todas las ramas.
-Después de todo el objetivo final del proyecto es aprender y ampliar
-conocimientos en todas las áreas que éste toca.
-
-\subsection*{Forja IRIS-Libre}
-
-RedIRIS proporciona un servicio de forja bajo el nombre de
-IRIS-Libre\footnote{\url{https://forja.rediris.es/}}. Esta forja proporciona
-alojamiento y herramientas a proyectos de Software Libre, y está asociada al
-CUSL, dando alojamiento a los proyectos participantes.
-
-\begin{figure}[H]
- \centering
- \includegraphics[width=30mm]{figuras/cap5/iris_libre.png}
- \caption{Logo de IRIS-Libre}
-\end{figure}
-
-Entre las herramientas para el alojamiento y la gestión de proyectos de carácter
-colaborativo, y con vistas de crear una comunidad de desarrolladores, que
-proporciona encontramos:
-
-\subsubsection*{Subversion}
-
-Como sistema de control de versiones la forja proporciona
-SVN\footnote{\url{http://subversion.tigris.org/}}, este sistema permite llevar
-un control sobre los cambios en el código, y obtener siempre una copia
-actualizada con la última versión.
-
-\begin{figure}[H]
- \centering
- \includegraphics[width=80mm]{figuras/cap5/svn.png}
- \caption{Logo de Subversion}
-\end{figure}
-
-Este tipo de software es imprescindible cuando se trabaja en grupo, pues
-facilita la colaboración y permite mantener un orden en el desarrollo.
-
-\subsubsection*{Planificador de Tareas}
-
-La forja también dispone de una sencilla aplicación de control de tareas, que,
-entre otras cosas, lo que permite es:
-
-\begin{enumerate}
- \item Crear una tarea, con una breve descripción de la misma.
- \item Asignarlas a un desarrollador, y así poder repartir la carga de trabajo.
- \item Estimación del tiempo necesario, para poder planificar otras tareas.
- \item Progreso de la tarea, para poder hacer un seguimiento del progreso de la
- misma.
- \item Fecha límite de finalización.
-\end{enumerate}
-
-Con estos sencillos parámetros la herramienta incluso genera un diagrama de
-Gantt para ayudarte con la planificación.
-
-% TODO incluir dicho diagrama?
-
-\subsection*{Blog}
-
-La decisión de comenzar un blog para registrar la evolución del proyecto viene
-motivada por el CUSL, que lo exige como requisito de los proyectos
-participantes.
-
-El llevar al día un blog\footnote{Simulación de Catástrofes:
-\url{http://pfc.mensab.com/}}, con las actualizaciones y las direcciones
-generales de desarrollo del proyecto, es algo altamente recomendable si se
-quiere que el proyecto cree una comunidad. Es una manera muy cómoda y eficaz de
-mantener a la comunidad informada de los cambios y el estado del proyecto.
-
-Además también tiene otras consecuencias más sutiles; por ejemplo, permite
-reafirmar las decisiones de diseño o de desarrollo tomadas a lo largo de la
-implementación, puesto que queda constancia de las decisiones tomadas y las
-razones para llevarlas a cabo.
-
-\subsection*{Git}
-
-Git\footnote{Git - Fast Version Control System: \url{http://git-scm.com/}} es
-un sistema de control de versiones distribuido con filosofía distinta a la de
-SVN, que es centralizado.
-
-\begin{figure}[H]
- \centering
- \includegraphics[width=40mm]{figuras/cap5/git.png}
- \caption{Logo de Git}
-\end{figure}
-
-En cada proyecto colaborativo hay muchos desarrolladores que necesitan hacer
-muchos cambios, probar muchas alternativas de su código y sin embargo mantener
-a todo el mundo informado y a su vez mantener una rama estable de desarrollo.
-SVN no es demasiado eficiente a la hora de gestionar diferentes ramas de
-desarrollo, ni al crearlas ni al unirlas.
-
-Git soluciona este problema al fomentar los {\em commits} pequeños y una
-herramienta de {\em merge} más eficiente, lo que facilita trabajar con ramas y
-mantenerlas muy fácilmente. El trabajo con diferentes ramas de desarrollo y
-una rama {\em master} siempre funcional, de fácil integración entre sí, facilita
-el desarrollo considerablemente. Git fomenta este estilo de desarrollo.
-
-Con su sistema de log y sus normas de estilo mejora el seguimiento de todos los
-cambios, muy bien documentados, del código.
-
-Por estas razones decidimos migrar la aplicación de SVN a Git cuando terminó el
-CUSL. Esta migración nos obligó a buscar una nueva forja que nos proporcionara
-este avanzado sistema de control de versiones. La elegida fue
-Gitorious\footnote{\url{http://gitorious.org/}}, forja libre para proyectos
-libres.
-
-\begin{figure}[H]
- \centering
- \includegraphics[width=40mm]{figuras/cap5/gitorious.png}
- \caption{Logo de Gitorious}
-\end{figure}
-
-\section*{Escenario de Simulación}
-
-El escenario de simulación es la manera que tenemos de decirle a nuestro
-simulador qué es lo que queremos simular precisamente. Dado que el simulador es
-versátil y tiene capacidad de simular, en principio, cualquier lugar, hay que
-definir una serie de parámetros de entrada.
-
-En un escenario hemos de especificar cuál es el área con la que se va a
-trabajar, cuáles son las entradas de agua y qué agentes humanos intervienen.
-Aparte se definen también algunos parámetros técnicos como pueden ser los datos
-de conexión a la base de datos de alturas.
-
-Entrando en detalles los elementos de los que consta un escenario son:
-
-\begin{description}
- \item[Nombre y descripción] Los escenarios se nombran para poder
-identificarlos con facilidad, este nombre y descripción se muestra también en
-los resultados de la simulación.
- \item[Fecha y hora] También se define la fecha y hora del comienzo de la
-simulación, lo que permite localizar en el tiempo cada momento de la simulación.
- \item[Resolución temporal] Es necesario definir el tiempo transcurrido entre
-dos estados de la simulación, tanto el tiempo simulado (en minutos) que
-transcurre, como el tiempo de ejecución (en milisegundos) que se le concede a
-la máquina -o máquinas- para simular un paso.
- \item[Área de simulación] El área viene definida por dos coordenadas
-geográficas, la coordenada noroeste y la sureste del rectángulo -en realidad
-no es un rectángulo si tenemos en cuenta la curvatura terrestre- que definen si
-tomamos como diagonal el segmento que las une.
- \item[Resolución espacial] Uno de los parámetros más importantes que hay que
-definir es la resolución espacial, tanto superficial como en altura. Hay que
-especificar el tamaño de los hexágonos, lo que se hace a través del diámetro de
-la circunferencia circunscrita en ellos -los hexágonos son regulares-. También
-hay que definir la resolución espacial en altura, es decir, cómo se discretiza
-la altura del terreno y del agua; se define como \begin{math}^1/_p\end{math}
-metros de precisión donde {\em p} es el parámetro que aparece en el escenario.
- \item[Agentes Entorno] El número de agentes Entorno que se encargaran de
-simular el escenario, el número adecuado depende de la cantidad de núcleos o
-procesadores del que disponga la máquina donde se lleve a cabo la simulación.
- \item[Base de datos de alturas] En el escenario se incluyen también los datos
-necesarios para realizar la conexión a la base de datos donde se almacenan la
-elevación del terreno. Estos datos se obtienen de internet, pero se almacenan
-localmente para agilizar simulaciones sucesivas en el mismo área.
- \item[Entradas de agua] A la hora de simular una inundación es básico simular
-dónde y cuánta agua está entrando al sistema. Dichos datos se encuentran en el
-escenario.
- \item[Peatones] La posición y características de los peatones, tales como su
-distancia de visión, velocidad y objetivos -refugios que conocen de antemano-.
- \item[Frecuencia de actualización de resultados] Cada cuánto tiempo deben los
-agentes Entorno enviar el estado de la simulación a los agentes encargados de
-mostrar los resultados, así se define la finura de los resultados obtenidos.
-\end{description}
-
-Hay que destacar que los datos definidos en el escenario son los datos
-iniciales de la simulación, y que muchos se traducen a agentes, como por
-ejemplos las entradas de agua o las personas. Esto permite que en caliente se
-puedan añadir, por ejemplo, nuevas fuentes de agua a la simulación, pues se
-puede añadir agentes nuevos a una simulación en marcha.
-
-\subsection*{Ejemplo de Escenario}
-
-\lstinputlisting[caption=Escenario de ejemplo]{capitulo5/Ejemplo.scen}
-
-Como se puede ver en el listado el formato de los ficheros escenario es {\em
-clave=valor}, y para escribir un array -que son anidables, como se puede ver
-también en el ejemplo- {\em clave=[elem,elem,elem...]}.
-
-Lo primero que aparece es el {\em type}, es decir, el tipo de escenario del que
-se trata. El valor es el nombre de la clase que hay que instanciar -que debe
-heredar de {\em util.Scenario}-, por ahora sólo está implementado el caso de la
-inundación, pero el escenario está preparado para múltiples tipos de desastres.
-
-Es importante destacar que el orden en el que aparecen los elementos del
-escenario en el fichero es irrelevante, cualquier orden es válido siempre que
-aparezcan los elementos mínimos.
-
-A continuación en el ejemplo aparecen el nombre ({\em name}), descripción ({\em
-description}), fecha de inicio de la simulación ({\em date}) y hora inicial
-({\em hour}).
-
-Los dos siguientes elementos, {\em tick} y {\em realTick}, representan el
-tiempo asignado a cada paso de la simulación. El primero se mide en
-milisegundos y representa el tiempo de computación, es el que transcurre en
-nuestro mundo; y el segundo se mide en minutos y representa cuanto tiempo ha
-pasado dentro de la simulación.
-
-{\em NW} y {\em SE} son dos arrays con las coordenadas geográficas de las dos
-esquinas del área de simulación. Al igual que el resto de coordenadas que
-aparecen en el escenario se escriben con el formato {\em [latitud,longitud]}.
-{\em NW} hace referencia a la esquina noroeste, mientras que {\em SE}
-referencia a la sureste.
-
-{\em tileSize} corresponde al tamaño de los hexágonos, en metros, mientras que
-{\em precision} define la resolución espacial en altura, en
-\begin{math}^1/_{precision}\end{math} metros.
-
-Seguido aparece el número de agentes {\bf Entorno}, con la clave {\em numEnvs}.
-{\em randomTerrain} es un valor booleano que define si los entornos van a
-utilizar datos reales de alturas, o van a generar terrenos aleatorios. Los dos
-posibles valores que puede tomar son {\em True} y {\em False}, significando el
-primero que el terreno simulado va a ser aleatorio.
-
-A continuación vienen los datos necesarios para la conexión con la base de
-datos de alturas. Todos comienzan por {\em DB}. {\em DBServer} es la url, ip,
-nombre de fichero, etc, del servidor de base de datos. En este caso se trata de
-un servidor que se encuentra en la misma máquina, y al que se accede por red
--de ahí las {\em //}-. {\em DBPort} es el puerto a usar para la conexión. {\em
-DBUser} es el usuario con el que identificarse, y {\em DBPass} es la contraseña
-en claro a utilizar. {\em DBDriver} especifica qué tipo de servidor se está
-utilizando, en este caso se utiliza MySQL\footnote{\url{http://www.mysql.com/}}.
-{\em DBDb} es el nombre de la base de datos donde se encuentra la tabla
-{\bf Elevations}, dicha tabla está descrita en la sección donde se trata la
-obtención de datos de alturas.
-
-No todos los elementos {\em DB} son imprescindibles. Por ejemplo, si se utiliza
-el servidor de base de datos de fichero
-SQLite\footnote{\url{http://www.sqlite.org/}} no es necesario definir más que
-{\em DBServer} y {\em DBDriver}.
-
-Cada línea con la clave {\em waterSource} representa una entrada de agua
-diferente al sistema, todas las entradas definidas en el fichero del escenario
-se activan nada más comenzar la simulación. Para añadir fuentes de agua que
-aparecen un tiempo después del comienzo de la simulación hay que añadir agentes
-{\bf Entrada de Agua} en caliente. El array contiene los siguientes datos:
-latitud, longitud y cantidad de agua que entra en cada tick medida en unidades
-de altura de la simulación. El orden en que aparecen estos elementos es fijo.
-
-Al igual que con las entradas de agua, puede haber múltiples líneas con la clave
-{\em person}. Representan a agentes {\bf Peatón} en la simulación. Los
-parámetros del array son, en orden, los siguientes: latitud, longitud,
-distancia de visión en hexágonos, velocidad en hexágonos, número de clones y un
-array de objetivos -con múltiples pares latitud y longitud, aunque en este caso
-sólo hay un objetivo-. Todos estos parámetros serán discutidos en la sección de
-los agentes {\bf Peatón}.
-
-{\em updateTimeKML} y {\em updateTimeVisor} se miden ambos en milisegundos, y
-hacen referencia al tiempo que transcurre entre que los agentes {\bf Entorno}
-envían actualizaciones a los generadores de KML y a los visores respectivamente.
-
-\subsection*{Generación de Escenarios}
-
-Aunque es perfectamente posible escribir un fichero escenario con un editor de
-textos, resulta más sencillo utilizar el script de lanzamiento de la simulación
-para generar uno en un modo interactivo. Dicho modo se explica en detalle en la
-sección dedicada al script de lanzamiento.
-
-\section*{Agentes}
-
-En esta sección se explicarán uno a uno todos los agentes que intervienen en la
+En este capítulo se explicarán uno a uno todos los agentes que intervienen en la
 simulación, y cómo se han implementado. Todos los agentes se encuentran en el
 paquete, o en subpaquetes de éste, {\em agents}.
 
@@ -416,7 +64,7 @@ comportamiento se envía, que comportamiento lo recibe, y de qué trata el
 mensaje -tipo o contenido del mismo-. Obviamente el comportamiento que envía el
 mensaje es del agente emisor, y el que recibe es del agente receptor.
 
-\subsection*{Agente Creador}
+\section*{Agente Creador}
 
 La misión de este agente es la de crear al resto de agentes y lanzar la
 simulación.
@@ -449,7 +97,7 @@ manden dichos mensajes. Esta actividad la realiza a través del comportamiento
 Este último comportamiento actúa como servidor del objeto escenario, y se
 implementa mediante un {\em CyclicBehaviour} de JADE.
 
-\subsection*{Agente Reloj}
+\section*{Agente Reloj}
 
 Este agente apareció en nuestro sistema considerablemente tarde, por lo que
 tuvimos que hacer bastantes cambios para incluirlo. Nació de la necesidad de
@@ -505,7 +153,7 @@ hay que sincronizar los agentes, pues JADE es de naturaleza asíncrona.
  \caption{Comunicaciones del agente Reloj}
 \end{figure}
 
-\subsection*{Agentes Entorno}
+\section*{Agentes Entorno}
 
 Los agentes {\em Entorno} son sin duda los más complejos y los más importantes
 de cuantos forman la simulación. Su papel es manejar y mantener la información
@@ -564,7 +212,7 @@ comunican los {\bf Peatones} para avisar al entorno de su posición y salud.
  \caption{Comunicaciones del agente Entorno}
 \end{figure}
 
-\subsubsection*{Casillas Adyacentes y Múltiples Entornos}
+\subsection*{Casillas Adyacentes y Múltiples Entornos}
 
 El {\bf Entorno} recibe muchas peticiones, normalmente de los {\bf Peatones},
 solicitando las casillas adyacentes a una dada. El agente consulta su maya
@@ -589,7 +237,7 @@ uno dado a un {\bf Entorno} concreto, puede estar involucrando a más agentes en
 el proceso pero sin saberlo. Para los {\bf Peatones} este proceso es del todo
 transparente.
 
-\subsubsection{Movimiento del Agua}\label{waterMovement}
+\subsection*{Movimiento del Agua}\label{waterMovement}
 
 Dadas las limitaciones vistas en el \hyperref[cap2]{capítulo 2}, y sobre todo
 dada nuestra intención de crear un modelo sencillo y abarcable, hemos
@@ -642,7 +290,7 @@ y escogía donde quedarse, inundando la casilla. El sistema funcionaba pero muy
 poco escalable, dado que la cantidad de agentes agua era abrumadora. Lo
 desechamos rápidamente y comenzamos el diseño del sistema actual.
 
-\subsection*{Agentes Entrada de Agua}
+\section*{Agentes Entrada de Agua}
 
 Este tipo de agente es de lo más sencillo. Son agentes para nada inteligentes,
 cuya única misión es enviar un mensaje al {\bf Entorno} correspondiente en cada
@@ -666,7 +314,7 @@ un mensaje en cada tick del {\bf Reloj}.
  \caption{Comunicaciones del agente Entrada de Agua}
 \end{figure}
 
-\subsection*{Agentes Peatón}
+\section*{Agentes Peatón}
 
 Durante la inicialización estos agentes averiguan cuál es el {\bf Entorno} cuyo
 terreno contiene su coordenada inicial, para ello utilizan el escenario que
@@ -768,7 +416,7 @@ ilimitado.
  \caption{Comunicaciones del agente Peatón}
 \end{figure}
 
-\subsection*{Agentes Actualización}
+\section*{Agentes Actualización}
 
 Estos agentes nos permiten sacar información de la simulación. Durante su
 inicialización lo que hacen es subscribirse a los agentes {\bf Entorno} que se
