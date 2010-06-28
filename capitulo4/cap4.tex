@@ -34,7 +34,9 @@ La plataforma JADE (Java Agent DEvelopment Framework) es la escogida para el
 desarrollo del simulador. El objetivo principal de esta plataforma es la
 simplificación del desarrollo de sistemas multiagentes, siguiendo a su vez los
 estándares de comunicación entre sistemas de la FIPA\footnote{Foundation for
-Intelligent Physical Agents: \url{http://www.fipa.org/}}.
+Intelligent Physical Agents: \url{http://www.fipa.org/}}. FIPA es una
+organización internacional sin ánimo de lucro dedicada a establecer un marco
+común y genérico, para el desarrollo de agentes y sistemas multiagente.
 
 \begin{figure}[H]
  \centering
@@ -72,10 +74,54 @@ lenguaje.
 \subsection*{Arquitectura FIPA}
 
 Como ya hemos mencionado, JADE implementa por completo la arquitectura de
-sistemas multiagentes de la FIPA. Esta arquitectura............
-% TODO rellenar esta subsección
+sistemas multiagentes de la FIPA. Esta arquitectura ha sido desarrollada por
+FIPA con el objetivo de permitir la construcción de sistemas multigente que se
+integren entre sí en un entorno de computación particular. Adicionalmente
+podrían interoperar con sistemas construidos con diferente tecnología pero que
+también sigan estas especificaciones, todo ello con el mínimo esfuerzo.
+
+\begin{figure}[H]
+ \centering
+ \includegraphics[width=100mm]{figuras/cap4/fipa.png}
+ \caption{Arquitectura de la plataforma FIPA}
+\end{figure}
+
+FIPA establece el modelo lógico referente a la creación, destrucción, registro,
+localización y comunicación de agentes. Según las especificaciones, los agentes
+han de estar siempre conectados a una plataforma para poder funcionar, esto es
+así debido a que su ciclo de vida es gestionado por la plataforma.
+
+\begin{figure}[H]
+ \centering
+ \includegraphics[width=130mm]{figuras/cap4/fipa_agent.png}
+ \caption{Ciclo de vida de un agente FIPA}
+\end{figure}
+
+Cuando un agente se conecta a una plataforma, se produce un registro de éste
+en la misma, habitualmente de manera implícita; aunque en caso de agentes
+móviles que se trasladen de una plataforma a otra, por ejemplo, el registro debe
+ser explícito. Este registro es necesario para que el resto de agentes puedan
+localizarlo y comunicarse con él.
+
+El estándar FIPA también define los servicios que debe proporcionar toda
+plataforma de agentes, a saber:
+
+\begin{itemize}
+ \item Un sistema encargado del transporte de mensajes (Internal Platform
+ Message Transport y Message Transport System).
+ \item Un sistema de gestión de agentes (Agent Management System).
+ \item Un servicio de directorio (Directory Facilitator).
+ \item Un canal de comunicaciones para los agentes (Agent Communication Chanel).
+\end{itemize}
+
+Cada uno de estos servicios, excepto el de transporte de mensajes, es
+suministrado por agentes especializados. Esto supone que la comunicación con
+ellos será mediante mensajes ACL (Agent Communication Language) y utilizando una
+ontología definida para dicho servicio.
 
 \subsubsection*{Agent Management System}
+
+% TODO
 
 \subsubsection*{Directory Facilitator}
 
