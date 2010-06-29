@@ -48,11 +48,13 @@ JADE está desarrollado y mantenido por Telecom
 Italia\footnote{\url{http://jade.tilab.com/}}, y es una plataforma para el
 desarrollo de sistemas multiagentes.
 
-Al utilizar JADE el desarrollador sólo tiene que concentrarse en los agentes
-que escriba, el resto de aspectos del sistema están ya resueltos, tales como el
-intercambio de mensajes, la búsqueda de agentes, el ciclo de vida de estos,
-etc. Además está escrita en Java, lo que aumenta la portabilidad a múltiples
-entornos de ejecución frente otros lenguajes de programación.
+JADE puede ser considerado como un ``middleware'' que comporta una plataforma de
+agentes y un entorno de desarrollo. Al utilizar JADE el desarrollador sólo tiene
+que concentrarse en los agentes que escriba, el resto de aspectos del sistema
+están ya resueltos, tales como el intercambio de mensajes, la búsqueda de
+agentes, el ciclo de vida de estos, etc. Además está escrita en Java, lo que
+aumenta la portabilidad a múltiples entornos de ejecución frente otros lenguajes
+de programación.
 
 Dado que nuestro proyecto hace uso de la licencia \hyperref[ap1]{GPL v3}, es
 vital que el software que utilicemos sea también libre y esté bajo una licencia
@@ -225,6 +227,40 @@ Un mensaje ACL se compone conceptualmente de 5 partes bien diferenciadas:
  mantener varias conversaciones sin mezclar mensajes, por ejemplo:
  ``reply\_with'', ``in\_reply\_to'', etc.
 \end{description}
+
+\subsection*{Implementación de FIPA en JADE}
+
+Como ya hemos comentado anteriormente, JADE implementa por completo la
+plataforma FIPA que acabamos de describir. Por ejemplo, para implementar el ACC
+hace uso de eventos Java para agentes en una misma máquina, y HTTP, IIOP o
+Corba para comunicación entre máquinas.
+
+En JADE la plataforma de agentes puede distribuirse entre varios contenedores,
+que pueden encontrarse todos en una o en varias máquinas. En definitiva, la
+plataforma puede comprender varios ordenadores, mientras que un contenedor se
+ejecuta en un único ordenador, que a su vez puede ejecutar más contenedores en
+paralelo (de la misma u otra plataforma).
+
+Además de los agentes especificados por FIPA, JADE provee una interfaz gráfica
+para el control y monitorización del estado de los agentes. Esta interfaz
+permite, en otras acciones, crear agentes, pausarlos, matarlos, etc. El agente
+que muestra esta interfaz se denomina RMA.
+
+\begin{figure}[H]
+ \centering
+ \includegraphics[width=120mm]{figuras/cap4/rma.png}
+ \caption{Interfaz gráfica de usuario de JADE}
+\end{figure}
+
+Además, JADE también proporciona un agente {\em sniffer} que nos permite
+``espiar'' las conversaciones entre agentes. Dicho {\em sniffer} es muy útil
+para depurar la comunicación entre agentes.
+
+\begin{figure}[H]
+ \centering
+ \includegraphics[width=120mm]{figuras/cap4/sniffer.png}
+ \caption{Agente {\em sniffer} de JADE}
+\end{figure}
 
 \section*{Java}
 
