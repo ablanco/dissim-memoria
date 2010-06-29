@@ -105,7 +105,8 @@ plataforma de agentes, a saber:
  Message Transport y Message Transport System).
  \item Un sistema de gestión de agentes (Agent Management System).
  \item Un servicio de directorio (Directory Facilitator).
- \item Un canal de comunicaciones para los agentes (Agent Communication Chanel).
+ \item Un canal de comunicaciones para los agentes (Agent Communication
+ Channel).
 \end{itemize}
 
 Cada uno de estos servicios, excepto el de transporte de mensajes, es
@@ -164,6 +165,34 @@ El identificador (AID) del agente DF, al igual que el del AMS, es único y
 reservado, y está establecido de antemano por la FIPA.
 
 \subsubsection*{Agent Communication Channel}
+
+El Agent Communication Channel (ACC) es el elemento encargado de la gestión del
+envío de mensajes entre los agentes de una plataforma, e incluso entre distintas
+plataformas; por ello, todos los agentes han de tener acceso a un ACC.
+
+Su misión principal es el direccionamiento de los mensajes -que están escritos
+en ACL, comentado en el siguiente apartado-. El flujo es el siguiente:
+
+\begin{enumerate}
+ \item El agente emisor entrega el mensaje al ACC de su plataforma.
+ \item El ACC de la plataforma emisora entrega el mensaje al ACC de la
+ plataforma receptora.
+ \item El segundo ACC entrega el mensaje al agente receptor.
+\end{enumerate}
+
+Todo el proceso es transparente para los agentes, que no se tienen que
+preocupar de cómo llegan los mensajes que envían o reciben.
+
+El modelo de comunicación es asíncrono, de esta manera el ACC no se bloquea
+ante el envío o recepción de mensajes.
+
+Se usan dos sistemas diferentes de transporte para los mensajes, dependiendo de
+si el destino se encuentra en la misma o en otra plataforma. Para los mensajes
+entre agentes de una misma plataforma, el ACC hace uso del ``Internal Platform
+Message Transport'' (IPMT) que representa toda la infraestructura de
+comunicaciones interna. Para la comunicación con otras plataformas, el agente
+ACC dispone del ``Message Transport System'' (SMT), que hace la misma labor que
+el IPMT pero a nivel externo.
 
 \subsubsection*{Agent Communication Language}
 
