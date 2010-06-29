@@ -196,6 +196,36 @@ el IPMT pero a nivel externo.
 
 \subsubsection*{Agent Communication Language}
 
+FIPA adopta como estándar el lenguaje ACL para la comunicación por mensajes.
+Dicho lenguaje está basados en los ``actos del habla'', definidos en la teoría
+creada por J.L. Austin\cite{Austin62}.
+
+A diferencia del lenguaje natural, los actos del habla basan su semántica en
+estados mentales, tales como creencias, deseos, intenciones, etc. Habitualmente
+estos estados se pueden expresar mediante lógicas modales, lo que es muy
+conveniente a la hora de trabajar en informática. Los mensajes ACL en sí mismos
+definen su tipo, y por lo tanto, su semántica.
+
+El objeto del mensaje, o expresado de otra manera, el efecto que produce en el
+estado mental del emisor y del receptor, se conoce en ACL como
+``Performativa''. Gracias a esta formalización es posible definir protocolos de
+alto nivel, conocidos con el nombre de ``Conversaciones''.
+
+Un mensaje ACL se compone conceptualmente de 5 partes bien diferenciadas:
+
+\begin{description}
+ \item[Performativa] O tipo de acto comunicativo. FIPA proporciona varios tipos
+ como ``request'', ``query'', etc.
+ \item[Emisor y receptor/es] Los identificadores (AID) de todos los agentes
+ involucrados en la conversación.
+ \item[Contenido] El contenido en sí del mensaje.
+ \item[Descripción del contenido] De qué manera está expresado el contenido del
+ mensaje, por ejemplo, siguiendo un lenguaje formal.
+ \item[Control de la conversación] Parámetros que permiten a los agentes
+ mantener varias conversaciones sin mezclar mensajes, por ejemplo:
+ ``reply\_with'', ``in\_reply\_to'', etc.
+\end{description}
+
 \section*{Java}
 
 Java es un lenguaje de programación orientado a objetos desarrollado por Sun
