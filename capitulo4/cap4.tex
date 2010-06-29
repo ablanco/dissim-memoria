@@ -91,12 +91,6 @@ localización y comunicación de agentes. Según las especificaciones, los agent
 han de estar siempre conectados a una plataforma para poder funcionar, esto es
 así debido a que su ciclo de vida es gestionado por la plataforma.
 
-\begin{figure}[H]
- \centering
- \includegraphics[width=130mm]{figuras/cap4/fipa_agent.png}
- \caption{Ciclo de vida de un agente FIPA}
-\end{figure}
-
 Cuando un agente se conecta a una plataforma, se produce un registro de éste
 en la misma, habitualmente de manera implícita; aunque en caso de agentes
 móviles que se trasladen de una plataforma a otra, por ejemplo, el registro debe
@@ -121,7 +115,32 @@ ontología definida para dicho servicio.
 
 \subsubsection*{Agent Management System}
 
-% TODO
+El Agent Management System (AMS) es el elemento de gestión principal, tiene una
+visión global sobre todo el sistema y todos sus agentes. El identificador (AID:
+Agent IDentifier) es único y reservado, y viene establecido directamente por la
+FIPA.
+
+La utilidad del AMS viene determinada por los servicios que ofrece. Entre ellos
+está el controlar el ciclo de vida de los agentes, por lo que ofrece mecanismos
+para la creación, destrucción y control del cambio de estado de estos. El ciclo
+de vida de un agente establecido por la FIPA está representado en la siguiente
+figura:
+
+\begin{figure}[H]
+ \centering
+ \includegraphics[width=130mm]{figuras/cap4/fipa_agent.png}
+ \caption{Ciclo de vida de un agente FIPA}
+\end{figure}
+
+Además, el AMS supervisa los permisos de los agentes que registran en la
+plataforma, por lo que juega un papel importante en el control de la movilidad
+de los agentes.
+
+Otras de las tareas que corresponden al AMS son la gestión de los recursos
+compartidos, del canal de comunicación y del servicio de nombres (ANS: Agent
+Name Service) -también conocido como ``Servicio de Páginas Blancas''-. Éste
+último servicio permite a los agentes buscar por nombre a otro agente dentro de
+la plataforma, y obtener la dirección de transporte real de dicho agente.
 
 \subsubsection*{Directory Facilitator}
 
