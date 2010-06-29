@@ -144,6 +144,25 @@ la plataforma, y obtener la dirección de transporte real de dicho agente.
 
 \subsubsection*{Directory Facilitator}
 
+Este agente proporciona un método para que el resto de agentes puedan registrar
+sus descripciones y/o servicios, y juega un papel muy relevante dentro de la
+plataforma FIPA. De esta forma se posibilita que otros agentes puedan buscar
+agentes por servicios, en vez de por nombre. Gracias a este mecanismo un agente
+pueden encontrar y contactar con otros agentes de cuyos servicios está
+necesitado, sin conocer el nombre o identificador de estos. El Directory
+Facilitator (DF) es también conocido con el nombre de ``Servicio de Páginas
+Amarillas''.
+
+Cuando un agente se registra en el DF debe proporcionar la siguiente
+información: su AID y una lista de servicios que requiere u ofrece. Y cuando un
+agente busca un determinado servicio en el DF, obtiene el conjunto de AIDs de
+los agentes que ofrecen dicho servicio. A diferencia de lo que ocurre con el
+AMS, un agente no está obligado a registrarse en el DF -el registro en el AMS
+es, habitualmente, automático-.
+
+El identificador (AID) del agente DF, al igual que el del AMS, es único y
+reservado, y está establecido de antemano por la FIPA.
+
 \subsubsection*{Agent Communication Channel}
 
 \subsubsection*{Agent Communication Language}
