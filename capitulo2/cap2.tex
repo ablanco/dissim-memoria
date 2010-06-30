@@ -12,7 +12,7 @@
 
 \vspace*{5mm}
 
-\section*{Planteamiento del Problema}
+\section{Planteamiento del Problema}
 
 Nuestro simulador consta de tres grandes elementos: el agua, las personas y la
 ciudad.
@@ -30,7 +30,7 @@ restringido sólo a una zona concreta del planeta. Para ello hemos de utilizar
 sistemas de información global. Aunque siempre estaremos a expensas de la
 disponibilidad de los datos.
 
-\section*{Movimiento del Agua}
+\section{Movimiento del Agua}
 
 Para simular el movimiento del agua hemos contemplado muchas posibles
 soluciones. Puesto que aplicar mecánica de fluidos no es algo para nada
@@ -48,7 +48,7 @@ este problema ya sería en sí el tema de una tesis completa.
 En el simulador abordamos dos de los problemas del movimiento del agua, la
 dirección y la velocidad de propagación.
 
-\subsection*{Dirección del Agua}
+\subsection{Dirección del Agua}
 
 Cuando se simula una inundación es vital saber en qué dirección se moverá la
 masa de agua, puesto que queremos conocer cuáles serán los terrenos afectados
@@ -65,7 +65,7 @@ terrenos, que sin tener en cuenta estos factores, nunca hubieran sido inundados.
 Para resolver este problema nosotros sólo disponemos de la altura del terreno
 como único dato.
 
-\subsection*{Velocidad de Propagación del Agua}
+\subsection{Velocidad de Propagación del Agua}
 
 La velocidad de propagación de un fluido en un entorno irregular es un problema
 muy complejo, nos hemos visto obligados a simplificarlo considerablemente.
@@ -80,7 +80,7 @@ tenemos datos para poder recrear el escenario necesario. Datos sobre la
 composición del terreno, los obstáculos, la resistencia de los materiales,
 su rugosidad y permeabilidad al agua, etc. No se encuentran tan fácilmente.
 
-\subsection*{Otros Problemas con el Agua}
+\subsection{Otros Problemas con el Agua}
 
 Entre otros muchos posibles problemas que podríamos haber abordado, dada su
 sencillez y facilidad de implementación, y gracias a la versatilidad de nuestro
@@ -96,13 +96,13 @@ superficie.
 
 Pero una vez más, por falta de datos, se han tenido que quedar en el tintero.
 
-\section*{Inundaciones en un Entorno Urbano}
+\section{Inundaciones en un Entorno Urbano}
 
 Simular una inundación en un entorno urbano tiene sus propios problemas, tales
 como el papel de los ríos, las calles, la forma de los edificios, la red de
 alcantarillado, etc.
 
-\subsection*{Ríos}
+\subsection{Ríos}
 
 En una ciudad, un río será, por lo general, un sector conflictivo cuando se
 produzca una inundación, pues probablemente sea el causante de la inundación.
@@ -112,7 +112,7 @@ son complejos de por sí\cite{Kollinger}, pero podrían ser resueltos por nuestr
 sistema multiagente si tuviésemos acceso a los datos necesarios, tales como la
 forma del lecho del río, etc.
 
-\subsection*{Forma de los Edificios}
+\subsection{Forma de los Edificios}
 
 La forma de los edificios también va a influir en el desarrollo de la
 inundación. Cuando entre el agua dentro del edificio se modificará su velocidad
@@ -126,14 +126,14 @@ contenga las alturas de los edificios, el simulador será capaz de simular
 adecuadamente el agua. Pero una vez más, estamos a merced de la calidad de los
 datos.
 
-\subsection*{Calles y Carreteras}
+\subsection{Calles y Carreteras}
 
 Las calles y carreteras tienen la particularidad de ser prácticamente planas, y
 de inclinación suave, lo que las hacen idóneas para que el agua pueda moverse
 sin mucha dificultad. Actúan como canales conduciendo el agua a más velocidad
 por la ciudad que el agua que atraviesa edificios.
 
-\subsection*{Alcantarillado}
+\subsection{Alcantarillado}
 
 Todas las ciudades tienen una red de alcantarillado, al menos todas las del
 primer mundo, que no es mas que un conjunto de canales subterráneos dedicados
@@ -150,7 +150,7 @@ debajo de cada calle habrá una conducción de alcantarilla, pero se estarían
 ignorando los caudales de las conducciones y los puntos de entrada o salida de
 agua.
 
-\subsection*{Prioridades de las Personas}
+\subsection{Prioridades de las Personas}
 
 Se han realizado estudios\cite{Liu07} en algunas poblaciones sobre qué es
 lo que harían sus habitantes en caso de crisis. Se han considerado aspectos
@@ -161,7 +161,7 @@ En el simulador esto se podría traducir en comportamientos de ayuda entre
 agentes, como indicarles el camino a seguir o incluso acompañarles a un
 lugar seguro.
 
-\subsection*{Supervivencia en un Entorno Inundado}
+\subsection{Supervivencia en un Entorno Inundado}
 
 También es importante, ante una catástrofe, recoger información acerca de los
 supervivientes para posteriores análisis. Por ejemplo, tras las inundaciones
@@ -178,7 +178,7 @@ En nuestro caso contar con este tipo de informaciones nos permitirá contrastar
 los resultados simulados con casos reales, para realizar comparaciones y sacar
 conclusiones.
 
-\subsection*{Evacuación de Personas}
+\subsection{Evacuación de Personas}
 
 La correcta evacuación de una ciudad ante un desastre es algo muy importante, y
 de ello dependen las vidas de muchas personas. La rapidez y eficacia de la
@@ -191,7 +191,7 @@ Con esta información se podrían concentrar los esfuerzos de las autoridades en
 los puntos críticos. Manteniendo las vías principales abiertas, o en su defecto,
 proporcionando caminos alternativos y demás soluciones a los posibles problemas.
 
-\section*{Obtener Información Real del Terreno}
+\section{Obtener Información Real del Terreno}
 
 Lo verdaderamente interesante de nuestro proyecto es poder simular sobre
 lugares reales, para ello es necesario obtener la información de dicho lugar.
@@ -202,7 +202,7 @@ En principio el simulador no ha de estar limitado a ningún lugar o país, se
 debe poder simular en cualquier zona. Para ello necesitaremos usar un sistema de
 geolocalización y servicios de información geográfica globales.
 
-\subsection*{Posibles Rutas de Evacuación}
+\subsection{Posibles Rutas de Evacuación}
 
 Con nuestro simulador no sólo pretendemos simular la inundación en sí, sino la
 posible reacción de las personas ante la catástrofe. Para ello, como ya hemos
@@ -213,7 +213,7 @@ En el caso de una ciudad, lo más importante que necesitamos conocer es su
 callejero, dado que las calles determinarán las posibles rutas de escape para
 los afectados.
 
-\section*{Geolocalización}
+\section{Geolocalización}
 
 Nosotros queremos simular en terrenos reales lo que implica utilizar algún tipo
 de sistema de geolocalización, lo más habitual es el uso de coordenadas
@@ -223,7 +223,7 @@ Una vez obtenida la información necesaria sobre el terreno nos encontramos con
 el problema de la discretización de estos datos, y la inevitable pérdida de
 información.
 
-\subsection*{Discretización de los Datos}
+\subsection{Discretización de los Datos}
 
 En el mundo de la informática no existe nada infinito, y nuestro simulador
 tampoco podrá trabajar con infinitos datos de elevación. Es imprescindible
@@ -237,7 +237,7 @@ representar de manera más fidedigna la realidad; pero no es posible evitar el
 incremento asociado de la carga computacional, un incremento que además es
 exponencial.
 
-\section*{Visualización de los Resultados}
+\section{Visualización de los Resultados}
 
 Realizar una simulación carece de sentido si no podemos observar de alguna
 manera el resultado de la misma. Por lo tanto nos planteamos cuál o cuáles
@@ -248,7 +248,7 @@ mapas online con fotos satélite para mostrar resultados, tales como Google Maps
 Google Earth, Bing Maps, Open Street Maps, etc. Queda escoger qué plataforma
 utilizar y cómo implementarlo, lo que se discutirá en los capítulos siguientes.
 
-\subsection*{Estadísticas}
+\subsection{Estadísticas}
 
 Además de mostrar la evolución de la inundación hace falta poder comparar
 distintas simulaciones, para ello es necesario extraer estadísticas de cada

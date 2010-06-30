@@ -10,7 +10,7 @@
 
 \vspace*{5mm}
 
-\section*{Definición del Escenario de Simulación}
+\section{Definición del Escenario de Simulación}
 
 Los datos de entrada del simulador son los que llamamos {\bf Escenario}. En
 ellos se define el área de simulación, tamaño de los hexágonos, las entradas de
@@ -19,7 +19,7 @@ agua, los tiempos, las personas, etc.
 Toda esta información estará definida en un fichero tipo {\em clave=valor}, que
 será procesado por el agente {\bf Creador} al lanzar la simulación.
 
-\section*{Agentes en la Simulación}
+\section{Agentes en la Simulación}
 
 En el siguiente esquema se muestran los agentes que conforman el simulador.
 Algunos de ellos tienen un papel más importante que otros, destacando los
@@ -33,7 +33,7 @@ agentes {\bf Entorno} y los agentes {\bf Peatón}.
 
 A continuación siguen descripciones detalladas de cada tipo de agente.
 
-\subsection*{Agente Creador}
+\subsection{Agente Creador}
 
 La función del agente Creador es la de lanzar la simulación. Esto lo convierte
 en un agente un poco particular, pues no tiene un papel activo en la
@@ -54,7 +54,7 @@ estáticos del terreno (tales como la altura o información sobre las calles).
 Como se puede comprobar, una vez que el agente Creador ha terminado de lanzar
 la simulación adopta un papel pasivo.
 
-\subsection*{Agente Reloj}
+\subsection{Agente Reloj}
 
 La necesidad de un agente que sincronizase la simulación no se hizo patente
 hasta bien avanzado el desarrollo del simulador. El motivo se explica en
@@ -69,7 +69,7 @@ Los agentes que reciben estos mensajes, y por lo tanto están sincronizados,
 son: agentes {\bf Entorno}, agentes {\bf Entrada de Agua} y agentes {\bf
 Peatón}.
 
-\subsection*{Agentes Entorno}
+\subsection{Agentes Entorno}
 
 Probablemente el agente con más responsabilidades y trabajo de todo el
 simulador. Su misión es manejar la información relativa al terreno de un área
@@ -94,7 +94,7 @@ dada su posición.
 simulación.
 \end{itemize}
 
-\subsubsection*{Rejilla Hexagonal}
+\subsubsection{Rejilla Hexagonal}
 
 Para representar el terreno simulado optamos por utilizar una rejilla
 hexagonal, dado que hemos de discretizar de alguna manera. El usar hexágonos
@@ -111,7 +111,7 @@ adyacentes es siempre la misma, mientras que en una cuadrícula esto no ocurre.
 Cada agente {\bf Entorno} mantiene una rejilla hexagonal con toda la
 información del terreno que está simulando.
 
-\subsection*{Agentes Entrada de Agua}
+\subsection{Agentes Entrada de Agua}
 
 Estos agentes representan una fuente de agua del sistema. Están localizados en
 un punto del área de simulación, y con cada {\em tick} del {\bf Reloj} envían
@@ -120,7 +120,7 @@ un mensaje con cierta cantidad de agua al agente {\bf Entorno} correspondiente.
 La cantidad de agua de cada mensaje dependerá del ritmo de entrada de agua en
 ese punto, y del ritmo de los {\em ticks} de {\bf Reloj}.
 
-\subsection*{Agentes Peatón}
+\subsection{Agentes Peatón}
 
 El objetivo final de toda persona que se ve envuelta un desastre es salvarse a
 sí misma y a sus allegados. Ese mismo objetivo es compartido por estos agentes,
@@ -139,7 +139,7 @@ Entorno} correspondiente.
 En todo momento el agente deberá tratar, evidentemente, de no perder la vida
 ahogado en la inundación.
 
-\subsection*{Agentes Actualización}
+\subsection{Agentes Actualización}
 
 Actúan únicamente como receptores de mensajes, su misión consiste en recibir
 las actualizaciones de los agentes {\bf Entorno} y pasárselas a otros elementos
@@ -150,7 +150,7 @@ estadísticas}.
 En definitiva, estos agentes sirven para obtener información de la simulación
 que se esté llevando a cabo.
 
-\section*{Elevación del Terreno}
+\section{Elevación del Terreno}
 
 Para obtener los datos de elevación del terreno hemos de utilizar fuentes de
 datos externas. En concreto para los Estados Unidos utilizaremos el servicio
@@ -165,7 +165,7 @@ elevación, de manera que sea sencillo añadir nuevas fuentes de datos para pode
 simular en territorios fuera de los Estados Unidos. De esta manera el terreno
 sobre el que simular sólo estará limitado por los datos de los que dispongamos.
 
-\section*{Geolocalización}
+\section{Geolocalización}
 Para poder geolocalizar los elementos y
 poder utilizarnos en nuestra simulación, necesitamos crear una equivalencia
 entre casilla y coordenada.
@@ -174,7 +174,7 @@ De esta forma todo lo que simulemos podremos trasladarlo por medio de las
 casillas al mundo real y toda la información del mundo real que podamos recoger
 la podremos representar por medio de las casillas.
 
-\section*{Open Street Maps}
+\section{Open Street Maps}
 
 Para la información relativa a calles, puntos de interés, etc, recurriremos a
 OSM\footnote{Open Street Maps: \url{http://www.openstreetmap.org/}}. OSM es un
@@ -185,7 +185,7 @@ importantes es muy buena, aunque en lugares menos poblados decae.
 Pero al igual que con los datos de elevación, el simulador ha de ser
 independiente de OSM y ha de poder utilizar otras fuentes de datos.
 
-\section*{Generador de KML}
+\section{Generador de KML}
 
 El generador de KML será un cliente de un agente {\bf Actualización}. Esto
 significa que por cada generador de KML que esté atendiendo a la simulación
@@ -200,7 +200,7 @@ OGC\footnote{Open Geospatial Consortium:
 \url{http://www.opengeospatial.org/standards/kml}}. Es muy importante que se
 ajusten al estándar para su correcta visualización en cualquier visor de KML.
 
-\section*{Visor Bidimensional}
+\section{Visor Bidimensional}
 
 Se hace necesario un visor que muestre la evolución de la simulación en pseudo
 tiempo real, pues estará supeditado a la frecuencia con la que reciba datos
@@ -216,7 +216,7 @@ Gracias a este visor no es necesario esperar a haber completado la simulación
 para poder visualizar los resultados, aunque es claramente más limitado que el
 fichero KML.
 
-\section*{Estadísticas}
+\section{Estadísticas}
 
 También es muy importante que se puedan extraer estadísticas de las
 simulaciones. Para ello usaremos, una vez más, un agente {\bf Actualización}.

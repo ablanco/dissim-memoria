@@ -10,7 +10,7 @@
 
 \vspace*{5mm}
 
-\section*{Introducción}
+\section{Introducción}
 
 En este capítulo se explicarán uno a uno todos los agentes que intervienen en la
 simulación, y cómo se han implementado. Todos los agentes se encuentran en el
@@ -64,7 +64,7 @@ comportamiento se envía, que comportamiento lo recibe, y de qué trata el
 mensaje -tipo o contenido del mismo-. Obviamente el comportamiento que envía el
 mensaje es del agente emisor, y el que recibe es del agente receptor.
 
-\section*{Agente Creador}
+\section{Agente Creador}
 
 La misión de este agente es la de crear al resto de agentes y lanzar la
 simulación.
@@ -97,7 +97,7 @@ manden dichos mensajes. Esta actividad la realiza a través del comportamiento
 Este último comportamiento actúa como servidor del objeto escenario, y se
 implementa mediante un {\em CyclicBehaviour} de JADE.
 
-\section*{Agente Reloj}
+\section{Agente Reloj}
 
 Este agente apareció en nuestro sistema considerablemente tarde, por lo que
 tuvimos que hacer bastantes cambios para incluirlo. Nació de la necesidad de
@@ -153,7 +153,7 @@ hay que sincronizar los agentes, pues JADE es de naturaleza asíncrona.
  \caption{Comunicaciones del agente Reloj}
 \end{figure}
 
-\section*{Agentes Entorno}
+\section{Agentes Entorno}
 
 Los agentes {\em Entorno} son sin duda los más complejos y los más importantes
 de cuantos forman la simulación. Su papel es manejar y mantener la información
@@ -212,7 +212,7 @@ comunican los {\bf Peatones} para avisar al entorno de su posición y salud.
  \caption{Comunicaciones del agente Entorno}
 \end{figure}
 
-\subsection*{Casillas Adyacentes y Múltiples Entornos}
+\subsection{Casillas Adyacentes y Múltiples Entornos}
 
 El {\bf Entorno} recibe muchas peticiones, normalmente de los {\bf Peatones},
 solicitando las casillas adyacentes a una dada. El agente consulta su maya
@@ -237,7 +237,7 @@ uno dado a un {\bf Entorno} concreto, puede estar involucrando a más agentes en
 el proceso pero sin saberlo. Para los {\bf Peatones} este proceso es del todo
 transparente.
 
-\subsection*{Movimiento del Agua}\label{waterMovement}
+\subsection{Movimiento del Agua}\label{waterMovement}
 
 Dadas las limitaciones vistas en el \hyperref[cap2]{capítulo 2}, y sobre todo
 dada nuestra intención de crear un modelo sencillo y abarcable, hemos
@@ -290,7 +290,7 @@ y escogía donde quedarse, inundando la casilla. El sistema funcionaba pero muy
 poco escalable, dado que la cantidad de agentes agua era abrumadora. Lo
 desechamos rápidamente y comenzamos el diseño del sistema actual.
 
-\section*{Agentes Entrada de Agua}
+\section{Agentes Entrada de Agua}
 
 Este tipo de agente es de lo más sencillo. Son agentes para nada inteligentes,
 cuya única misión es enviar un mensaje al {\bf Entorno} correspondiente en cada
@@ -314,7 +314,7 @@ un mensaje en cada tick del {\bf Reloj}.
  \caption{Comunicaciones del agente Entrada de Agua}
 \end{figure}
 
-\section*{Agentes Peatón}
+\section{Agentes Peatón}
 
 Durante la inicialización estos agentes averiguan cuál es el {\bf Entorno} cuyo
 terreno contiene su coordenada inicial, para ello utilizan el escenario que
@@ -416,7 +416,7 @@ ilimitado.
  \caption{Comunicaciones del agente Peatón}
 \end{figure}
 
-\section*{Agentes Actualización}
+\section{Agentes Actualización}
 
 Estos agentes nos permiten sacar información de la simulación. Durante su
 inicialización lo que hacen es subscribirse a los agentes {\bf Entorno} que se
@@ -447,7 +447,7 @@ de la clase del cliente de la que crean la instancia mediante reflexión.
  \caption{Comunicaciones del agente Actualización}
 \end{figure}
 
-\section*{Maya Hexagonal}
+\section{Maya Hexagonal}
 
 Sobre la rejilla es donde se van a realizar todos los cálculos de la simulación,
 por lo tanto dispone de todos los métodos para manipular y obtener la
@@ -462,13 +462,13 @@ quien los usa. Todas las matrices almacenan datos de tipo {\em short}, pues no
 es necesario un rango mayor y así se ahorra memoria. Todas las matrices son de
 la misma dimensión.
 
-\subsection*{Matriz de Alturas}
+\subsection{Matriz de Alturas}
 
 El rango del tipo básico {\em short} en Java va desde -32768 hasta 32767, y
 dependiendo de la precisión en altura que se esté utilizando el rango en metros
 será menor o mayor que éste.
 
-\subsection*{Matriz de Agua}
+\subsection{Matriz de Agua}
 
 Para el caso de inundación se añade esta matriz, que a diferencia de la matriz
 de alturas, sólo almacena valores positivos -no tiene sentido un nivel de agua
@@ -478,7 +478,7 @@ otra diferencia con respecto a la matriz de alturas.
 Sumando los valores de una casilla en las matrices de alturas y agua se obtiene
 la altura total del terreno en ese punto.
 
-\subsection*{Matriz de Calles}
+\subsection{Matriz de Calles}
 
 Esta matriz no se modifica una vez rellena, y almacena valores clave que definen
 el tipo de casilla del que se trata. Valores del tipo ``calle'', ``avenida'',
@@ -487,7 +487,7 @@ el tipo de casilla del que se trata. Valores del tipo ``calle'', ``avenida'',
 Gracias a estos valores los agentes tienen una representación de las
 construcciones y calles que los rodean.
 
-\subsubsection*{Tipos de Calles}
+\subsubsection{Tipos de Calles}
 
 Para saber en qué tipo de calle nos encontramos nos ayudamos de la información
 de OSM, que viene categorizada en grupos, tales como ``carreteras``, ''puntos
@@ -500,7 +500,7 @@ Estos valores los identificamos por medio de constantes globales; y se
 comparan mediante funciones estáticas, que nos devuelven el tipo concreto o los
 valores padre -para los subgrupos-.
 
-\subsubsection*{Prioridad de la Información}
+\subsubsection{Prioridad de la Información}
 
 Ocurre que en ocasiones varios elementos caen en la misma casilla, pues están
 muy cercanos geográficamente y les corresponde el mismo hexágono. Pero en cada
@@ -509,7 +509,7 @@ forma que se sobreescribe el valor que hubiera si el nuevo valor es mayor que el
 viejo. Así nos aseguramos que la información que consideramos más prioritaria
 -de mayor valor- permanezca en la matriz.
 
-\subsubsection*{Intersecciones}
+\subsubsection{Intersecciones}
 
 A veces es útil, sobre todo en el caso de las calles, saber cuando se cruzan
 dos o más elementos. Para ello, a la hora de sobreescribir valores, si nos
@@ -521,7 +521,7 @@ normalmente en la matriz -cuando no se sobreescribe ningún valor- tienen que se
 todos pares. Así si el valor de una casilla es impar sabemos que en ese punto
 hay una intersección de dos elementos.
 
-\subsection*{Coronas}
+\subsection{Coronas}
 
 Como se comentó en la sección del \hyperref[waterMovement]{movimiento del agua}
 de los agentes {\bf Entorno}, las mayas hexagonales disponen de una corona, o
@@ -539,13 +539,13 @@ casilla y le avisa de la actualización realizada. Así se mantiene la coherenci
 entre {\bf Entornos} y el paso de uno a otro se vuelve transparente para el
 resto de agentes.
 
-\subsection*{Coordenada a Casilla, y Viceversa} \label{coordToCasilla}
+\subsection{Coordenada a Casilla, y Viceversa} \label{coordToCasilla}
 
 El paso de coordenada geográfica a coordenada en la maya, y viceversa, es un
 problema complejo que ha requerido un considerable esfuerzo. Hay que tener en
 cuenta que la maya es hexagonal, y que la tierra no es plana.
 
-\subsubsection*{Incrementos} \label{incrementos}
+\subsubsection{Incrementos} \label{incrementos}
 
 Para poder convertir la posición de una casilla a una determinada coordenada
 geográfica hemos optado por la técnica de los incrementos, en vez de complicados
@@ -564,7 +564,7 @@ de incremento de la longitud.
 De esta forma tan sencilla podemos hacer las conversiones de ''casilla a
 coordenada``.
 
-\subsubsection*{Discretización}
+\subsubsection{Discretización}
 
 El problema de ''coordenada a casilla'' es un poco más complejo, puesto que al
 trabajar con una coordenada tenemos que aproximar a una casilla en concreto
@@ -581,7 +581,7 @@ existe una posibilidad de error.
 De esta forma perdemos un poco de información, pero los errores cometidos por
 este sistema no superan el \begin{math}0.7\%\end{math}.
 
-\section*{Especialización: Múltiples Desastres}
+\section{Especialización: Múltiples Desastres}
 
 Siguiendo el estilo de JADE, con el que se trabaja a través de los mecanismos
 de herencia de Java, hemos diseñado nuestro simulador para que se pueda
@@ -597,13 +597,13 @@ Las clases padres dan funcionalidad básica y común a todos los desastres. Por
 ejemplo, {\em HexagonalGrid} mantiene las matrices de alturas y de calles,
 mientras que es {\em FloodHexagonalGrid} la que añade la matriz de agua.
 
-\section*{Elevación del Terreno}
+\section{Elevación del Terreno}
 
 Para la obtención de alturas utilizamos servicios de información en la red. Por
 desgracia la obtención de estos datos puede resultar lenta, por lo que se hizo
 necesario implementar una caché de alturas.
 
-\subsection*{Caché de Alturas} \label{cache}
+\subsection{Caché de Alturas} \label{cache}
 
 Obtener todas las alturas de todas las casillas cada vez que necesitemos
 simular un escenario no es viable. La solución que nosotros implementamos es
@@ -641,7 +641,7 @@ Un problema al utilizar consultas sql, y en este caso, la hacer muchas
 consultas, hay que tener controlar las conexiones abiertas con la base de datos
 y cerrar las consultas cuando ya se ha terminado de procesarlas.
 
-\section*{Open Street Maps}
+\section{Open Street Maps}
 
 OSM permite la descarga de ficheros XML que contienen toda la información de
 sobre las calles, puntos de interés, etc, contenidas en unas coordenadas
@@ -651,7 +651,7 @@ La {\em url} para descargar estos ficheros se compone de la siguiente manera:
 {\em dirección base + coordenada suroeste + coordenada noreste}. El fichero
 descargado tendrá el mismo nombre que la petición.
 
-\subsection*{Parsear XML}
+\subsection{Parsear XML}
 
 La información viene codificada en un fichero XML siguiendo el estándar de OSM.
 Para poder extraer la información es necesario parsear el fichero. Para ello
@@ -671,7 +671,7 @@ OsmMember} para los caminos compuestos. {\em OsmRelation} para los ríos y
 parques, y {\em OsmNode} para los puntos simples y puntos de interés. Para
 almacenar la información extra creamos {\em OsmTag}.
 
-\subsubsection*{Filtro de Información}
+\subsubsection{Filtro de Información}
 
 {\em OsmTag} contiene dos atributos principales, clave y valor. Nos valemos de
 estos dos atributos para almacenar la información extra que nos ofrece OSM, como
@@ -685,7 +685,7 @@ hemos optado por almacenar sólo con la información que queremos, desechando el
 resto; pero si algún día se añade un nuevo tipo de información que no se
 almacena, únicamente habría que añadirlo al filtrado de etiquetas.
 
-\subsection*{Dibujar Calles}
+\subsection{Dibujar Calles}
 
 OSM nos da la información de las calles como listas de coordenadas geográficas
 que hay que unir con líneas rectas. Esto plantea dos problemas.
@@ -713,7 +713,7 @@ Al usar estas técnicas obtenemos más puntos de los necesarios para pintar la
 recta, por lo que guardamos siempre la casilla anterior a la que se calcula en
 ese momento y si es la misma, no la pintamos.
 
-\subsection*{Rellenar Figuras}
+\subsection{Rellenar Figuras}
 
 Existen tres figuras diferentes a la hora de dibujar los mapas. Los puntos
 simples, las líneas rectas y las polilíneas cerradas. Estas últimas se componen
@@ -722,7 +722,7 @@ ocasiones estas figuras encierran espacios que son de un único tipo, y hay que
 marcar todas las casillas contenidas en dicho espacio con el tipo correcto. Es
 el caso de ríos, parques, etc.
 
-\subsubsection*{Polilíneas Cerradas}
+\subsubsection{Polilíneas Cerradas}
 
 Es necesario hallar los puntos que encierra una línea, es un problema de
 geometría computacional. Este problema aparece cuando queremos reflejar la
@@ -737,7 +737,7 @@ Una vez identificadas las líneas cerradas, que son aquellas en las que el prime
 punto de la lista es igual al último punto, simplemente hay que aplicar el
 algoritmo y rellenar las zonas con el valor adecuado.
 
-\subsubsection*{Relaciones}
+\subsubsection{Relaciones}
 
 Sin embargo, existen otras figuras más complejas, como las orillas de los ríos
 o las costas. OSM también nos da esta información, pero no es tan sencilla de
@@ -761,7 +761,7 @@ pasamos a tener el problema anterior, de fácil solución, que es rellenar una
 polilínea cerrada. Para la costa, y otras formaciones de agua, o figuras
 complejas, es equivalente.
 
-\subsection*{Intersecciones de Caminos}
+\subsection{Intersecciones de Caminos}
 
 Además del tipo de camino, que es lo que estamos guardando en la matriz de
 calles del {\bf Entorno}, podemos almacenar de una forma inteligente información
@@ -777,7 +777,7 @@ una unidad el valor anterior-.
 De esta manera tan simple podemos identificar y almacenar las intersecciones
 entre calles.
 
-\section*{Generador de KML}
+\section{Generador de KML}
 
 El generador de ficheros KML, que se usa a través de un agente {\bf
 Actualización} e implementa la interfaz {\em Updatable}, recibe el estado de la
@@ -801,7 +801,7 @@ Para cada polígono contamos con la posición, la forma, la altura, el color, y 
 transparencia. Haciendo un buen uso de estas características podemos mostrar
 mucha información de una forma eficaz y elegante.
 
-\subsection*{Bordes}
+\subsection{Bordes}
 
 Nos enfrentamos a dos problemas: Las posiciones de los polígonos nos vienen
 dadas a través de un única coordenada, pero nosotros para dibujar el polígono
@@ -838,7 +838,7 @@ borde de cualquier figura.
 
 % TODO explicar bien las listas de adyacencias, no con dos frases mal puestas
 
-\subsection*{Color y Transparencia}
+\subsection{Color y Transparencia}
 
 Como ya hemos comentado anteriormente, nos valemos del color para representar
 la información de manera intuitiva. Azul para el agua, verde para personas a
@@ -859,7 +859,7 @@ color amarillo, y las personas que se hayan fallecido tendrán color gris.
 Con este sencillo método podemos representar la información de manera muy
 visual y expresiva.
 
-\section*{Visor Bidimensional}
+\section{Visor Bidimensional}
 
 Para poder ver la evolución en pseudo tiempo real, y no tener que esperar a que
 se completase para consultar el KML, implementamos un sencillo visor
@@ -886,7 +886,7 @@ rojo para las personas. La intensidad del color determina su altura, a más
 claro el color, mayor es la altura de la casilla -se ignora la profundidad,
 sólo se tiene en cuenta la altura-.
 
-\section*{Estadísticas}
+\section{Estadísticas}
 
 Siguiendo la misma estrategia que los demás objetos que se actualizan
 periódicamente, hemos diseñado un cliente de los agentes {\bf Actualización} que

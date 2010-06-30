@@ -10,7 +10,7 @@
 
 \vspace*{5mm}
 
-\section*{Licencias}
+\section{Licencias}
 
 Para este proyecto vamos a usar la licencia GPL (Licencia Pública General de
 GNU) en su versión 3 o posterior, escrita y mantenida por la FSF\footnote{Free
@@ -28,7 +28,7 @@ licencias libres con la GPL v3.
  \caption{Compatibilidad de otras licencias libres con la GPL v3}
 \end{figure}
 
-\section*{JADE}
+\section{JADE}
 
 La plataforma JADE (Java Agent DEvelopment Framework) es la escogida para el
 desarrollo del simulador. El objetivo principal de esta plataforma es la
@@ -73,7 +73,7 @@ desarrollo para el proyecto. El resto de librerías y paquetes que utilizamos, y
 que describimos en los siguientes apartados, están pues escritos en este
 lenguaje.
 
-\subsection*{Arquitectura FIPA}
+\subsection{Arquitectura FIPA}
 
 Como ya hemos mencionado, JADE implementa por completo la arquitectura de
 sistemas multiagentes de la FIPA. Esta arquitectura ha sido desarrollada por
@@ -116,7 +116,7 @@ suministrado por agentes especializados. Esto supone que la comunicación con
 ellos será mediante mensajes ACL (Agent Communication Language) y utilizando una
 ontología definida para dicho servicio.
 
-\subsubsection*{Agent Management System}
+\subsubsection{Agent Management System}
 
 El Agent Management System (AMS) es el elemento de gestión principal, tiene una
 visión global sobre todo el sistema y todos sus agentes. El identificador (AID:
@@ -145,7 +145,7 @@ Name Service) -también conocido como ``Servicio de Páginas Blancas''-. Éste
 último servicio permite a los agentes buscar por nombre a otro agente dentro de
 la plataforma, y obtener la dirección de transporte real de dicho agente.
 
-\subsubsection*{Directory Facilitator}
+\subsubsection{Directory Facilitator}
 
 Este agente proporciona un método para que el resto de agentes puedan registrar
 sus descripciones y/o servicios, y juega un papel muy relevante dentro de la
@@ -166,7 +166,7 @@ es, habitualmente, automático-.
 El identificador (AID) del agente DF, al igual que el del AMS, es único y
 reservado, y está establecido de antemano por la FIPA.
 
-\subsubsection*{Agent Communication Channel}
+\subsubsection{Agent Communication Channel}
 
 El Agent Communication Channel (ACC) es el elemento encargado de la gestión del
 envío de mensajes entre los agentes de una plataforma, e incluso entre distintas
@@ -196,7 +196,7 @@ comunicaciones interna. Para la comunicación con otras plataformas, el agente
 ACC dispone del ``Message Transport System'' (SMT), que hace la misma labor que
 el IPMT pero a nivel externo.
 
-\subsubsection*{Agent Communication Language}
+\subsubsection{Agent Communication Language}
 
 FIPA adopta como estándar el lenguaje ACL para la comunicación por mensajes.
 Dicho lenguaje está basados en los ``actos del habla'', definidos en la teoría
@@ -228,7 +228,7 @@ Un mensaje ACL se compone conceptualmente de 5 partes bien diferenciadas:
  ``reply\_with'', ``in\_reply\_to'', etc.
 \end{description}
 
-\subsection*{Implementación de FIPA en JADE}
+\subsection{Implementación de FIPA en JADE}
 
 Como ya hemos comentado anteriormente, JADE implementa por completo la
 plataforma FIPA que acabamos de describir. Por ejemplo, para implementar el ACC
@@ -262,7 +262,7 @@ para depurar la comunicación entre agentes.
  \caption{Agente {\em sniffer} de JADE}
 \end{figure}
 
-\section*{Java}
+\section{Java}
 
 Java es un lenguaje de programación orientado a objetos desarrollado por Sun
 Microsystems, recientemente adquirida por Oracle, a principios de los años 90.
@@ -278,7 +278,7 @@ De Java existe una implementación totalmente libre de nombre
 OpenJDK\footnote{\url{http://openjdk.java.net/}}. OpenJDK soporta el 99\% de la
 plataforma, y el simulador podrá ejecutarse sobre esta implementación.
 
-\section*{JAK}
+\section{JAK}
 
 JAK (Java API for KML) son un conjunto de librerías para el manejo de ficheros
 KML desde Java. JAK ha sido desarrollado por Micromata
@@ -301,7 +301,7 @@ de JAK se puede consultar en su sitio web.
 Gracias a JAK podremos generar los ficheros KML con el resultado de la
 simulación.
 
-\section*{Jcoord}
+\section{Jcoord}
 
 Para el manejo de coordenadas geográficas utilizaremos
 Jcoord\footnote{\url{http://www.jstott.me.uk/jcoord/}}, un paquete de clases que
@@ -318,9 +318,9 @@ A diferencia de {\bf JADE} o {\bf JAK}, integraremos directamente el código en
 el simulador, por lo que no será una dependencia. De esta manera podremos
 modificar y adaptar el paquete a nuestras necesidades.
 
-\section*{Otras librerías}
+\section{Otras librerías}
 
-\subsection*{Java CSV}
+\subsection{Java CSV}
 
 Java CSV\footnote{\url{http://sourceforge.net/projects/javacsv/}} es una
 sencilla librería que facilita la escritura y lectura de ficheros de valores
@@ -330,7 +330,7 @@ módulo de estadísticas.
 La licencia de esta librería es la LGPL v2.1 o posterior, y estará integrada en
 el código del proyecto por lo que no será una dependencia.
 
-\subsection*{OpenWFE}
+\subsection{OpenWFE}
 
 Del proyecto OpenWFE\footnote{Open WorkFlow Engine:
 \url{http://sourceforge.net/projects/openwfe/}} en realidad sólo utilizaremos
@@ -340,13 +340,13 @@ ficheros de la web). La licencia de OpenWFE es una BSD de 3 clausulas.
 Dicha clase estará integrada en el código del simulador por lo que OpenWFE no
 será una dependencia.
 
-\section*{Servicios}
+\section{Servicios}
 
 Además de las librerías comentadas hasta ahora haremos uso de algunos
 servicios, como son Open Street Maps y el servicio web de elevaciones de la
 USGS descritos en \hyperref[cap3]{el capítulo 3}.
 
-\subsection*{Open Street Maps}
+\subsection{Open Street Maps}
 
 Open Street Maps (OSM)\cite{Pinto09} permite que se le realicen peticiones GET
 por HTML, y
@@ -361,7 +361,7 @@ de los datos recibidos requerirá de un procesado mucho más complejo.
  \caption{Logo de Open Street Maps}
 \end{figure}
 
-\subsection*{Servicio de elevaciones de la USGS}
+\subsection{Servicio de elevaciones de la USGS}
 
 La U.S. Geological Survey (USGS) proporciona un método para obtener la elevación
 del terreno si éste pertenece a los Estados Unidos. Este servicio consiste en un

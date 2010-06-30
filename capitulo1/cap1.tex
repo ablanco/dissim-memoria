@@ -11,7 +11,7 @@
 
 \vspace*{5mm}
 
-\section*{Agentes Inteligentes}
+\section{Agentes Inteligentes}
 
 % http://en.wikipedia.org/wiki/Intelligent_agent#A_variety_of_definitions
 
@@ -66,7 +66,7 @@ de {\em inteligentes}. Un grado de proactividad es imprescindible, aunque se
 hace necesario encontrar un equilibrio entre la reactividad y la búsqueda
 activa de objetivos.
 
-\subsection*{Qué no es un Agente}
+\subsection{Qué no es un Agente}
 
 % http://en.wikipedia.org/wiki/Software_agent#What_an_agent_is_not
 
@@ -75,13 +75,13 @@ elementos relacionados y resaltar las diferencias, que dar una definición. A
 continuación sigue una comparación entre un agente inteligente y otros tipos de
 software relacionados.
 
-\subsubsection*{Agentes frente a Programas}
+\subsubsection{Agentes frente a Programas}
 
 Las principales características que distinguen a un agente de un programa
 arbitrario son cuatro: {\em reactividad al entorno, autonomía, proactividad y
 persistencia}\cite{Franklin96}.
 
-\subsubsection*{Agentes frente a Objetos}
+\subsubsection{Agentes frente a Objetos}
 
 Las diferencias que intuitivamente se pueden encontrar son las
 siguientes\cite{Wooldridge95}:
@@ -93,7 +93,7 @@ siguientes\cite{Wooldridge95}:
  \item Los agentes tienen como mínimo un hilo de control, pero pueden tener más.
 \end{itemize}
 
-\subsubsection*{Agentes frente a Sistemas Expertos}
+\subsubsection{Agentes frente a Sistemas Expertos}
 
 Las diferencias son las siguientes\cite{Wooldridge95}:
 
@@ -104,12 +104,12 @@ Las diferencias son las siguientes\cite{Wooldridge95}:
  \item Los sistemas expertos no tienen capacidades sociales.
 \end{itemize}
 
-\subsection*{Tipos de Agentes}
+\subsection{Tipos de Agentes}
 
 Existen varios tipos de agentes según sus características y capacidades. Lo que
 sigue es sólo una de las posibles clasificaciones.
 
-\subsubsection*{Reactivos}
+\subsubsection{Reactivos}
 
 Los agentes puramente reactivos actúan únicamente en base a su percepción. La
 funcionalidad del agente está basada en {\em la regla de condición-acción}: si
@@ -120,7 +120,7 @@ También es posible que un agente reactivo contenga información de su estado en
 cada momento, lo que les permite obviar {\em condiciones} que ya hayan activado
 {\em acciones} en momentos anteriores.
 
-\subsubsection*{Reactivos basados en Modelo}
+\subsubsection{Reactivos basados en Modelo}
 
 Este tipo de agentes es capaz de desenvolverse en entornos que son sólo
 parcialmente observables. Almacenan su estado en cada momento manteniendo algún
@@ -134,14 +134,14 @@ entorno en cada momento, usando su modelo interno. Con ambas informaciones (su
 modelo interno y sus percepciones) toma las decisiones de la misma manera que un
 agente puramente reactivo.
 
-\subsubsection*{Basados en Objetivos}
+\subsubsection{Basados en Objetivos}
 
 Los agentes basados en objetivos son agentes basados en modelo que además
 almacenan información relativa a situación que son deseables. Gracias a esto el
 agente es capaz de escoger de entre múltiples posibilidades aquellas que
 cumplen un objetivo.
 
-\subsubsection*{Basados en Utilidad}
+\subsubsection{Basados en Utilidad}
 
 Loa agentes basados en objetivos sólo diferencian entre estados objetivo y no
 objetivo. Es posible definir una medida de cuan deseable es un estado en
@@ -152,7 +152,7 @@ Gracias a esta función el agente es capaz de escoger aquellos estados que
 ayudan o favorecen la consecución de los objetivos, en el caso de que ningún
 estado posible cumpla un objetivo directamente.
 
-\subsubsection*{Con capacidad de Aprendizaje}
+\subsubsection{Con capacidad de Aprendizaje}
 
 El aprendizaje presenta ventajas tales como que permite a los agentes operar en
 entornos inicialmente desconocidos, y convertirse en agentes más competentes
@@ -160,7 +160,7 @@ de lo que su conocimiento inicial por sí mismo permitiría. Esta capacidad de
 aprendizaje requiere que el agente tenga memoria, y permite la mejora de la
 eficacia de éste a lo largo del tiempo.
 
-\section*{Sistemas MultiAgente (SMA)}
+\section{Sistemas MultiAgente (SMA)}
 
 % http://en.wikipedia.org/wiki/Multi-agent_system
 
@@ -188,7 +188,7 @@ sencillas.
 Los agentes de un SMA pueden comunicarse entre sí y compartir conocimiento, con
 las limitaciones que imponga el protocolo de comunicación del sistema.
 
-\subsection*{Cuándo utilizar un SMA}
+\subsection{Cuándo utilizar un SMA}
 
 Los sistemas multiagente son especialmente útiles cuando se da alguna, o varias,
 de las siguientes situaciones\cite{Bonabeau02}:
@@ -204,7 +204,7 @@ de las siguientes situaciones\cite{Bonabeau02}:
  aprendizaje y adaptación.
 \end{itemize}
 
-\subsection*{Estrategia de Trabajo}
+\subsection{Estrategia de Trabajo}
 
 Existen múltiples formas de plantear un sistema multiagente, pero una de la más
 habituales es la técnica de {\em divide y vencerás}. Básicamente se trata de
@@ -221,7 +221,7 @@ normalmente no tienen una solución general. Muchas veces se ha necesario
 resolver cada caso por separado, lo que puede conducir a comportamientos
 erróneos o a la aparición de comportamientos emergentes no deseados.
 
-\subsection*{Protocolos de Comunicación}
+\subsection{Protocolos de Comunicación}
 
 Es la capacidad de comunicación entre los agentes que componen un SMA lo que
 permite que el sistema funcione y resuelva problemas. Sin comunicación no hay
