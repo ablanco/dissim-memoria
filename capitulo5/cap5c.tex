@@ -131,7 +131,7 @@ de Agua} y {\bf Peatones}.
 \end{figure}
 
 Este agente tiene un comportamiento de tipo {\em
-jade.core.behaviours.TickerBehaviour}, que se ejecuta periódicamente según un
+jade.core.behaviours.Ticker-\\Behaviour}, que se ejecuta periódicamente según un
 intervalo definido en el escenario. Cada vez que se ejecuta manda un mensaje a
 los agentes comentados anteriormente, dando lugar a un nuevo paso de la
 simulación. En dicho mensaje manda la fecha y hora dentro de la simulación,
@@ -176,8 +176,8 @@ instancia de dicha clase con los datos de su trozo de simulación. Como es el
 entorno el que posee los datos del terreno, proporciona también servicios de
 consulta de dicha información al resto de agentes. Dichos servicios se
 implementan mediante comportamientos del tipo {\em
-jade.core.behaviours.CyclicBehaviour}, en particular se trata de los
-comportamientos {\em behaviours.AdjacentsGridBehav} y {\em
+jade.core.behaviours.Cyclic-\\Behaviour}, en particular se trata de los
+comportamientos {\em behaviours.Adja-\\centsGridBehav} y {\em
 behaviours.QueryGridBehav}.
 
 \begin{figure}[H]
@@ -331,7 +331,7 @@ Como hemos visto en el escenario de simulación, los agentes {\bf Peatón}
 reciben una serie de parámetros de entrada. A saber:
 
 \begin{description}
- \item[Posición inicial] Dado en coordenadas geográficas latitud,longitud.
+ \item[Posición inicial] Dado en coordenadas geográficas {\em latitud,longitud}.
  \item[Distancia de visión] Medida en hexágonos, representa cuantos hexágonos
  es capaz de ver el peatón en línea recta. Se utiliza a la hora de solicitar
  casillas adyacentes a la posición en ese momento.
@@ -611,10 +611,11 @@ almacenar en local los datos para utilizarlos de nuevo en posteriores
 simulaciones, o incluso para poder reutilizarlos en otras máquinas.
 
 El almacenamiento se realiza en un servidor de base de datos, al que se accede
-a través de JDBC\footnote{Java Database Connectivity:
-\url{http://java.sun.com/products/jdbc/overview.html}}. Por ahora están
-soportados por el simulador los servidores MySQL, PostgreSQL y SQLite, pero
-sería muy sencillo incluir más servidores siempre que haya un driver para JDBC.
+a través de JDBC\footnote{Java Database Connectivity:\\
+\hspace*{7mm}\url{http://java.sun.com/products/jdbc/overview.html}}. Por ahora
+están soportados por el simulador los servidores MySQL, PostgreSQL y SQLite,
+pero sería muy sencillo incluir más servidores siempre que haya un driver para
+JDBC.
 
 La base de datos sólo contiene una tabla, de nombre Elevations, con tres campos:
 
