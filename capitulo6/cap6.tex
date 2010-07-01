@@ -10,7 +10,7 @@
 
 \vspace*{5mm}
 
-\section{Preparando el Escenario}
+\section{Preparación de la Simulación}
 
 Para poder validar el trabajo realizado, hemos de simular lo ocurrido en el
 caso guía y comparar los resultados con lo que realmente pasó. Para ello hemos
@@ -232,12 +232,130 @@ siguientes características:
 \end{itemize}
 
 \subsection{Visualización de Resultados}
-%Ventanitas del simulador o capturas de google earth
+
+Para la visualización de la inundación, como ya hemos comentado en varias
+ocasiones, utilizamos un visor de ficheros KML. En concreto, utilizamos Google
+Earth.
+
+Gracias a la potencia de Google Earh podemos mostrar la inundación sobre
+imágenes del terreno real y en 3 dimensiones.
+
+\begin{figure}[H]
+ \centering
+ \includegraphics[width=110mm]{figuras/cap6/resultados/ejemplo.png}
+ \caption{Dos fuentes de agua comienzan a inundar Nueva Orleans}
+\end{figure}
+
+Otra característica muy interesante de Google Earth es que tiene muchos
+edificios modelados en 3D. Por desgracia en el caso de Nueva Orleans esto se
+limita al centro financiero. La siguiente captura muestra el agua de la
+inundación llegando a los rascacielos y edificios más altos del {\em downtown}
+de Nueva Orleans.
+
+\begin{figure}[H]
+ \centering
+ \includegraphics[width=90mm]{figuras/cap6/resultados/3D.png}
+ \caption{El agua llega al {\em downtown} de Nueva Orleans}
+\end{figure}
+
+\subsubsection{Interfaz de Google Earth}
+
+A continuación vamos a explicar qué información podemos visualizar de los
+ficheros KML a través de Google Earth. A la izquierda -marcada con un ``1'' en
+la siguiente imagen- tenemos la barra lateral, en ella se despliega el
+contenido del fichero KML que hemos abierto. Nos encontraremos con que en su
+interior hay dos subcarpetas, {\em Flood} y {\em People}. En la primera se
+almacenan los datos relativos al agua, mientras que en la segunda los relativos
+a los peatones; todos ellos clasificados según entornos y con la hora
+correspondiente.
+
+Sobre el área principal -marcado con un ``2''- aparece el control de la
+animación. Este control nos permite movernos a lo largo del tiempo visualizando
+la inundación en todos sus estados, o bien podemos reproducirla y observar la
+animación producida. También es posible modificar la velocidad a la que
+muestra dicha animación.
+
+El área principal -marcada con un ``3''- es donde Google Earth nos muestra el
+mundo en 3D. Aquí es donde aparecerá dibujada la inundación. En la imagen
+aparecen recuadradas las zonas que habían sido inundadas en el momento de tomar
+la captura.
+
+\begin{figure}[H]
+ \centering
+ \includegraphics[height=130mm,angle=90]{figuras/cap6/resultados/interfaz.png}
+ \caption{Interfaz de Google Earth}
+\end{figure}
+
+Entrando en detalle en la información almacenada en el KML, nos encontramos con
+que respecto al agua -marcada con un ``1`` en la siguiente captura- se almacena
+en cada instante de la simulación, y por cada entorno -marcado con un ''2''-, un
+conjunto de polígonos -marcados con un ``3''- con un número asociado. Dicho
+número es la altura del polígono en cuestión.
+
+Podemos escoger en todo momento qué polígonos se muestran, y cuáles no. De esta
+manera es muy intuitivo relacionar esta información con lo que está siendo
+dibujado en la pantalla.
+
+\begin{figure}[H]
+ \centering
+ \includegraphics[width=95mm]{figuras/cap6/resultados/flood_data.png}
+ \caption{Datos del agua en el KML}
+\end{figure}
+
+Al igual que ocurre con el agua, también podemos ver los detalles de la
+información guardada sobre las personas -marcado con un ``1`` en la próxima
+captura-. También aparecen clasificadas por entornos -marcados con un ''2``-, y
+asociado a cada agente aparece un color y un número. El número es un cero, pues
+siempre están caminando a ras de suelo. El color representa el estado del
+agente:
+
+\begin{description}
+ \item[Amarillo] El agente está vivo, pero en peligro. Aún no ha encontrado
+ ningún refugio.
+ \item[Verde] El agente está a salvo en un refugio.
+ \item[Gris] El agente ha muerto ahogado en la inundación.
+\end{description}
+
+Sobre el terreno se dibujan como un único hexágono -marcado con un ''3``-,
+cuyas paredes son del color del estado del peatón.
+
+\begin{figure}[H]
+ \centering
+ \includegraphics[width=130mm]{figuras/cap6/resultados/people_data.png}
+ \caption{Datos de las personas en el KML}
+\end{figure}
+
+\subsection{Barrios Inundados}
+
+En las siguientes imágenes se puede ver el avance de la simulación en cada uno
+de los barrios simulados. Se puede apreciar cómo el agua evoluciona a partir de
+las roturas de los diques, moviéndose según el terreno. También puede verse a
+los peatones recorrer las calles en busca de los
+\hyperref[objetivos]{objetivos}.
+
+Aparecen resaltados en negro los peatones, y en rojo el agua de la inundación.
+
+\begin{figure}[H]
+ \centering
+ \includegraphics[height=115mm,angle=90]{figuras/cap6/resultados/katrina1.png}
+ \caption{Inundación de la \hyperref[zona1]{zona 1}}
+\end{figure}
+
+\begin{figure}[H]
+ \centering
+ \includegraphics[height=115mm,angle=90]{figuras/cap6/resultados/katrina2.png}
+ \caption{Inundación de la \hyperref[zona2]{zona 2}}
+\end{figure}
+
+\begin{figure}[H]
+ \centering
+ \includegraphics[height=110mm,angle=90]{figuras/cap6/resultados/katrina3.png}
+ \caption{Inundación de la \hyperref[zona3]{zona 3}}
+\end{figure}
+
 \section{Simulación frente Realidad}
 %Es cuestion de preparar un escenario de nueva orleans y comparar con la
 %bibliografia
-
-
 
 En la siguiente imagen podemos observar qué zonas quedaron dañadas en Nueva
 Orleans tras la inundación\cite{Gabe05}.
@@ -247,6 +365,71 @@ Orleans tras la inundación\cite{Gabe05}.
  \includegraphics[width=135mm]{figuras/cap6/NOdamage.png}
  \caption{Daños reales en Nueva Orleans}
 \end{figure}
+
+Una vez ejecutado la simulación en las tres zonas obtenemos los siquientes
+resultados.
+
+\begin{figure}[H]
+ \centering
+ \includegraphics[width=135mm]{figuras/cap6/stats/Zona1.png}
+ \caption{Estadísticas Zona 1}
+\end{figure}
+
+Esta zona representa la más poblada, y también la más céntrica. Como pudimos
+ver en las imágenes de la simulación es una zona bastante afectada por la
+inundación al tratarse practicante de barrios residenciales.
+
+Hemos seleccionado un numero representativo de la población como 100. Están
+distribuidos de forma proporcional a la densidad de población y tienen
+distintos atributos para simular la diversidad de refugiados que se pueden dar.
+
+Como podemos ver, al tratarse de una zona tan densamente poblada y con tantas
+calles que sufrieron cortes por las inundaciones la evacuación se realiza
+lentamente, llegando al punto de que al termino de la simulación aún había
+refugiados que no habían conseguido llegar a un refugio.
+
+También podemos ver que el numero de muertes es muy grande, porque al
+encontrarse rodeados por tantas zonas inundadas su evacuación no fue posible.
+
+\begin{figure}[H]
+ \centering
+ \includegraphics[width=135mm]{figuras/cap6/stats/Zona2.png}
+ \caption{Estadísticas Zona 2}
+\end{figure}
+
+Esta zona representa la menos poblada, y también la alejada de las zonas
+simualdas.
+Como pudimos
+ver en las imágenes de la simulación las roturas de los  diques están bastante
+alejadas de los núcleos urbanos por lo que las pérdidas humanas fueron menores
+que en los otros escenarios..
+
+Hemos seleccionado a 20 como número representativo de la población.
+Están
+distribuidos de forma proporcional a la densidad de población y tienen
+distintos atributos para simular la diversidad de refugiados que se pueden dar.
+
+La evacuación pudo hacerse mas fácilmente en esta zona porque tuvieron mas
+tiempo para escapar, y llegar a los refugios.
+
+
+\begin{figure}[H]
+ \centering
+ \includegraphics[width=135mm]{figuras/cap6/stats/Zona3.png}
+ \caption{Estadísticas Zona 3}
+\end{figure}
+Esta zona representa un escenario intermedio entre las otras dos, Teniendo
+partes muy céntricas y otras menos pobladas y bien comunicadas. Hemos
+
+Hemos seleccionado a 80 como número representativo de la población.
+Están
+distribuidos de forma proporcional a la densidad de población y tienen
+distintos atributos para simular la diversidad de refugiados que se pueden dar.
+
+La evacuación pudo hacerse mas ágilmente puesto que esta zona cuenta con buenas
+comunicaciones y núcleos de población alejados de los puntos de rotura de los
+diques.
+
 
 %%% Local Variables:
 %%% mode: latex
