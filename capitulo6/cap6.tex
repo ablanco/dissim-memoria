@@ -23,7 +23,7 @@ entrada utilizamos las roturas de los diques que contenían al río Mississippi
 -nuestras Entradas de Agua-, la distribución de la población -los agentes
 Peatón-, el terreno real y las calles reales de la ciudad.
 
-\subsection{Área de simulación}
+\subsection{Áreas de Simulación}
 
 El huracán Katrina afectó a una parte considerable del estado de Luisiana, pero
 nosotros nos centraremos en la ciudad de Nueva Orleans. En concreto el área que
@@ -113,6 +113,38 @@ estará posicionado en la simulación un agente {\bf Entrada de Agua}.
  \caption{Detalle de las roturas de los diques 2}
 \end{figure}
 
+\subsection{Distribución de la Población}
+
+En las siguientes imágenes aparecen marcadas las posiciones sobre el mapa de
+Nueva Orleans, de los agentes {\bf Peatón} que participan en la simulación.
+Como se puede ver en los escenarios de simulación, en cada punto de inicio no
+tiene por qué haber un único agente; de hecho, el número de clones del agente
+que aparezca en uno de estos punto oscila entre 1 y 7.
+
+\begin{figure}[H]
+ \centering
+ \includegraphics[height=90mm,angle=90]{figuras/cap6/population.png}
+ \caption{Distribución de la población 1}
+\end{figure}
+
+\begin{figure}[H]
+ \centering
+ \includegraphics[height=90mm,angle=90]{figuras/cap6/population1.png}
+ \caption{Distribución de la población 2}
+\end{figure}
+
+\begin{figure}[H]
+ \centering
+ \includegraphics[width=120mm]{figuras/cap6/population2.png}
+ \caption{Distribución de la población 3}
+\end{figure}
+
+\begin{figure}[H]
+ \centering
+ \includegraphics[width=105mm]{figuras/cap6/population3.png}
+ \caption{Distribución de la población 4}
+\end{figure}
+
 \subsection{Refugios y Rutas de Evacuación}
 
 En un principio se utilizó el {\em Louisiana Superdome} -una gran instalación
@@ -126,7 +158,12 @@ objetivos tres posibles rutas de escape para los ciudadanos.
 
 También consideramos que los edificios de los cuales podemos obtener
 información a través de OSM pudieron ser refugios de emergencia donde
-temporalmente pudieron refugiarse algunos ciudadanos. % TODO quitar?
+temporalmente pudieron refugiarse algunos ciudadanos.
+
+En la siguiente imagen vienen marcados los objetivos de los agentes, son
+refugios de los que conocen su posición desde un principio. Aunque si un agente
+se encuentra con un refugio temporal de camino a un objetivo, correrá a
+refugiarse y abandonará la búsqueda del objetivo.
 
 \begin{figure}[H]
  \centering
@@ -155,7 +192,7 @@ siguientes características:
 % TODO
 \end{itemize}
 
-\subsection{Escenario Simulado}
+\subsection{Escenarios Simulados}
 
 \lstinputlisting[caption=Escenario post Katrina simulado para la zona
 1]{capitulo6/Katrina1.scen}
