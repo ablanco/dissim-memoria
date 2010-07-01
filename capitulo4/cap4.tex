@@ -75,13 +75,11 @@ lenguaje.
 
 \subsection{Arquitectura FIPA}
 
-Como ya hemos mencionado, JADE implementa por completo la arquitectura de
-sistemas multiagentes de la FIPA\cite{Corral06}. Esta arquitectura ha sido
-desarrollada por FIPA con el objetivo de permitir la construcción de sistemas
-multigente que se integren entre sí en un entorno de computación particular.
-Adicionalmente podrían interoperar con sistemas construidos con diferente
-tecnología pero que también sigan estas especificaciones, todo ello con el
-mínimo esfuerzo.
+La arquitectura que sigue JADE ha sido desarrollada por FIPA con el objetivo de
+permitir la construcción de sistemas multigente que se integren entre sí en un
+entorno de computación particular. Adicionalmente podrían interoperar con
+sistemas construidos con diferente tecnología pero que también sigan estas
+especificaciones, todo ello con el mínimo esfuerzo.
 
 \begin{figure}[H]
  \centering
@@ -232,9 +230,9 @@ Un mensaje ACL se compone conceptualmente de 5 partes bien diferenciadas:
 \subsection{Implementación de FIPA en JADE}
 
 Como ya hemos comentado anteriormente, JADE implementa por completo la
-plataforma FIPA que acabamos de describir. Por ejemplo, para implementar el ACC
-hace uso de eventos Java para agentes en una misma máquina, y HTTP, IIOP o
-Corba para comunicación entre máquinas.
+plataforma FIPA que acabamos de describir\cite{Corral06}. Por ejemplo, para
+implementar el ACC hace uso de eventos Java para agentes en una misma máquina, y
+HTTP, IIOP o Corba para comunicación entre máquinas.
 
 En JADE la plataforma de agentes puede distribuirse entre varios contenedores,
 que pueden encontrarse todos en una o en varias máquinas. En definitiva, la
