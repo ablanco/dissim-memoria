@@ -832,11 +832,14 @@ perímetro, no los hexágonos completos de todas las casillas que contiene.
 
 Para implementarlo hacemos uso, otra vez, de conocimientos de geometría
 computacional y del operador borde. Dicho operador nos permite hallar el
-borde de cualquier figura.
+perímetro de cualquier figura, obteniendo una lista de adyacencias entre
+vértices.
 
-% TODO poner fórmula matemática con un esquema o algo
-
-% TODO explicar bien las listas de adyacencias, no con dos frases mal puestas
+Cada polígono se representa por una lista de adyacencias, a no ser que tenga
+huecos (como un toroide), entonces habría más de una lista. En cualquier caso,
+al trabajar sólo con los hexágonos situados a una altura determinada, las
+listas de adyacencias resultantes forma un único polígono a pintar en el KML,
+ahorrando así mucha memoria.
 
 \subsection{Color y Transparencia}
 
