@@ -232,10 +232,94 @@ siguientes características:
 \end{itemize}
 
 \subsection{Visualización de Resultados}
-%Ventanitas del simulador o capturas de google earth
+
+Para la visualización de la inundación, como ya hemos comentado en varias
+ocasiones, utilizamos un visor de ficheros KML. En concreto, utilizamos Google
+Earth.
+
+Gracias a la potencia de Google Earh podemos mostrar la inundación sobre
+imágenes del terreno real y en 3 dimensiones.
+
+\begin{figure}[H]
+ \centering
+ \includegraphics[width=110mm]{figuras/cap6/resultados/ejemplo.png}
+ \caption{Dos fuentes de agua comienzan a inundar Nueva Orleans}
+\end{figure}
+
+\subsubsection{Interfaz de Google Earth}
+
+A continuación vamos a explicar qué información podemos visualizar de los
+ficheros KML a través de Google Earth. A la izquierda -marcada con un ``1'' en
+la siguiente imagen- tenemos la barra lateral, en ella se despliega el
+contenido del fichero KML que hemos abierto. Nos encontraremos con que en su
+interior hay dos subcarpetas, {\em Flood} y {\em People}. En la primera se
+almacenan los datos relativos al agua, mientras que en la segunda los relativos
+a los peatones; todos ellos clasificados según entornos y con la hora
+correspondiente.
+
+Sobre el área principal -marcado con un ``2''- aparece el control de la
+animación. Este control nos permite movernos a lo largo del tiempo visualizando
+la inundación en todos sus estados, o bien podemos reproducirla y observar la
+animación producida. También es posible modificar la velocidad a la que
+muestra dicha animación.
+
+El área principal -marcada con un ``3''- es donde Google Earth nos muestra el
+mundo en 3D. Aquí es donde aparecerá dibujada la inundación. En la imagen
+aparecen recuadradas las zonas que habían sido inundadas en el momento de tomar
+la captura.
+
+\begin{figure}[H]
+ \centering
+ \includegraphics[height=130mm,angle=90]{figuras/cap6/resultados/interfaz.png}
+ \caption{Interfaz de Google Earth}
+\end{figure}
+
+Entrando en detalle en la información almacenada en el KML, nos encontramos con
+que respecto al agua -marcada con un ``1`` en la siguiente captura- se almacena
+en cada instante de la simulación, y por cada entorno -marcado con un ''2''-, un
+conjunto de polígonos -marcados con un ``3''- con un número asociado. Dicho
+número es la altura del polígono en cuestión.
+
+Podemos escoger en todo momento qué polígonos se muestran, y cuáles no. De esta
+manera es muy intuitivo relacionar esta información con lo que está siendo
+dibujado en la pantalla.
+
+\begin{figure}[H]
+ \centering
+ \includegraphics[width=95mm]{figuras/cap6/resultados/flood_data.png}
+ \caption{Datos del agua en el KML}
+\end{figure}
+
+Al igual que ocurre con el agua, también podemos ver los detalles de la
+información guardada sobre las personas -marcado con un ``1`` en la próxima
+captura-. También aparecen clasificadas por entornos -marcados con un ''2``-, y
+asociado a cada agente aparece un color y un número. El número es un cero, pues
+siempre están caminando a ras de suelo. El color representa el estado del
+agente:
+
+\begin{description}
+ \item[Amarillo] El agente está vivo, pero en peligro. Aún no ha encontrado
+ ningún refugio.
+ \item[Verde] El agente está a salvo en un refugio.
+ \item[Gris] El agente ha muerto ahogado en la inundación.
+\end{description}
+
+Sobre el terreno se dibujan como un único hexágono -marcado con un ''3``-,
+cuyas paredes son del color del estado del peatón.
+
+\begin{figure}[H]
+ \centering
+ \includegraphics[width=130mm]{figuras/cap6/resultados/people_data.png}
+ \caption{Datos de las personas en el KML}
+\end{figure}
+
+% TODO
+
 \section{Simulación frente Realidad}
 %Es cuestion de preparar un escenario de nueva orleans y comparar con la
 %bibliografia
+
+% TODO
 
 En la siguiente imagen podemos observar qué zonas quedaron dañadas en Nueva
 Orleans tras la inundación\cite{Gabe05}.
