@@ -12,3 +12,9 @@ Simulator Code
 ##############
 
 https://github.com/ablanco/dissim
+
+Legal
+#####
+
+This document is licensed under a 
+`GNU Free Documentation License <http://www.gnu.org/licenses/fdl-1.3-standalone.html>`_.
